@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS" />
+
+<script>
+	function popup(value){
+		window.open(value,'popup','width=900,height=620');
+	}
+</script>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+	//マップ宣言
+	var map;
+      
+	//google map設定
+	function initialize(){
+	
+		//marker 設定
+		var icon = new google.maps.MarkerImage(
+		'http://maps.google.co.jp/mapfiles/ms/icons/red-pushpin.png',
+		new google.maps.Size(34,34),
+		new google.maps.Point(0,0),
+		new google.maps.Point(37,34)
+		);
+			
+		//map 設定
+		geo = new google.maps.Geocoder();
+		var myOptions = {
+		zoom: 13,
+		center: new google.maps.LatLng(0.5267, -1.29),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+			
+		//mapを表示
+		map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
+		//--------------------------------①住所取得--------------------------------
+		var add1 = document.getElementById("addr1").value;
+		//①住所表示
+		geo.geocode({'address': add1}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+			
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「稲荷神社」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./1/index.html','popup','width=900,height=620');
+				});
+			}
+		});
+
+		//--------------------------------②住所取得--------------------------------
+		var add2 = document.getElementById("addr2").value;
+		geo.geocode({'address': add2}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「熊野神社」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./2/index.html','popup','width=900,height=620');
+				});
+			}
+		});
+		//--------------------------------③住所取得--------------------------------
+		var add3 = document.getElementById("addr3").value;
+		geo.geocode({'address': add3}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「大宮八幡宮」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./3/index.html','popup','width=900,height=620');
+				});
+			}
+		});
+		//--------------------------------④住所取得--------------------------------
+		var add4 = document.getElementById("addr4").value;
+		geo.geocode({'address': add4}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「八幡神社（高井戸八幡神社）」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./4/index.html','popup','width=900,height=620');
+				});
+			}
+		});		
+		//--------------------------------⑤住所取得--------------------------------
+		var add5 = document.getElementById("addr5").value;
+		geo.geocode({'address': add5}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「八幡神社（天沼八幡神社）」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./5/index.html','popup','width=900,height=620');
+				});
+			}
+		});				
+		//--------------------------------⑥住所取得--------------------------------
+		var add6 = document.getElementById("addr6").value;
+		geo.geocode({'address': add6}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「熊野神社（天沼熊野神社）」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./6/index.html','popup','width=900,height=620');
+				});
+			}
+		});				
+		//--------------------------------⑦住所取得--------------------------------
+		var add7 = document.getElementById("addr7").value;
+		geo.geocode({'address': add7}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「白山神社（荻窪白山神社）」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./7/index.html','popup','width=900,height=620');
+				});
+			}
+		});				
+		//--------------------------------⑧住所取得--------------------------------
+		var add8 = document.getElementById("addr8").value;
+		geo.geocode({'address': add8}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「八幡神社（荻窪八幡神社）」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./8/index.html','popup','width=900,height=620');
+				});
+			}
+		});				
+		//--------------------------------⑨住所取得--------------------------------
+		var add9 = document.getElementById("addr9").value;
+		geo.geocode({'address': add9}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「井草八幡宮」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./9/index.html','popup','width=900,height=620');
+				});
+			}
+		});				
+		//--------------------------------⑩住所取得--------------------------------
+		var add10 = document.getElementById("addr10").value;
+		geo.geocode({'address': add10}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				//map初期表示指定
+				map.setCenter(results[0].geometry.location);
+				
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「田端神社」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./10/index.html','popup','width=900,height=620');
+				});
+			}
+		});				
+		//--------------------------------⑪住所取得--------------------------------
+		var add11 = document.getElementById("addr11").value;
+		geo.geocode({'address': add11}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「神明宮」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./11/index.html','popup','width=900,height=620');
+				});
+			}
+		});
+		//--------------------------------⑫住所取得--------------------------------
+		var add12 = document.getElementById("addr12").value;
+		geo.geocode({'address': add12}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「馬橋稲荷神社」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./12/index.html','popup','width=900,height=620');
+				});
+			}
+		});		
+		//--------------------------------⑬住所取得--------------------------------
+		var add13 = document.getElementById("addr13").value;
+		geo.geocode({'address': add13}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「氷川神社（高円寺氷川神社）」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./13/index.html','popup','width=900,height=620');
+				});
+			}
+		});		
+		//--------------------------------⑭住所取得--------------------------------
+		var add14 = document.getElementById("addr14").value;
+		geo.geocode({'address': add14}, function(results, status)
+		{
+			// If that was successful
+			if (status == google.maps.GeocoderStatus.OK) {
+		
+				// Lets assume that the first marker is the one we want
+				var marker = new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: "「天祖神社（高円寺天祖神社）」クリックすると写真が見えます",
+					position: results[0].geometry.location
+				});
+
+				google.maps.event.addListener(marker,'click',function(){
+					window.open('./14/index.html','popup','width=900,height=620');
+				});
+			}
+		});
+	}
+   </script>
+</head>
+
+<body onload="initialize()">
+
+<div align="center">
+<div id="map_canvas" style="width: 600px; height: 500px;"></div>
+<!----------------------------------データ 1-------------------------------->
+☆稲荷神社（永福稲荷神社）<input type="button" value="写真見る" onclick=javascript:popup('./1/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">享禄三年（1530年）に京都伏見稲荷大社のご分霊を勧請したのが始まりとされております。明治十一年に町全体を守るように西向きに建て直されたものです。赤い柱と白い壁のいかにもお稲荷様らしい雰囲気を持った社殿です。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒168-0064<input type="text" id="addr1" size="40" value="杉並区永福1-24-6" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3321-3848</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3321-3848</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>王井の頭線「永福町駅」　南へ徒歩4分
+        </td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<!----------------------------------データ 2-------------------------------->
+☆熊野神社（和泉熊野神社）<input type="button" value="写真見る" onclick=javascript:popup('./2/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">紀州の熊野本宮大社の御分霊を祀る当社は文久四年の創建で、現在の社殿は文久三年の造営で明治四年に修復したものである。境内には樹木が多く、徳川家光が鷹狩のとき植えたクロ松が御神木として高くそびえている。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒168-0063<input type="text" id="addr2" size="40" value="杉並区和泉3-21-29" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3328-6830</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-5376-3780</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>京王井の頭線「永福町駅」　徒歩7分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<!----------------------------------データ 3-------------------------------->
+☆大宮八幡宮<input type="button" value="写真見る" onclick=javascript:popup('./3/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">鎮守府将軍源頼義公が前九年の役に赴く途次、この地で八条の白雲の瑞祥を見、奥州平定後の凱旋のおり、康平六年（1063年）京都・石清水八幡宮の御分霊を勧請し創建。武蔵三大宮の一つ「多摩の大宮」と称された。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒168-8570<input type="text" id="addr3" size="40" value="杉並区大宮2-3-1" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3311-0105</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3318-6100</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>京王井の頭線「西永福駅」　徒歩7分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>http://www.ohmiya-hachimangu.or.jp</td>
+	</tr>
+</table>
+<!----------------------------------データ 4-------------------------------->
+☆八幡神社（高井戸八幡神社）<input type="button" value="写真見る" onclick=javascript:popup('./4/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">長禄元年（1457年）太田道灌公江戸城築城の折、当地に立ち寄り、工事の安全を祈願し鶴岡八幡宮の神霊を勧請し建立した。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒168-0073<input type="text" id="addr4" size="40" value="杉並区下高井戸4-39-3" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3329-0837／03-3302-1523</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3302-1523</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>京王井の頭線「浜田山駅」　徒歩10分<br>
+		    京王線「桜上水駅」　徒歩15分
+		</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td></td>
+	</tr>
+</table>
+<!----------------------------------データ 5-------------------------------->
+☆八幡神社（天沼八幡神社）<input type="button" value="写真見る" onclick=javascript:popup('./5/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">「新編武蔵野風土記」によれば、創建が天正年間と記されており、合殿の弁天様は安産の神様として崇敬されてます。境内末社に大鳥神社もあり、毎年十一月には商売繁盛として「酉の市」がたち開運熊手守・福桝等を授与しています。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒167-0032<input type="text" id="addr5" size="40" value="杉並区天沼2-18-5" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3398-2514</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3398-2555</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR中央線・総武線・営団丸ノ内線・東西線「荻窪駅」（北口）　徒歩5分<br>
+		    京王線「桜上水駅」　徒歩15分
+		</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>http://www.amanumahachiman.jp/</td>
+	</tr>
+</table>
+<!----------------------------------データ 6-------------------------------->
+☆熊野神社（天沼熊野神社）<input type="button" value="写真見る" onclick=javascript:popup('./6/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">当社は、1230年程前に東海道巡察使の式部大輔従五位下、紀朝臣廣名が武蔵国天沼に天沼駅を置き、豊島と並び山海両路の使命を奉ぜし此の地の人々に、氏神を勧請し別当を置きて祀らしめたに始まると言ふ。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒167-0032<input type="text" id="addr6" size="40" value="杉並区天沼2-40-2" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3220-7866</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3220-7866</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR中央線・総武線・営団東西線・丸の内線「荻窪駅」　徒歩12分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<!----------------------------------データ 7-------------------------------->
+☆白山神社（荻窪白山神社）<input type="button" value="写真見る" onclick=javascript:popup('./7/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">加賀の霊峰白山を御神体とする白山信仰。古く文明年間に荻窪に勧請され、五社権現とも称された。爾来、交通経済の要所荻窪の安寧と豊饒を守り続け、いま姫神の御神力偉大なりと数多くの人々の参詣をうける神社である。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒167-0043<input type="text" id="addr7" size="40" value="杉並区上荻1-21-7" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3398-0517</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR中央線・総武線・営団丸ノ内線・東西線「荻窪駅」　徒歩3分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<!----------------------------------データ 8-------------------------------->
+☆八幡神社（荻窪八幡神社）<input type="button" value="写真見る" onclick=javascript:popup('./8/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">寛平年間（900年頃）の創祀と伝える。源頼義・太田道灌らが戦勝を祈願し、社殿の修復や献木（道灌槇―現存する）を行った。先取的なことに特に霊験あらたかという。現在の本殿は明治二十八年、拝殿は昭和十一年のもの。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒167-0043<input type="text" id="addr8" size="40" value="杉並区上荻4-19-2" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3390-1325</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3396-5898</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR中央線・総武線・営団東西線・丸ノ内線「荻窪駅」　徒歩15分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>http://www.amy.hi-ho.ne.jp/ogikubo-hachiman/</td>
+	</tr>
+</table>
+<!----------------------------------データ 9-------------------------------->
+☆井草八幡宮<input type="button" value="写真見る" onclick=javascript:popup('./9/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">当社は、縄文期から人々が生活していた此の地に祀られ、神社としての形態をととのえたのは平安時代末期といわれている。始めは春日社をお祀りしていたが、源頼朝が奥州征伐の途次、戦勝を祈願して以来八幡大神を主祭神とするようになった。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒167-0041<input type="text" id="addr9" size="40" value="杉並区善福寺1-33-1" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3399-8133</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3397-4088</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR中央線・総武線・営団丸ノ内線「荻窪駅」北口の0番または1番のりばよりバス15分「八幡宮裏」</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<!----------------------------------データ 10-------------------------------->
+☆田端神社<input type="button" value="写真見る" onclick=javascript:popup('./10/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">当社の創立は応永年中で、京都北野天神の霊を観請し、産土神と崇め祀った。明治四十二年村内に鎮座する天祖社・稲荷社・子の権現・山神社を本社北野神社に合祀、明治四十四年二月、社号を田端神社と改称する。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒167-0051<input type="text" id="addr10" size="40" value="杉並区荻窪1-56-10" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3391-4408</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3391-4408</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR「荻窪駅」（南口）より、荻窪団地行きバス終点　徒歩5分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<!----------------------------------データ 11-------------------------------->
+☆神明宮<input type="button" value="写真見る" onclick=javascript:popup('./11/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">約三千坪の森の奥にはその昔伊勢の宮川より持ち帰ったとされる霊石が御本殿に奉安されている。交通の便が良い為年間を通じ植木や骨董の市が催され、また箏曲、能、ジャズ等の奉納も多く常に境内は活気に満ちている。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒166-0001<input type="text" id="addr11" size="40" value="杉並区阿佐谷北1-25-5" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3330-4824</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3310-9007</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR中央線・総武線「阿佐ヶ谷駅」（北口）　徒歩2分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>http://www.shinmeiguu.com</td>
+	</tr>
+</table>
+<!----------------------------------データ 12-------------------------------->
+☆馬橋稲荷神社<input type="button" value="写真見る" onclick=javascript:popup('./12/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">当社は村の鎮守社として鎌倉時代末期に創建され、天保二年には京都の神祇伯より正式に「正一位足穂稲荷（たるほいなり）大明神」の御神号を賜る。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒166-0004<input type="text" id="addr12" size="40" value="杉並区阿佐谷南2-4-4" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3311-8588</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3316-1680</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR中央線「阿佐ヶ谷駅」「高円寺駅」</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>http://www.mabashiinari.org/</td>
+	</tr>
+</table>
+<!----------------------------------データ 13-------------------------------->
+☆氷川神社（高円寺氷川神社）<input type="button" value="写真見る" onclick=javascript:popup('./13/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">源頼朝奥州征伐の折、当地に至った随兵村田某がこの地に留まり、武蔵国高鼻の本社よりの御神意をうけ、この高円寺林の風致絶佳とされる当地に社殿を建立したのが起源とされる。昭和四十六年、総鋼鉄製の現社殿を造営して現在に至る。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒166-0003<input type="text" id="addr13" size="40" value="杉並区高円寺南4-44-19" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3314-4147</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3315-0034</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>JR「高円寺駅」（南口）　徒歩1分</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<!----------------------------------データ 14-------------------------------->
+☆天祖神社（高円寺天祖神社）<input type="button" value="写真見る" onclick=javascript:popup('./14/index.html')>
+<table border="1" width="600">
+	<tr>
+		<td colspan="2">昔、郷土山下久七が、伊勢神宮へ参詣し、分霊を請い得て、奉安したのが始めである。</td>
+	</tr>
+	<tr>
+		<td width="81">所在地</td>
+		<td width="703">〒166-0003<input type="text" id="addr14" size="40" value="杉並区高円寺南1-16-19" style="background-color:transparent;border:0" /></td>
+	</tr>
+	<tr>
+		<td>TEL</td>
+		<td>03-3311-4077</td>
+	</tr>
+	<tr>
+		<td>FAX</td>
+		<td>03-3311-4085</td>
+	</tr>
+	<tr>
+		<td>最寄り駅</td>
+		<td>営団丸ノ内線「東高円寺駅」</td>
+	</tr>
+	<tr>
+		<td>HomePage</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>
