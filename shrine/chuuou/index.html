@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS" />
+
+<script>
+	function popup(value){
+		window.open(value,'popup','width=900,height=620');
+	}
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuUvIjY3WeolxD-JlRsKxqsK5qUC1m9aM&callback=initMap"
+type="text/javascript"></script>
+
+<script type="text/javascript">
+	//マップ宣言
+	var map;
+      
+	//google map設定
+	function initialize(){
+	
+		//marker 設定
+		var icon = new google.maps.MarkerImage(
+		'http://maps.google.co.jp/mapfiles/ms/icons/red-pushpin.png',
+		new google.maps.Size(34,34),
+		new google.maps.Point(0,0),
+		new google.maps.Point(37,34)
+		);
+			
+		//map 設定
+		geo = new google.maps.Geocoder();
+		var myOptions = {
+			zoom: 14,
+			center: new google.maps.LatLng(35.676851, 139.771861),
+			borderPadding: 50,
+			trackMarkers: true,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		
+		}
+			
+		//mapを表示
+		map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
+		//-------------------------------- 椙森神社 ------------------------------------
+		//-------------------------- 中央区日本橋堀留町1-10-2 --------------------------------
+		var myLatlng_1 = new google.maps.LatLng(35.688488,139.77963);
+		var marker_1 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "椙森神社",
+			position: myLatlng_1
+		});
+		google.maps.event.addListener(marker_1,'click',function(){
+			window.open('./1/index.html','popup','width=900,height=620');
+		});
+
+		marker_1.setMap(map);
+
+		//--------------------------------水天宮--------------------------------
+		//--------------------------------中央区日本橋蠣殻町2-4-1--------------------------------
+		var myLatlng_2 = new google.maps.LatLng(35.683572,139.785196);
+		var marker_2 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "水天宮",
+			position: myLatlng_2
+		});
+		google.maps.event.addListener(marker_2,'click',function(){
+			window.open('./2/index.html','popup','width=900,height=620');
+		});
+
+		marker_2.setMap(map);
+
+		//--------------------------------末廣神社--------------------------------
+		//--------------------------------中央区日本橋人形町2-25-20--------------------------------
+		var myLatlng_3 = new google.maps.LatLng(35.686824, 139.784057);
+		var marker_3 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "末廣神社",
+			position: myLatlng_3
+		});
+		google.maps.event.addListener(marker_3,'click',function(){
+			window.open('./3/index.html','popup','width=900,height=620');
+		});
+
+		marker_3.setMap(map);
+
+		//--------------------------------松島神社--------------------------------
+		//--------------------------------中央区日本橋人形町2-15-2--------------------------------
+		var myLatlng_4 = new google.maps.LatLng(35.68476, 139.785441);
+		var marker_4 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "松島神社",
+			position: myLatlng_4
+		});
+		google.maps.event.addListener(marker_4,'click',function(){
+			window.open('./4/index.html','popup','width=900,height=620');
+		});
+
+		marker_4.setMap(map);
+
+		//--------------------------------小網神社--------------------------------
+		//--------------------------------中央区日本橋小網町16-23--------------------------------
+		var myLatlng_5 = new google.maps.LatLng(35.656552, 139.883002);
+		var marker_5 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "小網神社",
+			position: myLatlng_5
+		});
+		google.maps.event.addListener(marker_5,'click',function(){
+			window.open('./5/index.html','popup','width=900,height=620');
+		});
+
+		marker_5.setMap(map);	
+
+		//--------------------------------永久稲荷神社--------------------------------
+		//--------------------------------中央区日本橋箱崎町4-1--------------------------------
+		var myLatlng_6 = new google.maps.LatLng(35.67995, 139.783927);
+		var marker_6 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "永久稲荷神社",
+			position: myLatlng_6
+		});
+		google.maps.event.addListener(marker_6,'click',function(){
+			window.open('./6/index.html','popup','width=900,height=620');
+		});
+
+		marker_6.setMap(map);	
+
+		//--------------------------------福徳神社--------------------------------
+		//--------------------------------中央区日本橋室町2-4-14--------------------------------
+		var myLatlng_7 = new google.maps.LatLng(35.68706, 139.774205);
+		var marker_7 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "福徳神社",
+			position: myLatlng_7
+		});
+		google.maps.event.addListener(marker_7,'click',function(){
+			window.open('./7/index.html','popup','width=900,height=620');
+		});
+
+		marker_7.setMap(map);	
+
+		//--------------------------------鐵砲洲稲荷神社--------------------------------
+		//--------------------------------中央区湊1-6-7--------------------------------
+		var myLatlng_8 = new google.maps.LatLng(35.672442, 139.779722);
+		var marker_8 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "鐵砲洲稲荷神社",
+			position: myLatlng_8
+		});
+		google.maps.event.addListener(marker_8,'click',function(){
+			window.open('./8/index.html','popup','width=900,height=620');
+		});
+
+		marker_8.setMap(map);		
+
+		//--------------------------------於岩稲荷田宮神社--------------------------------
+		//--------------------------------中央区新川2-25-11--------------------------------
+		var myLatlng_9 = new google.maps.LatLng(35.674742, 139.783122);
+		var marker_9 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "於岩稲荷田宮神社",
+			position: myLatlng_9
+		});
+		google.maps.event.addListener(marker_9,'click',function(){
+			window.open('./9/index.html','popup','width=900,height=620');
+		});
+
+		marker_9.setMap(map);		
+
+		//--------------------------------住吉神社--------------------------------
+		//--------------------------------中央区佃1-1-14--------------------------------
+		var myLatlng_10 = new google.maps.LatLng(35.668001, 139.783333);
+		var marker_10 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "住吉神社",
+			position: myLatlng_10
+		});
+		google.maps.event.addListener(marker_10,'click',function(){
+			window.open('./10/index.html','popup','width=900,height=620');
+		});
+
+		marker_10.setMap(map);
+
+		//--------------------------------波除稲荷神社--------------------------------
+		//--------------------------------中央区築地6-20-37--------------------------------
+		var myLatlng_11 = new google.maps.LatLng(35.663485, 139.77157);
+		var marker_11 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "波除稲荷神社",
+			position: myLatlng_11
+		});
+		google.maps.event.addListener(marker_10,'click',function(){
+			window.open('./11/index.html','popup','width=900,height=620');
+		});
+
+		marker_11.setMap(map);
+	}
+   </script>
+</head>
+
+<body onload="initialize()">
+
+<div align="center">
+<div id="map_canvas" style="width: 99%; height: 600px;"></div>
+
+</div>
+</body>
+</html>

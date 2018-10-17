@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+  <title>delay demo</title>
+  <style>
+  	body {
+	  position: absolute;
+	  width: 600px;
+	  height: 400px;
+	}
+
+	.black{
+	  background: black;
+      position: absolute;
+      display: inline-block;
+      text-align: center;
+      width: 100px;
+      margin-left: -200px;
+      left: 50%;
+	  height: 20%;
+	  top: 20%;
+	  
+	}
+	.blue{
+	  background: blue;
+      position: absolute;
+      width: 100px;
+      margin-left: -100px;
+	  left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}
+	.red{
+	  background: red;
+      position: absolute;
+      width: 100px;
+      left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}
+	.orange{
+	  background: orange;
+      position: absolute;
+      width: 100px;
+      margin-left: 100px;
+	  left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}
+	.green{
+	  background: green;
+      position: absolute;
+      width: 100px;
+      margin-left: 200px;
+	  left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}
+	.parent {text-align: center;}
+
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+
+<body>
+ 
+<p><button id="run">Run</button></p>
+
+<div class="parent">
+	<div class="black" id ="black"></div>
+	<div class="blue" id ="blue"></div>
+	<div class="red" id ="red"> </div>
+	<div class="orange" id ="orange"></div>
+	<div class="green" id ="green"> </div>
+</div>
+
+<input type="text" id="black_txt" style="border: 0px;">
+<input type="text" id="blue_txt" style="border: 0px;">
+<input type="text" id="red_txt" style="border: 0px;">
+<input type="text" id="orange_txt" style="border: 0px;">
+<input type="text" id="green_txt" style="border: 0px;">
+
+<script>
+$(document).ready(function () {
+	// $(".black").attr("disabled", "disabled");
+	// $(".blue").attr('disabled','disabled');
+	// $(".red").attr('disabled','disabled');
+	// $(".orange").attr('disabled','disabled');
+	// $(".green").attr('disabled','disabled');
+})
+
+$( "#run" ).click(function() {
+
+	$('font').remove();
+	$('input').val("");
+
+	window.sessionStorage.removeItem('qlist');
+	for(var count=2; count<7; count++){
+		window.sessionStorage.removeItem(count);
+	}	
+
+    var items = ["black","blue","red","orange","green"];
+    items.sort(function() {
+       return Math.random() - Math.random();
+    });
+  	window.sessionStorage.setItem('qlist', items);
+
+	$("#"+items[0]).fadeOut().fadeIn().promise().done(function () {
+		$("#"+items[1]).fadeOut().fadeIn().promise().done(function () {
+			$("#"+items[2]).fadeOut().fadeIn().promise().done(function () {
+				$("#"+items[3]).fadeOut().fadeIn().promise().done(function () {
+					$("#"+items[4]).fadeOut().fadeIn();
+	  			})
+	  		})
+		})
+	})
+});
+
+	$("#black").one('click', function(){
+   		set("black");
+    });
+    $("#blue").one('click',function(){
+   		set("blue");
+    });    
+    $("#red").one('click',function (){
+   		set("red");
+    });    
+    $("#orange").one('click',function(){
+   		set("orange");
+    });
+    $("#green").one('click',function(){
+    	set("green");
+    });
+
+    function getmax() {
+    	textA = [];
+		textA.push($("#black_txt").val()); 
+		textA.push($("#blue_txt").val()); 
+		textA.push($("#red_txt").val()); 
+		textA.push($("#orange_txt").val()); 
+		textA.push($("#green_txt").val()); 
+		return Math.max.apply(null, textA);
+    }
+
+    function set(color) {
+    	if(getmax()+1 < 6){
+    		$("#" + color+ "_txt").val(getmax()+1);
+    		str = window.sessionStorage.getItem('qlist');
+			var items = str.split(',');
+			if((items[getmax()-1] == color) == true){
+				$("#"+ color).append('<font color="white" size="30">O</font>'); 
+			} else {
+				$("#"+ color).append('<font color="white" size="30">X</font>'); 
+			}
+    	}
+    }
+
+// $( "#result" ).click(function() {
+
+// 	var question_list = window.sessionStorage.getItem('qlist');
+// 	var result_list = [];
+// 	for(var count=2; count<7; count++){
+// 		result_list.push(window.sessionStorage.getItem(count)); 
+// 	}
+	
+// 	alert(question_list);
+// 	alert(result_list);
+	
+// 	if( question_list.toString() == result_list.toString()){
+// 		alert("You are a genius!!!!!!");
+// 		window.sessionStorage.removeItem('qlist');
+// 		for(var count=2; count<7; count++){
+// 			window.sessionStorage.removeItem(count);
+// 		}
+	
+// 	} else {
+// 		alert("Stupid!!!\n" + "question is "+question_list + "but you are "+result_list);
+// 		window.sessionStorage.removeItem('qlist');
+// 		for(var count=2; count<7; count++){
+// 			window.sessionStorage.removeItem(count);
+// 		}		
+// 	}
+	
+// })
+
+
+
+</script>
+
+
+</body>
+</html>

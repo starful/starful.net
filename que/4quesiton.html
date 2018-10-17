@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+  <title>delay demo</title>
+  <style>
+  	body {
+	  position: absolute;
+	  width: 600px;
+	  height: 400px;
+	}
+
+	.black{
+	  background: black;
+      position: absolute;
+      display: inline-block;
+      text-align: center;
+      width: 100px;
+      margin-left: -200px;
+      left: 50%;
+	  height: 20%;
+	  top: 20%;
+	  
+	}
+	.blue{
+	  background: blue;
+      position: absolute;
+      width: 100px;
+      margin-left: -100px;
+	  left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}
+	.red{
+	  background: red;
+      position: absolute;
+      width: 100px;
+      left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}
+	.orange{
+	  background: orange;
+      position: absolute;
+      width: 100px;
+      margin-left: 100px;
+	  left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}
+/*	.green{
+	  background: green;
+      position: absolute;
+      width: 100px;
+      margin-left: 200px;
+	  left: 50%;
+	  height: 20%;
+	  top: 20%;
+
+	}*/
+	.parent {text-align: center;}
+
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+</head>
+
+<body>
+ 
+<!-- <p><button id="run">Run</button></p> -->
+
+<div class="parent">
+	<div class="black" id ="black"></div>
+	<div class="blue" id ="blue"></div>
+	<div class="red" id ="red"> </div>
+	<div class="orange" id ="orange"></div>
+	<!-- <div class="green" id ="green"> </div> -->
+</div>
+
+<input type="hidden" id="black_txt" style="border: 0px;">
+<input type="hidden" id="blue_txt" style="border: 0px;">
+<input type="hidden" id="red_txt" style="border: 0px;">
+<input type="hidden" id="orange_txt" style="border: 0px;">
+<!-- <input type="text" id="green_txt" style="border: 0px;"> -->
+
+<div id="test1" style="display:none; text-align:center;">
+光った順番通りに画面をタッチしてください<p>
+（２秒後に自動で回答画面へ遷移、<p>
+画面切り替えと同時に、ピッと音が鳴る）<p>
+</div>
+
+
+<script>
+$(document).ready(function () {
+
+	sleep(2000)
+
+	$('font').remove();
+	$('input').val("");
+
+	window.sessionStorage.removeItem('qlist');
+	for(var count=2; count<6; count++){
+		window.sessionStorage.removeItem(count);
+	}	
+
+    var items = ["black","blue","red","orange"];
+    items.sort(function() {
+       return Math.random() - Math.random();
+    });
+  	window.sessionStorage.setItem('qlist', items);
+
+	$("#"+items[0]).fadeOut().fadeIn().promise().done(function () {
+		$("#"+items[1]).fadeOut().fadeIn().promise().done(function () {
+			$("#"+items[2]).fadeOut().fadeIn().promise().done(function () {
+				$("#"+items[3]).fadeOut().fadeIn().promise().done(function () {
+					$("#test1").dialog({
+						modal:true, //モーダル表示
+						// title:"テストダイアログ1", //タイトル
+						dialogClass: "no-titlebar",
+				        width: 600,
+				        height: 450,
+					    open: function(event, ui){
+					     setTimeout("$('#test1').dialog('close')",2000);
+					    }
+					});
+					$(".ui-dialog-titlebar").hide()    
+		  		})				
+	  		})
+		})
+	})
+})
+
+
+$("#black").one('click', function(){
+	set("black");
+});
+$("#blue").one('click',function(){
+	set("blue");
+});    
+$("#red").one('click',function (){
+	set("red");
+});    
+$("#orange").one('click',function(){
+	set("orange");
+});
+
+function getmax() {
+  	textA = [];
+	textA.push($("#black_txt").val()); 
+	textA.push($("#blue_txt").val()); 
+	textA.push($("#red_txt").val()); 
+	textA.push($("#orange_txt").val()); 
+	return Math.max.apply(null, textA);
+}
+
+function set(color) {
+   	if(getmax()+1 < 6){
+   		$("#" + color+ "_txt").val(getmax()+1);
+   		str = window.sessionStorage.getItem('qlist');
+		var items = str.split(',');
+		if((items[getmax()-1] == color) == true){
+			$("#"+ color).append('<font color="white" size="30">O</font>'); 
+		} else {
+			$("#"+ color).append('<font color="white" size="30">X</font>'); 
+		}
+   	}
+}
+
+function sleep(waitMsec) {
+    var startMsec = new Date();
+    // 指定ミリ秒間、空ループ。CPUは常にビジー。
+    while (new Date() - startMsec < waitMsec);
+}
+
+// $( "#result" ).click(function() {
+
+// 	var question_list = window.sessionStorage.getItem('qlist');
+// 	var result_list = [];
+// 	for(var count=2; count<7; count++){
+// 		result_list.push(window.sessionStorage.getItem(count)); 
+// 	}
+	
+// 	alert(question_list);
+// 	alert(result_list);
+	
+// 	if( question_list.toString() == result_list.toString()){
+// 		alert("You are a genius!!!!!!");
+// 		window.sessionStorage.removeItem('qlist');
+// 		for(var count=2; count<7; count++){
+// 			window.sessionStorage.removeItem(count);
+// 		}
+	
+// 	} else {
+// 		alert("Stupid!!!\n" + "question is "+question_list + "but you are "+result_list);
+// 		window.sessionStorage.removeItem('qlist');
+// 		for(var count=2; count<7; count++){
+// 			window.sessionStorage.removeItem(count);
+// 		}		
+// 	}
+	
+// })
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
