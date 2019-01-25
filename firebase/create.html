@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meat charset="utf-8" />
+    <title>Using FirebaseUI Auth, on the Web</title>
+  </head>
+  <body>
+    <h1 align="center">Firebase Auth Quickstart Demo</h1>
+    <div id="firebaseui-auth-container"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+       var config = {
+          apiKey: "AIzaSyBQltZiipQaNXtoshnlJFlZwzS-PcJHAsA",
+          authDomain: "sample-30179.firebaseapp.com",
+          databaseURL: "https://sample-30179.firebaseio.com",
+          storageBucket: "sample-30179.appspot.com",
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.css" />
+    <script type="text/javascript">
+
+      $(function(){
+
+          let result_msg = document.querySelector('#result_msg');
+
+          $('#register').click(function() {
+
+            var email = $('#userEmail');    
+            var pass = $('#userPass');      
+            
+            if(email.val() && pass.val()){
+
+              firebase.auth().createUserWithEmailAndPassword(email.val(), pass.val()).then(function(user){
+                  console.log('everything went fine');
+                  console.log('user object:' + user);
+                  location.href = './login.html';
+
+              }).catch(function(error) {
+                  console.log('there was an error');
+                  var errorCode = error.code;
+                  var errorMessage = error.message;
+                  console.log(errorCode + ' - ' + errorMessage);
+
+                  result_msg.innerText = errorCode + ' - ' + errorMessage;
+
+              });
+            } else {
+              console.log('fill in both fields');
+            }  
+          });
+       });
+
+    </script>
+
+        <h1 id="result_msg"></h1>
+        <input type="text" id="userEmail" placeholder="Email"> 
+        <input type="password" id="userPass" placeholder="Password"> 
+        <button type="button" id="register">Register</button> 
+
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meat charset="utf-8" />
+    <title>Using FirebaseUI Auth, on the Web</title>
+  </head>
+  <body>
+    <!-- <h1 align="center">Singed-In: Firebase Auth Quickstart Demo</h1> -->
+    <!-- <h1 id="status">Not Sign-in.</h1> -->
+
+    <!-- <script src="./keys.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="chat.css" >
+
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(window).on("load", function (e) { $("html, body").animate({ scrollTop: $(document).height() }, 1000); })
+    });
+    </script>
+
+    <script type="text/javascript">
+     
+          var config = {
+            apiKey: "AIzaSyBQltZiipQaNXtoshnlJFlZwzS-PcJHAsA",
+            authDomain: "sample-30179.firebaseapp.com",
+            databaseURL: "https://sample-30179.firebaseio.com",
+            projectId: "sample-30179",
+            storageBucket: "sample-30179.appspot.com",
+            messagingSenderId: "365349127757"
+          };
+          firebase.initializeApp(config);
+    
+     firebase.auth().onAuthStateChanged( (user) => {
+         let status = document.querySelector('#status');
+
+         $('input').focus();
+
+         if(user) {
+            const uid = firebase.auth().currentUser.uid;
+            var myUserId = firebase.auth().currentUser.uid;
+            // データベースの参照を準備
+            // var messagesRef = firebase.database().ref('user-posts/' + myUserId).child('messages')
+            var messagesRef = firebase.database().ref().child("rooms")
+
+            // 既存メッセージを表示
+            messagesRef.on('child_added', function(snapshot) {
+
+                $('ul').append('<li><a href="login_chat.html?&room='+snapshot.key+'">'+snapshot.key+'</li></br>');
+            
+            });
+
+         } else {
+             status.innerText = 'NOT Singed-in';
+         }
+
+
+
+     } );
+    </script>
+
+    <input id="name" disabled="true">
+    <div class="container">
+    <div class="row">
+        <!-- inicio de la caja de chat con bootstrap -->
+        <div class="col-md-10 col-md-offset-3">
+
+
+            <div class="panel panel-primary">
+
+
+
+
+                <div class="panel-body" >
+                    <ul style="list-style-type: none;"> </ul>
+                </div>
+               
+
+            </div>
+        </div>
+        <!--  Fin de la caja de chat con bootstrap -->
+    </div>
+
+
+
+
+
+
+
+</div>
+
+  </body>
+</html>
