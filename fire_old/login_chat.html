@@ -61,12 +61,12 @@
 
 
           var config = {
-            apiKey: "AIzaSyBtt1GqWF31uqehqc3jg8fQ83qYcw9uIEs",
-            authDomain: "chat-9aca6.firebaseapp.com",
-            databaseURL: "https://chat-9aca6.firebaseio.com",
-            projectId: "chat-9aca6",
-            storageBucket: "chat-9aca6.appspot.com",
-            messagingSenderId: "676350814750"
+            apiKey: "AIzaSyBQltZiipQaNXtoshnlJFlZwzS-PcJHAsA",
+            authDomain: "sample-30179.firebaseapp.com",
+            databaseURL: "https://sample-30179.firebaseio.com",
+            projectId: "sample-30179",
+            storageBucket: "sample-30179.appspot.com",
+            messagingSenderId: "365349127757"
           };
           firebase.initializeApp(config);
     
@@ -82,7 +82,7 @@
             // var messagesRef = firebase.database().ref('user-posts/' + myUserId).child('messages')
 
             var param = location.search
-            // alert(getParam("room", param));
+            alert(getParam("room", param));
 
 
             var messagesRef = firebase.database().ref().child("rooms").child(getParam("room", param))

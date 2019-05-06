@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            var slick = $('.single-item').slick({
+                appendArrows: $('#arrows')
+            });
+
+            //動作しない時のために、クリックイベントにリスナーを追加しておく。
+            $('.slick-next').on('click', function () {
+                slick.slickNext();
+            });
+            $('.slick-prev').on('click', function () {
+                slick.slickPrev();
+            });
+        });
+        </script>
+        <style>
+        .slick_container {
+            border: 1px solid #aaa;
+            position: relative;
+            width: 90%;    
+            width: 90%; 
+        }
+        .single-item {
+            border: 1px solid #aaa;
+            width: 100%;    
+            width: 100%; 
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            margin: auto;
+        }
+        .slick-prev, .slick-next {
+            width:60px; /* 画像幅 */
+            height:34px /* 画像高さ */
+        }
+        .slick-prev:before, .slick-next:before {
+            content:"";
+        }
+        button.slick-prev, button.slick-next {
+            z-index:2;
+        }
+        .slick-prev{left:0px; /* 任意の値 */}
+        .slick-next{right:0px; /* 任意の値 */}
+        .slick-arrow{z-index:10;/* 値は適当に */}
+        </style>
+    </head>
+    <body>
+        <div id="slick_container">
+            <div class="single-item">
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_1.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_2.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_3.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_4.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_5.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_6.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_7.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_8.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_9.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_10.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_11.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_12.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_13.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_14.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_15.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_16.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_17.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_18.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_19.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_20.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_21.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_22.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_23.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_24.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_25.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_26.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_27.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_28.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_29.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_30.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1550635350/starful.net/itabashi/5_31.jpg" alt="">
+                </div>
+            </div>
+            <!--prev,nextを追加-->
+            <div id="arrows">
+                <div class="slick-next">
+                    <img src="https://res.cloudinary.com/starful/image/upload/v1535010370/starful/image/RightArrow.png" alt="">
+                </div>
+                <div class="slick-prev">
+                    <img src="https://res.cloudinary.com/starful/image/upload/v1535010370/starful/image/LeftArrow.png" alt="">
+                </div>
+            </div>
+        </div>
+    <body>
+</html>
