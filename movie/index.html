@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+
+		<!-- load Js -->
+		<script src="js/jquery.js"></script>
+		<script src="js/discovery.js"></script>
+		<script src="js/recomegirl_hukkou.js"></script>
+		<link rel="stylesheet" href="css/recomegirl_hukkou.css" media="screen">
+
+		<script type="text/javascript">
+		$(document).ready(function () {
+
+
+			// プレイヤーを生成
+			var player = new Discovery($("#player"));
+
+			// 再生時のイベントハンドラを設定
+			player.bind('play', function(){
+			    alert("Play!");
+			});
+			    
+			// メタ情報を設定
+			player.activate({
+			    video: $("#video"),
+			    // video: "05.mp4",
+			    image: "./images/sample.jpg",
+			    meta:  {
+			        pin: "./meta/05_pin.txt",
+			        tracking: "./meta/05_tra.txt"
+			        },
+			    delay: 12
+			});
+
+			// 再生開始
+			player.play();
+
+
+		});
+
+</script>
+
+	</head>
+	<body>
+
+
+				<div id="player" style="position: relative;">
+					<div id="input">
+						<!-- <video src="05.mp4" id= "video" controls></video> -->
+						<video autoplay="autoplay" id="video" loop="">
+							<source src="05.mp4">
+						</video>
+						
+					</div>
+				</div>
+
+
+	</body>
+</html>
