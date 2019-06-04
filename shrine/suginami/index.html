@@ -9,18 +9,16 @@
 	}
 </script>
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3KPAETK8cFW2CNzRPfHbpBED08pe2tB0&callback=initMap"
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYL9r5FDeyNwegBfkkkOyFYgmivpu9NRM&callback=initMap"
   type="text/javascript"></script>
 
 
 <script type="text/javascript">
-	//ƒ}ƒbƒvéŒ¾
 	var map;
       
-	//google mapÝ’è
 	function initialize(){
-	
-		//marker Ý’è
+
+		//marker 設定
 		var icon = new google.maps.MarkerImage(
 		'http://maps.google.co.jp/mapfiles/ms/icons/red-pushpin.png',
 		new google.maps.Size(34,34),
@@ -28,702 +26,252 @@
 		new google.maps.Point(37,34)
 		);
 			
-		//map Ý’è
+		//map 設定
 		geo = new google.maps.Geocoder();
 		var myOptions = {
-		zoom: 13,
-		center: new google.maps.LatLng(0.5267, -1.29),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+			zoom: 13,
+			center: new google.maps.LatLng(35.6941309, 139.62642000000005),
+			borderPadding: 50,
+			trackMarkers: true,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		
 		}
-			
-		//map‚ð•\Ž¦
+
+		//mapを表示
 		map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 
-		//--------------------------------稲荷神社（永福稲荷神社)--------------------------------
-		//--------------------------------杉並区永福1-24-6--------------------------------
-		var add1 = document.getElementById("addr1").value;
-		//‡@ZŠ•\Ž¦
-		geo.geocode({'address': add1}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
+		//------------1-------------------- 稲荷神社（永福稲荷神社) ------------------------------------
+		//-------------------------- 杉並区永福1-24-6 --------------------------------		
+		var myLatlng_1 = new google.maps.LatLng(35.6724693, 139.64320580000003);
+		var marker_1 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "稲荷神社（永福稲荷神社)",
+			position: myLatlng_1
+		});
+		google.maps.event.addListener(marker_1,'click',function(){
+			window.open('./1.html','popup','width=900,height=620');
+		});
+
+		marker_1.setMap(map);
+
+
+		//--------------2------------------ 熊野神社（和泉熊野神社） ------------------------------------
+		//-------------------------- 杉並区和泉3-21-29 --------------------------------		
+		var myLatlng_2 = new google.maps.LatLng(35.6766477, 139.64811540000005);
+		var marker_2 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "熊野神社",
+			position: myLatlng_2
+		});
+		google.maps.event.addListener(marker_2,'click',function(){
+			window.open('./2.html','popup','width=900,height=620');
+		});
+
+		marker_2.setMap(map);
+
+
+		//-------------------------------- 大宮八幡宮--------------------------------
+		//-------------------------- 杉並区大宮2-3-1 -------------------------------		
+		var myLatlng_3 = new google.maps.LatLng(35.6820574, 139.64014050000003);
+		var marker_3 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社(板橋宿の鎮守様)",
+			position: myLatlng_3
+		});
+		google.maps.event.addListener(marker_3,'click',function(){
+			window.open('./3.html','popup','width=900,height=620');
+		});
+
+		marker_3.setMap(map);
+
+	
+		//-------------------------------- 八幡神社（高井戸八幡神社） --------------------------------
+		//-------------------------- 杉並区下高井戸4-39-3 -------------------------------		
+		var myLatlng_4 = new google.maps.LatLng(35.6751223, 139.63016670000002);
+		var marker_4 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社(板橋宿の鎮守様)",
+			position: myLatlng_4
+		});
+		google.maps.event.addListener(marker_4,'click',function(){
+			window.open('./4.html','popup','width=900,height=620');
+		});
+
+		marker_4.setMap(map);	
+
+
+
+		//-------------------------------- 八幡神社（天沼八幡神社） -------------------
+		//-------------------------- 杉並区天沼2-18-5 -------------------------------		
+		var myLatlng_5 = new google.maps.LatLng(35.7079588, 139.62294309999993);
+		var marker_5 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "稲荷神社（清水稲荷神社）",
+			position: myLatlng_5
+		});
+		google.maps.event.addListener(marker_5,'click',function(){
+			window.open('./5.html','popup','width=900,height=620');
+		});
+
+		marker_5.setMap(map);		
+
+
+		//-------------------------------- 熊野神社（天沼熊野神社） -------------------
+		//-------------------------- 杉並区天沼2-40-2 -------------------------------		
+		var myLatlng_6 = new google.maps.LatLng(35.7086118, 139.62678019999998);
+		var marker_6 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "稲荷神社",
+			position: myLatlng_6
+		});
+		google.maps.event.addListener(marker_6,'click',function(){
+			window.open('./6.html','popup','width=900,height=620');
+		});
+
+		marker_6.setMap(map);	
+
+		//-------------------------------- 白山神社（荻窪白山神社） -------------------
+		//-------------------------- 杉並区上荻1-21-7 -------------------------------		
+		var myLatlng_7 = new google.maps.LatLng(35.7052169, 139.61605610000004);
+		var marker_7 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "熊野神社（城山熊野神社）",
+			position: myLatlng_7
+		});
+		google.maps.event.addListener(marker_7,'click',function(){
+			window.open('./7.html','popup','width=900,height=620');
+		});
+
+		marker_7.setMap(map);	
+
+		//-------------------------------- 八幡神社（荻窪八幡神社） -------------------
+		//-------------------------- 杉並区上荻4-19-2 -------------------------------		
+		var myLatlng_8 = new google.maps.LatLng(35.7105522, 139.60631450000005);
+		var marker_8 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "天祖神社",
+			position: myLatlng_8
+		});
+		google.maps.event.addListener(marker_8,'click',function(){
+			window.open('./8.html','popup','width=900,height=620');
+		});
+
+		marker_8.setMap(map);
 			
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "uˆî‰×_ŽÐvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
 
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./1/index.html','popup','width=900,height=620');
-				});
-			}
+		//-------------------------------- 井草八幡宮 -------------------
+		//-------------------------- 〒167-0041　杉並区善福寺1-33-1 -------------------------------		
+		var myLatlng_9 = new google.maps.LatLng(35.7160061, 139.59512599999994);
+		var marker_9 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "北野神社",
+			position: myLatlng_9
+		});
+		google.maps.event.addListener(marker_9,'click',function(){
+			window.open('./9.html','popup','width=900,height=620');
 		});
 
-		//--------------------------------熊野神社（和泉熊野神社）--------------------------------
-		//--------------------------------杉並区和泉3-21-29--------------------------------
-		var add2 = document.getElementById("addr2").value;
-		geo.geocode({'address': add2}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "uŒF–ì_ŽÐvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
+		marker_9.setMap(map);	
 
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./2/index.html','popup','width=900,height=620');
-				});
-			}
+
+		//--------------------------------⑩住所取得--------------------------------
+		//-------------------------------- 田端神社 -------------------
+		//-------------------------- 〒167-0051　杉並区荻窪1-56-10 -------------------------------		
+		var myLatlng_10 = new google.maps.LatLng(35.6941309, 139.62642000000005);
+		var marker_10 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社（赤塚氷川神社）",
+			position: myLatlng_10
 		});
-		//--------------------------------大宮八幡宮--------------------------------
-		//--------------------------------杉並区大宮2-3-1--------------------------------
-		var add3 = document.getElementById("addr3").value;
-		geo.geocode({'address': add3}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u‘å‹{”ª”¦‹{vƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./3/index.html','popup','width=900,height=620');
-				});
-			}
+		google.maps.event.addListener(marker_10,'click',function(){
+			window.open('./10.html','popup','width=900,height=620');
 		});
-		//--------------------------------八幡神社（高井戸八幡神社）--------------------------------
-		//--------------------------------杉並区下高井戸4-39-3--------------------------------
-		var add4 = document.getElementById("addr4").value;
-		geo.geocode({'address': add4}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u”ª”¦_ŽÐi‚ˆäŒË”ª”¦_ŽÐjvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
 
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./4/index.html','popup','width=900,height=620');
-				});
-			}
-		});		
-		//--------------------------------八幡神社（天沼八幡神社）--------------------------------
-		//--------------------------------杉並区天沼2-18-5--------------------------------
-		var add5 = document.getElementById("addr5").value;
-		geo.geocode({'address': add5}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u”ª”¦_ŽÐi“VÀ”ª”¦_ŽÐjvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
+		marker_10.setMap(map);	
 
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./5/index.html','popup','width=900,height=620');
-				});
-			}
-		});				
-		//--------------------------------熊野神社（天沼熊野神社）--------------------------------
-		//--------------------------------杉並区天沼2-40-2--------------------------------
-		var add6 = document.getElementById("addr6").value;
-		geo.geocode({'address': add6}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "uŒF–ì_ŽÐi“VÀŒF–ì_ŽÐjvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
 
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./6/index.html','popup','width=900,height=620');
-				});
-			}
-		});				
-		//--------------------------------白山神社（荻窪白山神社）--------------------------------
-		//--------------------------------杉並区上荻1-21-7--------------------------------
-		var add7 = document.getElementById("addr7").value;
-		geo.geocode({'address': add7}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u”’ŽR_ŽÐi‰¬ŒE”’ŽR_ŽÐjvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./7/index.html','popup','width=900,height=620');
-				});
-			}
-		});				
-		//--------------------------------八幡神社（荻窪八幡神社）--------------------------------
-		//--------------------------------杉並区上荻4-19-2--------------------------------
-
-		var add8 = document.getElementById("addr8").value;
-		geo.geocode({'address': add8}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u”ª”¦_ŽÐi‰¬ŒE”ª”¦_ŽÐjvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./8/index.html','popup','width=900,height=620');
-				});
-			}
-		});				
-		//--------------------------------井草八幡宮--------------------------------
-		var add9 = document.getElementById("addr9").value;
-		geo.geocode({'address': add9}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "uˆä‘”ª”¦‹{vƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./9/index.html','popup','width=900,height=620');
-				});
-			}
-		});				
-		//--------------------------------‡IZŠŽæ“¾--------------------------------
-		var add10 = document.getElementById("addr10").value;
-		geo.geocode({'address': add10}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				//map‰Šú•\Ž¦Žw’è
-				map.setCenter(results[0].geometry.location);
-				
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u“c’[_ŽÐvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./10/index.html','popup','width=900,height=620');
-				});
-			}
-		});				
-		//--------------------------------‡JZŠŽæ“¾--------------------------------
-		var add11 = document.getElementById("addr11").value;
-		geo.geocode({'address': add11}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u_–¾‹{vƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./11/index.html','popup','width=900,height=620');
-				});
-			}
+		//-------------------------------- 神明宮 -------------------
+		//-------------------------- 〒166-0001　杉並区阿佐谷北1-25-5 -------------------------------		
+		var myLatlng_11 = new google.maps.LatLng(35.7069159, 139.63686170000005);
+		var marker_11 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "轡神社（轡権現）",
+			position: myLatlng_11
 		});
-		//--------------------------------‡KZŠŽæ“¾--------------------------------
-		var add12 = document.getElementById("addr12").value;
-		geo.geocode({'address': add12}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u”n‹´ˆî‰×_ŽÐvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./12/index.html','popup','width=900,height=620');
-				});
-			}
-		});		
-		//--------------------------------‡LZŠŽæ“¾--------------------------------
-		var add13 = document.getElementById("addr13").value;
-		geo.geocode({'address': add13}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u•Xì_ŽÐi‚‰~Ž›•Xì_ŽÐjvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./13/index.html','popup','width=900,height=620');
-				});
-			}
-		});		
-		//--------------------------------‡MZŠŽæ“¾--------------------------------
-		var add14 = document.getElementById("addr14").value;
-		geo.geocode({'address': add14}, function(results, status)
-		{
-			// If that was successful
-			if (status == google.maps.GeocoderStatus.OK) {
-		
-				// Lets assume that the first marker is the one we want
-				var marker = new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: "u“V‘c_ŽÐi‚‰~Ž›“V‘c_ŽÐjvƒNƒŠƒbƒN‚·‚é‚ÆŽÊ^‚ªŒ©‚¦‚Ü‚·",
-					position: results[0].geometry.location
-				});
-
-				google.maps.event.addListener(marker,'click',function(){
-					window.open('./14/index.html','popup','width=900,height=620');
-				});
-			}
+		google.maps.event.addListener(marker_11,'click',function(){
+			window.open('./11.html','popup','width=900,height=620');
 		});
+
+		marker_11.setMap(map);
+
+
+		//-------------------------------- 馬橋稲荷神社 -------------------
+		//-------------------------- 〒166-0004　杉並区阿佐谷南2-4-4 -------------------------------		
+		var myLatlng_12 = new google.maps.LatLng(35.7033314, 139.64275050000003);
+		var marker_12 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "天祖神社",
+			position: myLatlng_12
+		});
+		google.maps.event.addListener(marker_12,'click',function(){
+			window.open('./12.html','popup','width=900,height=620');
+		});
+
+		marker_12.setMap(map);
+
+		//-------------------------------- 氷川神社（高円寺氷川神社） -------------------
+		//-------------------------- 〒166-0003　杉並区高円寺南4-44-19 -------------------------------		
+		var myLatlng_13 = new google.maps.LatLng(35.7045933, 139.6514002);
+		var marker_13 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社",
+			position: myLatlng_13
+		});
+		google.maps.event.addListener(marker_13,'click',function(){
+			window.open('./13.html','popup','width=900,height=620');
+		});
+
+		marker_13.setMap(map);
+
+
+		//-------------------------------- 天祖神社（高円寺天祖神社） -------------------
+		//-------------------------- 杉並区高円寺南1-16-19 -------------------------------		
+		var myLatlng_14 = new google.maps.LatLng(35.6999947, 139.65779069999996);
+		var marker_14 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社",
+			position: myLatlng_14
+		});
+		google.maps.event.addListener(marker_14,'click',function(){
+			window.open('./13.html','popup','width=900,height=620');
+		});
+
+		marker_14.setMap(map);
+
+
 	}
    </script>
 </head>
-
 <body onload="initialize()">
 
 <div align="center">
 <div id="map_canvas" style="width: 600px; height: 500px;"></div>
-<!----------------------------------ƒf[ƒ^ 1-------------------------------->
-™ˆî‰×_ŽÐi‰i•Ÿˆî‰×_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./1/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">‹˜\ŽO”Ni1530”Nj‚É‹ž“s•šŒ©ˆî‰×‘åŽÐ‚Ì‚²•ª—ì‚ðŠ©¿‚µ‚½‚Ì‚ªŽn‚Ü‚è‚Æ‚³‚ê‚Ä‚¨‚è‚Ü‚·B–¾Ž¡\ˆê”N‚É’¬‘S‘Ì‚ðŽç‚é‚æ‚¤‚É¼Œü‚«‚ÉŒš‚Ä’¼‚³‚ê‚½‚à‚Ì‚Å‚·BÔ‚¢’Œ‚Æ”’‚¢•Ç‚Ì‚¢‚©‚É‚à‚¨ˆî‰×—l‚ç‚µ‚¢•µˆÍ‹C‚ðŽ‚Á‚½ŽÐ“a‚Å‚·B</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§168-0064<input type="text" id="addr1" size="40" value="™•À‹æ‰i•Ÿ1-24-6" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3321-3848</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3321-3848</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>‰¤ˆä‚Ì“ªüu‰i•Ÿ’¬‰wv@“ì‚Ö“k•à4•ª
-        </td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 2-------------------------------->
-™ŒF–ì_ŽÐi˜aòŒF–ì_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./2/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">‹IB‚ÌŒF–ì–{‹{‘åŽÐ‚ÌŒä•ª—ì‚ðâJ‚é“–ŽÐ‚Í•¶‹vŽl”N‚Ì‘nŒš‚ÅAŒ»Ý‚ÌŽÐ“a‚Í•¶‹vŽO”N‚Ì‘¢‰c‚Å–¾Ž¡Žl”N‚ÉC•œ‚µ‚½‚à‚Ì‚Å‚ ‚éB‹«“à‚É‚ÍŽ÷–Ø‚ª‘½‚­A“¿ì‰ÆŒõ‚ª‘éŽë‚Ì‚Æ‚«A‚¦‚½ƒNƒ¼‚ªŒä_–Ø‚Æ‚µ‚Ä‚‚­‚»‚Ñ‚¦‚Ä‚¢‚éB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§168-0063<input type="text" id="addr2" size="40" value="™•À‹æ˜aò3-21-29" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3328-6830</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-5376-3780</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>‹ž‰¤ˆä‚Ì“ªüu‰i•Ÿ’¬‰wv@“k•à7•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 3-------------------------------->
-™‘å‹{”ª”¦‹{<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./3/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">’ÁŽç•{«ŒRŒ¹—Š‹`Œö‚ª‘O‹ã”N‚Ì–ð‚É•‹‚­“rŽŸA‚±‚Ì’n‚Å”ªð‚Ì”’‰_‚ÌË‚ðŒ©A‰œB•½’èŒã‚ÌŠMù‚Ì‚¨‚èAN•½˜Z”Ni1063”Nj‹ž“sEÎ´…”ª”¦‹{‚ÌŒä•ª—ì‚ðŠ©¿‚µ‘nŒšB•‘ ŽO‘å‹{‚Ìˆê‚Âu‘½–€‚Ì‘å‹{v‚ÆÌ‚³‚ê‚½B</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§168-8570<input type="text" id="addr3" size="40" value="™•À‹æ‘å‹{2-3-1" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3311-0105</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3318-6100</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>‹ž‰¤ˆä‚Ì“ªüu¼‰i•Ÿ‰wv@“k•à7•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>http://www.ohmiya-hachimangu.or.jp</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 4-------------------------------->
-™”ª”¦_ŽÐi‚ˆäŒË”ª”¦_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./4/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">’·˜\Œ³”Ni1457”Nj‘¾“c“¹ŸóŒö]ŒËé’zé‚ÌÜA“–’n‚É—§‚¿Šñ‚èAHŽ–‚ÌˆÀ‘S‚ð‹FŠè‚µ’ß‰ª”ª”¦‹{‚Ì_—ì‚ðŠ©¿‚µŒš—§‚µ‚½B</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§168-0073<input type="text" id="addr4" size="40" value="™•À‹æ‰º‚ˆäŒË4-39-3" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3329-0837^03-3302-1523</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3302-1523</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>‹ž‰¤ˆä‚Ì“ªüu•l“cŽR‰wv@“k•à10•ª<br>
-		    ‹ž‰¤üu÷ã…‰wv@“k•à15•ª
-		</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td></td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 5-------------------------------->
-™”ª”¦_ŽÐi“VÀ”ª”¦_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./5/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">uV•Ò•‘ –ì•—“y‹Lv‚É‚æ‚ê‚ÎA‘nŒš‚ª“V³”NŠÔ‚Æ‹L‚³‚ê‚Ä‚¨‚èA‡“a‚Ì•Ù“V—l‚ÍˆÀŽY‚Ì_—l‚Æ‚µ‚Ä’Œh‚³‚ê‚Ä‚Ü‚·B‹«“à––ŽÐ‚É‘å’¹_ŽÐ‚à‚ ‚èA–ˆ”N\ˆêŒŽ‚É‚Í¤”„”É·‚Æ‚µ‚Äu“Ñ‚ÌŽsv‚ª‚½‚¿ŠJ‰^ŒFŽèŽçE•Ÿ–‘“™‚ðŽö—^‚µ‚Ä‚¢‚Ü‚·B</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§167-0032<input type="text" id="addr5" size="40" value="™•À‹æ“VÀ2-18-5" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3398-2514</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3398-2555</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JR’†‰›üE‘•üE‰c’cŠÛƒm“àüE“Œ¼üu‰¬ŒE‰wvi–kŒûj@“k•à5•ª<br>
-		    ‹ž‰¤üu÷ã…‰wv@“k•à15•ª
-		</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>http://www.amanumahachiman.jp/</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 6-------------------------------->
-™ŒF–ì_ŽÐi“VÀŒF–ì_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./6/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">“–ŽÐ‚ÍA1230”N’ö‘O‚É“ŒŠC“¹„Ž@Žg‚ÌŽ®•”‘å•ã]ŒÜˆÊ‰ºA‹I’©bœA–¼‚ª•‘ ‘“VÀ‚É“VÀ‰w‚ð’u‚«A–L“‡‚Æ•À‚ÑŽRŠC—¼˜H‚ÌŽg–½‚ð•ò‚º‚µŸ‚Ì’n‚ÌlX‚ÉAŽ_‚ðŠ©¿‚µ•Ê“–‚ð’u‚«‚ÄâJ‚ç‚µ‚ß‚½‚ÉŽn‚Ü‚é‚ÆŒ¾‚ÓB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§167-0032<input type="text" id="addr6" size="40" value="™•À‹æ“VÀ2-40-2" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3220-7866</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3220-7866</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JR’†‰›üE‘•üE‰c’c“Œ¼üEŠÛ‚Ì“àüu‰¬ŒE‰wv@“k•à12•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 7-------------------------------->
-™”’ŽR_ŽÐi‰¬ŒE”’ŽR_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./7/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">‰Á‰ê‚Ì—ì•ô”’ŽR‚ðŒä_‘Ì‚Æ‚·‚é”’ŽRM‹ÂBŒÃ‚­•¶–¾”NŠÔ‚É‰¬ŒE‚ÉŠ©¿‚³‚êAŒÜŽÐŒ Œ»‚Æ‚àÌ‚³‚ê‚½BŽ¢—ˆAŒð’ÊŒoÏ‚Ì—vŠ‰¬ŒE‚ÌˆÀ”J‚Æ–Lé`‚ðŽç‚è‘±‚¯A‚¢‚Ü•P_‚ÌŒä_—ÍˆÌ‘å‚È‚è‚Æ”‘½‚­‚ÌlX‚ÌŽQŒw‚ð‚¤‚¯‚é_ŽÐ‚Å‚ ‚éB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§167-0043<input type="text" id="addr7" size="40" value="™•À‹æã‰¬1-21-7" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3398-0517</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>&nbsp;</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JR’†‰›üE‘•üE‰c’cŠÛƒm“àüE“Œ¼üu‰¬ŒE‰wv@“k•à3•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 8-------------------------------->
-™”ª”¦_ŽÐi‰¬ŒE”ª”¦_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./8/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">Š°•½”NŠÔi900”N j‚Ì‘nâJ‚Æ“`‚¦‚éBŒ¹—Š‹`E‘¾“c“¹Ÿó‚ç‚ªíŸ‚ð‹FŠè‚µAŽÐ“a‚ÌC•œ‚âŒ£–Øi“¹Ÿóê \Œ»‘¶‚·‚éj‚ðs‚Á‚½BæŽæ“I‚È‚±‚Æ‚É“Á‚É—ìŒ±‚ ‚ç‚½‚©‚Æ‚¢‚¤BŒ»Ý‚Ì–{“a‚Í–¾Ž¡“ñ\”ª”NA”q“a‚Íº˜a\ˆê”N‚Ì‚à‚ÌB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§167-0043<input type="text" id="addr8" size="40" value="™•À‹æã‰¬4-19-2" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3390-1325</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3396-5898</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JR’†‰›üE‘•üE‰c’c“Œ¼üEŠÛƒm“àüu‰¬ŒE‰wv@“k•à15•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>http://www.amy.hi-ho.ne.jp/ogikubo-hachiman/</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 9-------------------------------->
-™ˆä‘”ª”¦‹{<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./9/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">“–ŽÐ‚ÍA“ê•¶Šú‚©‚çlX‚ª¶Šˆ‚µ‚Ä‚¢‚½Ÿ‚Ì’n‚ÉâJ‚ç‚êA_ŽÐ‚Æ‚µ‚Ä‚ÌŒ`‘Ô‚ð‚Æ‚Æ‚Ì‚¦‚½‚Ì‚Í•½ˆÀŽž‘ã––Šú‚Æ‚¢‚í‚ê‚Ä‚¢‚éBŽn‚ß‚Ít“úŽÐ‚ð‚¨âJ‚è‚µ‚Ä‚¢‚½‚ªAŒ¹—Š’©‚ª‰œBª”°‚Ì“rŽŸAíŸ‚ð‹FŠè‚µ‚ÄˆÈ—ˆ”ª”¦‘å_‚ðŽåÕ_‚Æ‚·‚é‚æ‚¤‚É‚È‚Á‚½B</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§167-0041<input type="text" id="addr9" size="40" value="™•À‹æ‘P•ŸŽ›1-33-1" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3399-8133</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3397-4088</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JR’†‰›üE‘•üE‰c’cŠÛƒm“àüu‰¬ŒE‰wv–kŒû‚Ì0”Ô‚Ü‚½‚Í1”Ô‚Ì‚è‚Î‚æ‚èƒoƒX15•ªu”ª”¦‹{— v</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 10-------------------------------->
-™“c’[_ŽÐ<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./10/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">“–ŽÐ‚Ì‘n—§‚Í‰ž‰i”N’†‚ÅA‹ž“s–k–ì“V_‚Ì—ì‚ðŠÏ¿‚µAŽY“y_‚Æ’‚ßâJ‚Á‚½B–¾Ž¡Žl\“ñ”N‘º“à‚É’ÁÀ‚·‚é“V‘cŽÐEˆî‰×ŽÐEŽq‚ÌŒ Œ»EŽR_ŽÐ‚ð–{ŽÐ–k–ì_ŽÐ‚É‡âJA–¾Ž¡Žl\Žl”N“ñŒŽAŽÐ†‚ð“c’[_ŽÐ‚Æ‰üÌ‚·‚éB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§167-0051<input type="text" id="addr10" size="40" value="™•À‹æ‰¬ŒE1-56-10" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3391-4408</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3391-4408</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JRu‰¬ŒE‰wvi“ìŒûj‚æ‚èA‰¬ŒE’c’ns‚«ƒoƒXI“_@“k•à5•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 11-------------------------------->
-™_–¾‹{<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./11/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">–ñŽOç’Ø‚ÌX‚Ì‰œ‚É‚Í‚»‚ÌÌˆÉ¨‚Ì‹{ì‚æ‚èŽ‚¿‹A‚Á‚½‚Æ‚³‚ê‚é—ìÎ‚ªŒä–{“a‚É•òˆÀ‚³‚ê‚Ä‚¢‚éBŒð’Ê‚Ì•Ö‚ª—Ç‚¢ˆ×”NŠÔ‚ð’Ê‚¶A–Ø‚âœ“Ÿ‚ÌŽs‚ªÃ‚³‚êA‚Ü‚½âµ‹ÈA”\AƒWƒƒƒY“™‚Ì•ò”[‚à‘½‚­í‚É‹«“à‚ÍŠˆ‹C‚É–ž‚¿‚Ä‚¢‚éB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§166-0001<input type="text" id="addr11" size="40" value="™•À‹æˆ¢²’J–k1-25-5" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3330-4824</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3310-9007</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JR’†‰›üE‘•üuˆ¢²ƒ–’J‰wvi–kŒûj@“k•à2•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>http://www.shinmeiguu.com</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 12-------------------------------->
-™”n‹´ˆî‰×_ŽÐ<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./12/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">“–ŽÐ‚Í‘º‚Ì’ÁŽçŽÐ‚Æ‚µ‚ÄŠ™‘qŽž‘ã––Šú‚É‘nŒš‚³‚êA“V•Û“ñ”N‚É‚Í‹ž“s‚Ì_‹_”Œ‚æ‚è³Ž®‚Éu³ˆêˆÊ‘«•äˆî‰×i‚½‚é‚Ù‚¢‚È‚èj‘å–¾_v‚ÌŒä_†‚ðŽ’‚éB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§166-0004<input type="text" id="addr12" size="40" value="™•À‹æˆ¢²’J“ì2-4-4" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3311-8588</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3316-1680</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JR’†‰›üuˆ¢²ƒ–’J‰wvu‚‰~Ž›‰wv</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>http://www.mabashiinari.org/</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 13-------------------------------->
-™•Xì_ŽÐi‚‰~Ž›•Xì_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./13/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">Œ¹—Š’©‰œBª”°‚ÌÜA“–’n‚ÉŽŠ‚Á‚½•º‘º“c–^‚ª‚±‚Ì’n‚É—¯‚Ü‚èA•‘ ‘‚•@‚Ì–{ŽÐ‚æ‚è‚ÌŒä_ˆÓ‚ð‚¤‚¯A‚±‚Ì‚‰~Ž›—Ñ‚Ì•—’vâ‰À‚Æ‚³‚ê‚é“–’n‚ÉŽÐ“a‚ðŒš—§‚µ‚½‚Ì‚ª‹NŒ¹‚Æ‚³‚ê‚éBº˜aŽl\˜Z”NA‘|“S»‚ÌŒ»ŽÐ“a‚ð‘¢‰c‚µ‚ÄŒ»Ý‚ÉŽŠ‚éB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§166-0003<input type="text" id="addr13" size="40" value="™•À‹æ‚‰~Ž›“ì4-44-19" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3314-4147</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3315-0034</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>JRu‚‰~Ž›‰wvi“ìŒûj@“k•à1•ª</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-<!----------------------------------ƒf[ƒ^ 14-------------------------------->
-™“V‘c_ŽÐi‚‰~Ž›“V‘c_ŽÐj<input type="button" value="ŽÊ^Œ©‚é" onclick=javascript:popup('./14/index.html')>
-<table border="1" width="600">
-	<tr>
-		<td colspan="2">ÌA‹½“yŽR‰º‹vŽµ‚ªAˆÉ¨_‹{‚ÖŽQŒw‚µA•ª—ì‚ð¿‚¢“¾‚ÄA•òˆÀ‚µ‚½‚Ì‚ªŽn‚ß‚Å‚ ‚éB</td>
-	</tr>
-	<tr>
-		<td width="81">ŠÝ’n</td>
-		<td width="703">§166-0003<input type="text" id="addr14" size="40" value="™•À‹æ‚‰~Ž›“ì1-16-19" style="background-color:transparent;border:0" /></td>
-	</tr>
-	<tr>
-		<td>TEL</td>
-		<td>03-3311-4077</td>
-	</tr>
-	<tr>
-		<td>FAX</td>
-		<td>03-3311-4085</td>
-	</tr>
-	<tr>
-		<td>ÅŠñ‚è‰w</td>
-		<td>‰c’cŠÛƒm“àüu“Œ‚‰~Ž›‰wv</td>
-	</tr>
-	<tr>
-		<td>HomePage</td>
-		<td>&nbsp;</td>
-	</tr>
-</table>
+
 </div>
+
 </body>
 </html>
