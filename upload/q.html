@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="utf-8">
+        <title>Image To Video - Easy Photo to video Online Converter</title>
+        <meta name="DESCRIPTION" content="This service allows you convert online image to video, you can now create a video online from your pictures and music. "/>
+        <meta name="KEYWORDS" content="photo, image, images, photos, video, videos, convert image to video online "/>
+        <link href="style.css" rel="stylesheet">
+        <link href="logo.css" rel="stylesheet">
+        <link href="menu.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="http://imagetovideo.com/"/>
+        <link rel="alternate" hreflang="x-default" href="http://imagetovideo.com/"/>
+        <link rel="alternate" hreflang="en" href="http://imagetovideo.com/"/>
+        <link rel="alternate" hreflang="fr" href="https://imagetovideo.com/fr/" />
+        <link rel="alternate" hreflang="in" href="https://imagetovideo.com/in/" />
+        <link rel="shortcut icon" href="favicon.ico">
+        <meta itemprop="applicationCategory" content="BusinessApplication"/>
+        <meta itemprop="applicationSuite" content="imagetovideo"/>
+        <meta itemprop="datePublished" content="2015-09-01">
+        <meta itemprop="image" content="http://imagetovideo.com/favicon.ico">
+
+        <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="jquery.form.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $(".popup").hide();
+                $(".openpop").click(function (e) {
+                    e.preventDefault();
+                    $("iframe").attr("src", $(this).attr('href'));
+                    $(".links").fadeOut('slow');
+                    $(".popup").fadeIn('slow');
+                });
+                $(".close").click(function () {
+                    $(this).parent().fadeOut("slow");
+                    $(".links").fadeIn("slow");
+                    $("#progress").hide("slow");
+                });
+            });
+
+            $(document).ready(function () {
+
+                var maxImages      = 30;
+                var isManualChange = false;
+
+                var $sortable     = $("#sortable");
+                var picturesInput = $('#picture');
+
+                // Init sortable
+                $sortable.sortable().disableSelection();
+
+                // On picture upload
+                picturesInput.change(function () {
+
+                    // Return if programmatically changed
+                    if (isManualChange) {
+                        isManualChange = false;
+                        return;
+                    }
+
+                    $sortable.empty();
+
+                    if (this.files.length > maxImages) {
+                        alert("30 images max please");
+                        for (var i = maxImages; i <= this.files.length; i++) {
+                            removeImage(picturesInput[0], i);
+                            return;
+                        }
+                    }
+
+                    $.each(this.files, function (k, file) {
+                        readURL(file, function (e) {
+                            $sortable.append($('<li/>', {
+                                class              : 'ui-state-default',
+                                'data-currentorder': k,
+                                html               : '<img src="' + e.target.result + '"><div class="file-name" title="' + file.name + '">' + file.name + '</div><span class="remove-image">&#10006;</span>'
+                            }));
+                        });
+                    });
+                    $('#images_background').hide('slow');
+                    $('.next-btn').removeClass('hidden');
+                    $('.back1-btn').removeClass('hidden');
+                    $sortable.show();
+                    $('#move-tuto').show('slow');
+                    setTimeout(function(){
+                     $('#move-tuto').hide('slow')(500);
+                    }, 8000);
+
+                });
+
+                // On remove image
+                $(document).on('click', '.remove-image', function () {
+                    var index = $(this).closest('ul').find('li').index($(this).closest('li'));
+                    $(this).closest('li').remove();
+                    removeImage(picturesInput[0], index);
+                });
+
+                // On stop sorting
+                $sortable.on("sortstop", function (event, ui) {
+                    var orderArr = $sortable.find('li').map(function (k, v) {
+                        return $(this).attr('data-currentorder');
+                    });
+
+                    $sortable.find('li').each(function (k, v) {
+                        $(this).attr('data-currentorder', k);
+                    });
+                    sortImages(picturesInput[0], orderArr);
+                });
+
+                $('.back1-btn').click(function () {
+                    $('.next-btn').addClass('hidden');
+                    $('.back1-btn').addClass('hidden');
+                    $sortable.hide();
+                    $('#move-tuto').hide('slow');
+                    $('#images_background').show('slow');
+                });
+                $('.next-btn').click(function () {
+                    $('#uploadaudio').show('slow');
+                    $('#without_audio').show('slow');
+                    $('.next-btn').addClass('hidden');
+                    $('.back1-btn').addClass('hidden');
+                    $('.back2-btn').removeClass('hidden');
+                    $sortable.hide();
+                    $('#move-tuto').hide('slow');
+                });                              
+                $('.back2-btn').click(function () {
+                    $('#uploadaudio').hide('slow');
+                    $('#without_audio').hide('slow');
+                    $('#createthevideo').hide('slow');
+                    $('.next-btn').removeClass('hidden');
+                    $('.back1-btn').removeClass('hidden'); //Bouton back1 s'affiche
+                    $('.back2-btn').addClass('hidden'); //Bouton back2 se cache
+                    $sortable.show();
+                });
+                
+
+                function readURL(input, callback) {
+                    if (input) {
+                        var reader     = new FileReader();
+                        reader.onload  = function (e) {
+                            if (e.target.result.indexOf('data:image') > -1) {
+                                typeof callback === 'function' && callback(e);
+                            } else {
+                                // TODO: Change Error message
+                                alert("Image please");
+                            }
+                        };
+                        reader.onerror = function (e) {
+                            console.log(e);
+                        };
+                        reader.readAsDataURL(input);
+                    }
+                }
+
+                function removeImage(el, index) {
+                    index    = isNaN(parseInt(index)) ? 0 : parseInt(index);
+                    const dt = new DataTransfer();
+                    for (let file of el.files) {
+                        if (file !== el.files[index])
+                            dt.items.add(file);
+                    }
+                    changeFileInptManually(el, dt);
+                }
+
+                function sortImages(el, order) {
+                    if (!order || order.length < 1)
+                        return false;
+
+                    const orderedArr = new Array(el.files.length);
+                    const filesArr   = Array.from(el.files);
+                    Array.from(order).forEach(function (o, i) {
+                        orderedArr[i] = filesArr[o];
+                    });
+
+                    const dt = new DataTransfer();
+                    for (let file of orderedArr) {
+                        dt.items.add(file);
+                    }
+                    changeFileInptManually(el, dt);
+                }
+
+                function changeFileInptManually(el, dt) {
+                    isManualChange = true;
+                    el.files       = dt.files;
+                }
+                
+                // Upload Form - Last Step
+                $('#uploadForm').submit(function (e) {
+                    if ($('#picture').val()) {
+                        e.preventDefault();
+                        $('#loader-icon').show('slow');
+                        $(this).ajaxSubmit({
+                            'url'         : 'processor.php',
+                            type          : 'post',
+                            beforeSubmit  : function () {
+                                $("#progress-bar").width('0%');
+                                $("#progress_pourcentage").show('slow');
+                                $("#createthevideo").hide('slow');
+                            },
+                            uploadProgress: function (event, position, total, percentComplete) {
+                                $("#progress-bar").width(percentComplete + '%');
+                                $("#progress-bar").html('<div id="progress-status">' + percentComplete + ' %</div>');
+                                if (percentComplete > 98) {
+                                    $("#progress").show('slow');
+                                    $("#progress_pourcentage").hide('slow');
+                                }
+                            },
+                            success       : function (data) {
+                                $("#progress").hide('slow');
+                                $("#progress_pourcentage").hide('slow');
+                                $("#results").html(data);
+                                $("#facebook").show('slow');
+                            },
+                            resetForm     : true
+                        });
+                        return false;
+                    }
+                });
+                
+            });
+
+
+        </script>
+
+        <style>
+            .demoInputBox {
+                padding          : 5px;
+                border           : #F0F0F0 1px solid;
+                border-radius    : 4px;
+                background-color : #FFF;
+            }
+
+            #progress-bar {
+                background-color   : #155F8A;
+                height             : 30px;
+                color              : #FFFFFF;
+                width              : 0%;
+                -webkit-transition : width .3s;
+                -moz-transition    : width .3s;
+                transition         : width .3s;
+            }
+
+            .btnSubmit {
+                background-color : #09f;
+                border           : 0;
+                padding          : 10px 40px;
+                color            : #FFF;
+                border           : #F0F0F0 1px solid;
+                border-radius    : 4px;
+            }
+
+            #progress-div {
+                border        : #292929 1px solid;
+                padding       : 5px 0px;
+                margin        : 30px 0px;
+                border-radius : 4px;
+                text-align    : center;
+            }
+        </style>
+        <link id="bootstrap-styleshhet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+<body>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ac47bc1f6e02028"></script>
+
+<div id="menu_sites"></div>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js     = d.createElement(s);
+        js.id  = id;
+        js.src = 'https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v3.1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
+<!--Menu-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+
+
+
+<nav id="nav" role="navigation"> <a href="#nav" title="Show navigation">Show</a> <a href="#" title="Hide navigation">Hide</a>
+   <ul class="clearfix">
+    <li>
+     <a href="http://imagetovideo.com" title="Image to Video">
+     <img src="http://imagetovideo.com/images.svg" style="max-width:10%;height:auto; border:0;" border="0">
+     <img src="http://imagetovideo.com/to.svg" style="max-width:10%;height:auto; border:0;" border="0">
+     <img src="http://imagetovideo.com/camera.svg" style="max-width:10%;height:auto; border:0;" border="0">
+     <br />Images to Video</a>
+    </li>
+    <li>
+     <a href="http://voice2v.com" title="Audio to Video">
+     <img src="http://imagetovideo.com/audio-file.svg" style="max-width:10%;height:auto; border:0;">
+     <img src="http://imagetovideo.com/to.svg" style="max-width:10%;height:auto; border:0;">
+     <img src="http://imagetovideo.com/camera.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Audio to Video</a>
+    </li>
+    <li>
+     <a href="http://imagetovideo.com/create-a-video-slideshow/" title="Create a Slideshow">
+     <img src="http://imagetovideo.com/slideshow.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Slideshow</a>
+    </li>
+    <li>
+     <a href="http://imagetovideo.com/sequence-to-video/" title="Turn an image sequence into a video">
+     <img src="http://imagetovideo.com/sequence-to-video/sequence.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Sequence to Video</a>
+    </li>
+    <li>
+     <a href="http://voice2v.com/Text-to-Video/" title="Turn Text into Video">
+     <img src="http://voice2v.com/text.svg" style="max-width:10%;height:auto; border:0;">
+     <img src="http://voice2v.com/to.svg" style="max-width:10%;height:auto; border:0;">
+     <img src="http://voice2v.com/camera.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Convert Text to Video</a>
+    </li>
+    <li>
+     <a href="http://voice2v.com/add-audio-to-video/" title="Add Text to Video">
+     <img src="http://voice2v.com/add-audio-to-video/addmusic.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Add Music to Video</a>
+    </li>
+    <li>
+     <a href="http://voice2v.com/Add-Text-to-Video/" title="Add Text to Video">
+     <img src="http://voice2v.com/add-text.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Add Text to Video</a>
+    </li>
+    <li>
+     <a href="http://imagetovideo.com/create-3d-slideshow/" title="Create a 3d transition effect">
+     <img src="http://imagetovideo.com/create-3d-slideshow/3d.svg" style="max-width:10%;height:auto; border:0;">
+     <br />3D Transition Effect</a>
+    </li>
+    <li>
+     <a href="http://voice2v.com/Trim-Video/" title="Trim a Video">
+     <img src="http://voice2v.com/trim.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Trim Video</a>
+    </li>
+    <li>
+     <a href="http://voice2v.com/Trim-Audio/" title="Trim an Audio">
+     <img src="http://voice2v.com/trim-music.svg" style="max-width:10%;height:auto; border:0;">
+     <br />Trim Audio</a>
+    </li>
+  </ul>
+</nav>
+
+</body>
+</html>
+<!--End Menu-->
+
+<div style="margin:auto; text-align:center; width:100%; max-width:1100px;">
+
+    <div class="the-box"><h1 class="xyz-text">Make a Video with Pictures and Music</h1></div>
+    <img src="move-tuto.gif" id="move-tuto" style="display:none;">
+
+
+    <!--Zone upload-->
+    <form action="" method="post" enctype="multipart/form-data" id="uploadForm" name="uploadForm">
+        <input type="hidden" name="language_prefixe" id="language_prefixe" value="">
+        <!--Step 1 upload images-->
+        <div id="images_background">
+            <div class="upload-btn-wrapper" id="add_images">
+                <button class="btn">
+                    Upload Your Images                    <br />
+                    <img src="add_image.svg" style="max-width:21%;height:auto; border:0;">
+                    <div style="color:#808080; font-size:9px;">30 images max</div>
+                </button>
+
+                <input type="file" name="picture[]" id="picture" accept="image/*" multiple onChange="">
+            </div>
+            <iframe width="280" height="155" src="https://www.youtube.com/embed/W0RjHAKGEb8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <!--<iframe src="https://player.vimeo.com/video/293665539" width="280" height="155" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
+        </div>
+
+        <ul id="sortable" class="clearfix"></ul>
+        <br />
+        <button type="button" class="btn hidden back1-btn"><img src="back.svg" style="max-width:21%;height:auto; border:0;"></button>
+        <button type="button" class="btn hidden next-btn"><img src="next.svg" style="max-width:21%;height:auto; border:0;"></button>       
+
+        <!--Step 2 Audio-->
+        <div class="upload-btn-wrapper" id="uploadaudio" style="display:none;">
+            <button class="btn">
+                <img src="add_audio.svg" style="max-width:21%;height:auto; border:0;"><br />
+                Upload An Audio File            </button>
+            <input type="file" accept=".mp3,audio/*" name="audio[]" multiple onChange="parent.$('#createthevideo').show('slow');parent.$('#uploadaudio').hide('slow');$('#result').hide('slow');parent.openpop();">
+            <br />
+            <button type="button" class="btn" onclick="parent.$('#createthevideo').show('slow');parent.$('#uploadaudio').hide('slow');$('#result').hide('slow');">
+             <span style="color:#101010; font-size:14px;">Continue Without Audio File</span><br />
+             <img src="noaudio-black.svg" style="max-width:21%;height:auto; border:0;">
+             <img src="next.svg" style="max-width:21%;height:auto; border:0;">
+            </button>
+            <br />
+            <button type="button" class="btn hidden back2-btn"><img src="back.svg" style="max-width:11%;height:auto; border:0;"></button>
+        </div>
+
+
+        <!--Step 3 Options-->
+        <div id="createthevideo" style="display:none;">
+
+            <br />
+            <!--Add input text-->
+            <span id="addtextbutton">
+                <a href="#" onclick="parent.$('#addtextbutton').hide('slow');parent.$('#addtext').show('slow');"><img src="add-text.svg" style="max-width:8%;height:auto; border:0;"></a>
+            </span>
+            <div id="addtext" style="display:none;">
+                <script src="addinput/jquery.add-input-area.min.js"></script>
+                <script src="addinput/form-serialize.js"></script>
+                <script>
+                    $(function () {
+                        $('#list').addInputArea({
+                            area_del: '.del-area'
+                        });
+                    });
+                </script>
+                <script src="addinput/jquery.fontselect.js"></script>
+                <link rel="stylesheet" type="text/css" href="addinput/fontselect-default.css"/>
+                <script>
+                    $(function () {
+                        $('#font').fontselect();
+                    });
+                </script>
+                <link rel="stylesheet" type="text/css" href="addinput/select.css"/>
+                <script>
+                    $(function () {
+                        var $select = $(".1-100");
+                        for (i = 10; i <= 60; i++) {
+                            $select.append($('<option></option>').val(i).html(i))
+                        }
+                    });
+                </script>
+
+                <div id="list" class="upload-btn-wrapper" style="border:1px dashed #ffffff; border-radius:15px; padding:5px;margin:auto;">
+                    <p style="background:#1F2022; color:#ffffff; padding:7px; border-radius:5px;">Add Text to your Video <br />Each text will be displayed with each image</p>
+
+                    <div id="global">
+                        <div id="gauche">
+                            <input name="Fontname_parameter" type="text" value="Aclonica" id="font">
+                        </div>
+                        <div id="droite">
+                            <select name="Fontsize_parameter" class="1-100">
+                                <option value="45" selected="selected">Font Size 45</option>
+                            </select>
+                            <select name="position">
+                                <option value="000">Bottom</option>
+                                <option value="100" selected="selected">Center</option>
+                            </select>
+                            <input name="Colour_parameter" type="color" value="#ffffff">
+                            <select name="outline_shadow">
+                                <option value="2" selected="selected">Shadow: Yes</option>
+                                <option value="0">Shadow: No</option>
+                            </select>
+                            <select name="Background_Box" style="width:210px;">
+                                <option value="0" selected="selected">Background for text: No</option>
+                                <option value="3">Background for text: Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="global" class="list_var">
+                        <script>
+                            function textAreaAdjust(o) {
+                                o.style.height = "1px";
+                                o.style.height = (0 + o.scrollHeight) + "px";
+                            }
+                        </script>
+                        <textarea onkeyup="textAreaAdjust(this)" placeholder="Add here your text" name="lyric_0" id="lyric_0" style="width:100%; max-width:400px; padding:5px; border: 0px; overflow:hidden; white-space: normal; text-align: justify; -moz-text-align-last: center; text-align-last: center;"></textarea>
+                        <br />
+                        <div id="gauche">
+                            <span>
+                                <input type="hidden" placeholder="Starting Time" id="starting_time_0" name="starting_time_0" class="timepicker" readonly>
+                            </span>
+                            <span>
+                                <input type="hidden" placeholder="Finishing Time" id="finishing_time_0" name="finishing_time_0" class="timepicker" readonly>
+                            </span>
+                            <select name="Text_Effect_0" style="width:210px;">
+                                <option value="1" selected="selected">Text Fade Effect</option>
+                                <option value="2">Go to right Effect</option>
+                                <option value="3">Go to left Effect</option>
+                                <option value="4">Karaoke Effect</option>
+                                <option value="5">Rotation Effect</option>
+                                <option value="6">Zoom out Effect</option>
+                                <option value="7">Zoom in Effect</option>
+                                <option value="8">Waves Effect</option>
+                                <option value="9">Per Words Effect</option>
+                            </select>
+                            <span class="del-area">
+                                <button type="button" class="list_del" style="border-radius:3px; background:#FF0000; color:#ffffff;"> X </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <input type="button" value=" + " class="list_add" style="width:100%; max-width:200px; padding:3px; border-radius:5px; background:#2D77DE; color:#ffffff; font-size:2vw;" onclick="closeIt();">
+                </p>
+
+            </div>
+            <!--Fin Add input text-->
+
+            <br />
+            <!--Add logo-->
+            <div class="upload-btn-wrapper" id="logo">
+                <!-- Upload image -->
+                 <div class="wrap-custom-file">
+                  <input type="file" name="logo[]" id="image2" accept="image/*" onclick="parent.$('#logo_option').show('slow');"/>
+                  <label  for="image2">
+                   <span>Add Your Logo</span>
+                   <img src="add_image.svg" style="max-width:21%;height:auto; border:0;">
+                  </label>
+                 </div>
+                 <script  src="select/index.js"></script>
+                 <link rel="stylesheet" href="select/style.css">
+                <!-- Fin Upload image -->
+            </div>
+            <div id="logo_option" style="display:none; width:100%; max-width:300px; margin:auto; font-size: 12px; padding:5px; border: 1px solid #ffffff; border-radius:15px;">
+               <span style="color:#ffffff;"> Logo Options</span>
+                <select name="logo_position">
+                    <option value="overlay=10:10">Top left</option>
+                    <option value="overlay=main_w-overlay_w-10:10">Top right</option>
+                    <option value="overlay=10:main_h-overlay_h-10">Bottom left</option>
+                    <option value="overlay=main_w-overlay_w-10:main_h-overlay_h-10" selected="selected">Bottom right</option>
+                    <option value="overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2">Center</option>
+                </select>
+                <select name="logo_width">
+                    <option value="100" selected="selected">100px</option>
+                    <option value="200">200px</option>
+                    <option value="300">300px</option>
+                    <option value="400">400px</option>
+                    <option value="500">500px</option>
+                </select>
+            </div>
+            <!--Fin Add logo-->
+            <br />
+                                <input type="hidden" name="pourcentage_folder" id="pourcentage_folder" value="5bd80a48ceeb5" style="color:#101010;">
+                <button class="btn" onclick="parent.$('#createthevideo').hide('slow');parent.$('#uploadaudio').hide('slow');GetPourcentage();" style="color:#101010;">
+                    Create The Video Now <br />
+                    <img src="create_video.svg" style="max-width:21%;height:auto; border:0;">
+                    <img src="next.svg" style="max-width:21%;height:auto; border:0;">
+                </button> 
+                <br />
+                <button type="button" class="btn hidden back2-btn"><img src="back.svg" style="max-width:7%;height:auto; border:0;"></button>          
+        </div>
+        <!--Fin Step 4 Create-->
+
+
+        <!--Gif waiting pourcentage-->
+        <div class="links" id="progress_pourcentage" style="display:none;">
+            <div id="progress-div">
+                <p>Uploading process</p>
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+        <!--FinGif waiting pourcentage-->
+        <!--Gif waiting-->
+        <div class="links" id="progress" style="display:none;">
+            <svg width='120px' height='120px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-hourglass">
+                <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+                <g>
+                    <path fill="none" stroke="#9ba5a7" stroke-width="5" stroke-miterlimit="10" d="M58.4,51.7c-0.9-0.9-1.4-2-1.4-2.3s0.5-0.4,1.4-1.4 C70.8,43.8,79.8,30.5,80,15.5H70H30H20c0.2,15,9.2,28.1,21.6,32.3c0.9,0.9,1.4,1.2,1.4,1.5s-0.5,1.6-1.4,2.5 C29.2,56.1,20.2,69.5,20,85.5h10h40h10C79.8,69.5,70.8,55.9,58.4,51.7z" class="glass"></path>
+                    <clipPath id="uil-hourglass-clip1">
+                        <rect x="15" y="20" width="70" height="25" class="clip">
+                            <animate attributeName="height" from="25" to="0" dur="1s" repeatCount="indefinite" vlaues="25;0;0" keyTimes="0;0.5;1"></animate>
+                            <animate attributeName="y" from="20" to="45" dur="1s" repeatCount="indefinite" vlaues="20;45;45" keyTimes="0;0.5;1"></animate>
+                        </rect>
+                    </clipPath>
+                    <clipPath id="uil-hourglass-clip2">
+                        <rect x="15" y="55" width="70" height="25" class="clip">
+                            <animate attributeName="height" from="0" to="25" dur="1s" repeatCount="indefinite" vlaues="0;25;25" keyTimes="0;0.5;1"></animate>
+                            <animate attributeName="y" from="80" to="55" dur="1s" repeatCount="indefinite" vlaues="80;55;55" keyTimes="0;0.5;1"></animate>
+                        </rect>
+                    </clipPath>
+                    <path d="M29,23c3.1,11.4,11.3,19.5,21,19.5S67.9,34.4,71,23H29z" clip-path="url(#uil-hourglass-clip1)"
+                          fill="#b9cae5" class="sand"></path>
+                    <path d="M71.6,78c-3-11.6-11.5-20-21.5-20s-18.5,8.4-21.5,20H71.6z" clip-path="url(#uil-hourglass-clip2)" fill="#b9cae5" class="sand"></path>
+                    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="180 50 50" repeatCount="indefinite" dur="1s" values="0 50 50;0 50 50;180 50 50" keyTimes="0;0.7;1"></animateTransform>
+                </g>
+            </svg>
+
+            <p>Conversion in progress..<br />wait please...</p>
+            <img src="76.gif"><br />
+            
+                                    <script>
+                function GetPourcentage() {
+//alert('//');
+                    var rawFile = new XMLHttpRequest();
+                    rawFile.open("GET", 'uploads/pourcentage/5bd80a48ceeb5/pourcentage_file.txt', false);
+                    rawFile.onreadystatechange = function () {
+                        if (rawFile.readyState === 4) {
+                            if (rawFile.status === 200 || rawFile.status == 0) {
+                                var allText                                      = rawFile.responseText;
+                                //alert('');
+                                document.getElementById("Pourcentage").innerHTML = allText;
+                            }
+                        }
+                    }
+                    rawFile.send(null);
+                    setTimeout(GetPourcentage, 500); //Executer la fonction toute les 0.5 seconde.
+                    return;
+                }
+            </script>
+            <div class="Pourcentage" id="Pourcentage" style="padding:2px; color:#ffffff; background:#155F8A;"></div>
+        </div>
+        <!--Fin Gif waiting-->
+
+        <!--Fin Zone upload-->
+
+    </form>
+
+    <div id="results"></div>
+
+    <div style="padding:30px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Imagetovideo.com Auto size -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9156207310213343"
+     data-ad-slot="7361253588"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+
+    <!-- Facebook--
+<span id="facebook" style="display:none; width:100%; max-width:320px; margin-top:100px;">
+   <div class="fb-like" data-href="http://www.imagetovideo.com" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true" style="width:100%; max-width:300px; padding:5px;"></div>
+   <br />
+   <!--<div style="width:100%; max-width:300px; padding:10px;  color:#ffffff; background-color:#ffffff; font-size:12px; margin-top:100px;"><font color="#808080" face="arial" size="2"></font></div>--
+   <div class="fb-comments" data-href="http://imagetovideo.com" order_by="reverse_time" data-width="320" data-num-posts="3" style="width:100%; max-width:320px; padding:5px; background-color:#ffffff;"></div>
+</span>
+<!-- Facebook-->
+
+    <div style="margin:auto; text-align:center; width:100%; max-width:1100px; margin-top:100px;">
+        <div style="margin:15px;">
+            <p style="color:#808080;font-family: 'Warnes';"> Copyright &copy; imagetovideo.com</p>
+            <p style="color:#808080;font-family: 'Warnes';">Transform Photos to Video</p>
+            <!--<div class="the-box"><a href="http://imagetovideo.com"><img src="images/logo.png" alt="logo" style="width:100%; max-width:300px; border:0px;" border="0"></a></div>-->
+            <select id="language" onchange="if (this.value) window.location.href=this.value">
+                <option value="http://imagetovideo.com" selected>English</option>
+                <option value="http://imagetovideo.com/fr/">Fran&ccedil;ais</option>
+				<option value="http://imagetovideo.com/in/">हिंदी</option>
+				
+            </select>
+        </div>
+    </div>
+
+    <div style="margin:auto; text-align:center; width:100%; max-width:1100px;">
+        <div style="margin:15px;">
+            <div class="the-box"><a href="http://www.cartoonize.net">
+                    <span style="color: #808080; padding:5px;">Cartoonize Yourself</span>
+                </a></div>
+        </div>
+    </div>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src   = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-1799511-37', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+</body>
+</html>

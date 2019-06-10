@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>画像をドラッグ＆ドロップで一括アップロード</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/jquery.fileupload.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+// File APIに対応していない場合はエリアを隠す
+if (!window.File) {
+    document.getElementById('image_upload_section').style.display = "none";
+}
+
+// ブラウザ上でファイルを展開する挙動を抑止
+function onDragOver(event) {
+    event.preventDefault();
+}
+
+
+
+            // Drop領域にドロップした際のファイルのプロパティ情報読み取り処理
+            function onDrop(event) {
+                var files = event.dataTransfer.files;
+                // var disp = document.getElementById("disp");
+                // disp.innerHTML = "";
+
+                for (var i = 0; i < files.length; i++) {
+                    // var f = files[i];
+                    // ファイル名とサイズを表示
+                    // disp.innerHTML += "ファイル名 :" + f.name + "ファイルの型:" + f.type + "ファイルサイズ:" + f.size / 1000 + " KB " + "<br />";
+                    imageFileUpload(files[i]);
+                }
+                event.preventDefault();
+            }
+
+
+// ファイルアップロード
+function imageFileUpload(f) {
+    var formData = new FormData();
+    alert(f.name)
+    formData.append('image', f);
+    formData.append('filename', f.name);
+
+    $.ajax({
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        enctype     : "multipart/form-data",
+        url: 'http://35.221.87.107:3389/upload',
+        data: formData,
+        dataType: 'json',
+        success: function(data) {
+            // メッセージ出したり、DOM構築したり。
+            alert("success");
+        }
+    });
+}
+</script>
+
+</head>
+<body>
+
+<div id="image_upload_section">
+    <div id="drop" style="width:700px; height:150px; padding:10px; border:3px solid" ondragover="onDragOver(event)" ondrop="onDrop(event)">
+        ファイルをドラッグアンドドロップしてください。複数ファイル同時も対応しています。
+    </div>
+</div>
+
+</body>
+</html>
