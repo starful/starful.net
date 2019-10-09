@@ -145,20 +145,19 @@
 	                count = 0.9
 	                alert(data1)
 
-	                for (var i = 0; i < data1.length; i++) {
-	                	
+	                for (var i = 0; i < data1["datas"].length; i++) {
 	                	// insert += '<div class="click_btn">'
 						insert += '<div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="'+ count + 's" >'
 						insert += '	<div class="team-wrapper" style="height: 250px">'
 						insert += '		<img src="images/team'+ (i+1) + '.jpg" class="img-responsive" alt="team img" >'
 						insert += '			<div class="team-des">'
 						insert += '				<li class="item">'
-						insert += '				<h4 class="item-h4">'+ data1[i]["name"] +'</h4>'
-						insert += '				<h3 class="item-h3">'+ data1[i]["part"] +'</h3>'
-						insert += '				<h3 class="item-h3">'+ data1[i]["position"] +'</h3>'
-						insert += '				<h3 class="item-h3">'+ data1[i]["mail"] +'</h3>'
-						insert += '				<h3 class="item-h3">'+ data1[i]["etc"] +'</h3>'
-						insert += '				<text type="text" id="profile_id">'+ data1[i]["id"] +'</text>'
+						insert += '				<h4 class="item-h4">'+ data1["datas"][i]["name"] +'</h4>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["part"] +'</h3>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["position"] +'</h3>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["mail"] +'</h3>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["etc"] +'</h3>'
+						insert += '				<text type="text" id="profile_id">'+ data1["datas"][i]["id"] +'</text>'
 						// insert += '<div class="click_btn"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="comment">modal</button></div>'
 						insert += '				</li>'
 						insert += '			</div>'
