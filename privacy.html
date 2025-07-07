@@ -1,0 +1,291 @@
+Last login: Thu Feb  6 18:20:15 on console
+starful@Mac ~ % ssh okpy   
+Welcome to Ubuntu 22.04.1 LTS (GNU/Linux 6.5.0-1023-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Feb  6 18:24:17 JST 2025
+
+  System load:  0.16015625         Processes:             109
+  Usage of /:   23.0% of 38.58GB   Users logged in:       0
+  Memory usage: 44%                IPv4 address for ens5: 172.31.34.197
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+128 updates can be applied immediately.
+1 of these updates is a standard security update.
+To see these additional updates run: apt list --upgradable
+
+
+1 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+
+*** System restart required ***
+Last login: Tue Dec  3 19:51:37 2024 from 121.109.190.33
+ubuntu@ip-172-31-34-197:~$ cd /var/www/
+ubuntu@ip-172-31-34-197:/var/www$ ll
+total 20
+drwxr-xr-x  5 root root 4096 Mar 27  2023 ./
+drwxr-xr-x 14 root root 4096 Nov  7  2022 ../
+drwxrwxr-x  3 root root 4096 Sep 22 21:44 companydb/
+drwxr-xr-x  2 root root 4096 Nov  7  2022 html/
+drwxr-xr-x 11 root root 4096 Mar  6  2023 okpy/
+ubuntu@ip-172-31-34-197:/var/www$ cd companydb/
+ubuntu@ip-172-31-34-197:/var/www/companydb$ ll
+total 324
+drwxrwxr-x 3 root root  4096 Sep 22 21:44 ./
+drwxr-xr-x 5 root root  4096 Mar 27  2023 ../
+-rw-r--r-- 1 root root 15383 Jan 14  2024 companydb_logo.png
+-rw-r--r-- 1 root root 17636 Dec 17  2023 gallery1.png
+-rw-r--r-- 1 root root 10805 Dec 17  2023 gallery2.png
+-rw-r--r-- 1 root root 10848 Dec 17  2023 gallery3.png
+-rw-r--r-- 1 root root 27961 Dec 17  2023 gallery4.png
+-rw-r--r-- 1 root root 18829 Dec 17  2023 gallery5.png
+-rw-r--r-- 1 root root 60325 Dec 17  2023 gallery6.png
+drwxr-xr-x 2 root root  4096 Apr  5  2023 img/
+-rw-r--r-- 1 root root  8687 Sep 28 00:28 index.html
+-rw-r--r-- 1 root root 25338 Dec 17  2023 loading.gif
+-rw-r--r-- 1 root root 17339 Dec 17  2023 loading2.gif
+-rw-r--r-- 1 root root 59699 Dec  4  2023 noImage.png
+-rw-r--r-- 1 root root  8976 Oct 15 23:14 result.html
+-rw-r--r-- 1 root root 11981 Sep 22 21:44 result.html.bak
+ubuntu@ip-172-31-34-197:/var/www/companydb$ sudo vi index.html 
+ubuntu@ip-172-31-34-197:/var/www/companydb$ sudo vi index.html 
+ubuntu@ip-172-31-34-197:/var/www/companydb$ Read from remote host 35.74.164.183: Connection reset by peer
+Connection to 35.74.164.183 closed.
+client_loop: send disconnect: Broken pipe
+starful@Mac ~ % ssh okpy
+Welcome to Ubuntu 22.04.1 LTS (GNU/Linux 6.5.0-1023-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Feb  8 14:53:17 JST 2025
+
+  System load:  0.0                Processes:             109
+  Usage of /:   23.1% of 38.58GB   Users logged in:       0
+  Memory usage: 46%                IPv4 address for ens5: 172.31.34.197
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+129 updates can be applied immediately.
+1 of these updates is a standard security update.
+To see these additional updates run: apt list --upgradable
+
+
+1 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+
+*** System restart required ***
+Last login: Thu Feb  6 18:24:17 2025 from 121.109.190.33
+ubuntu@ip-172-31-34-197:~$ cd /var/www/okpy/
+ubuntu@ip-172-31-34-197:/var/www/okpy$ ll
+total 1296
+drwxr-xr-x 11 root root    4096 Mar  6  2023 ./
+drwxr-xr-x  5 root root    4096 Mar 27  2023 ../
+-rw-r--r--  1 root root     255 Nov 14  2022 board.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 cambridge_2023.html/
+-rw-r--r--  1 root root    2521 Mar 18  2023 college.html
+drwxr-xr-x  3 root root    4096 Nov 14  2022 css/
+-rw-r--r--  1 root root     600 Mar  6  2023 drive.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 ds/
+-rw-r--r--  1 root root    2260 Nov 14  2022 header.html
+drwxr-xr-x  2 root root    4096 Mar  6  2023 images/
+-rw-r--r--  1 root root   23866 Nov 14  2022 index.html
+-rw-r--r--  1 root root   12076 Nov 14  2022 inner-page-style.css
+-rw-r--r--  1 root root 1111630 Nov 14  2022 japan_colege.json
+-rw-r--r--  1 root root    2380 Mar 28  2023 japaneseSchool.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 js/
+-rw-r--r--  1 root root    1733 Jan  7  2024 main.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 mbti/
+-rw-r--r--  1 root root    9440 Mar  6  2023 sideLeft.html
+-rw-r--r--  1 root root    3095 Mar  6  2023 sso.html
+-rw-r--r--  1 root root   68908 Nov 14  2022 style.css
+-rw-r--r--  1 root root     628 Nov 14  2022 timeline.html
+-rw-r--r--  1 root root    9264 Nov 14  2022 uk_colege.json
+drwxr-xr-x 41 root root    4096 Nov 14  2022 waseda_2023/
+drwxr-xr-x  2 root root    4096 Nov 14  2022 webfonts/
+drwxr-xr-x  6 root root    4096 Nov 14  2022 wine/
+-rw-r--r--  1 root root    2272 Mar  6  2023 youtube.html
+ubuntu@ip-172-31-34-197:/var/www/okpy$ sudo vi main.html 
+ubuntu@ip-172-31-34-197:/var/www/okpy$ sudo vi privacy.html
+ubuntu@ip-172-31-34-197:/var/www/okpy$ ll
+total 1304
+drwxr-xr-x 11 root root    4096 Feb  8 15:30 ./
+drwxr-xr-x  5 root root    4096 Mar 27  2023 ../
+-rw-r--r--  1 root root     255 Nov 14  2022 board.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 cambridge_2023.html/
+-rw-r--r--  1 root root    2521 Mar 18  2023 college.html
+drwxr-xr-x  3 root root    4096 Nov 14  2022 css/
+-rw-r--r--  1 root root     600 Mar  6  2023 drive.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 ds/
+-rw-r--r--  1 root root    2260 Nov 14  2022 header.html
+drwxr-xr-x  2 root root    4096 Mar  6  2023 images/
+-rw-r--r--  1 root root   23866 Nov 14  2022 index.html
+-rw-r--r--  1 root root   12076 Nov 14  2022 inner-page-style.css
+-rw-r--r--  1 root root 1111630 Nov 14  2022 japan_colege.json
+-rw-r--r--  1 root root    2380 Mar 28  2023 japaneseSchool.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 js/
+-rw-r--r--  1 root root    1892 Feb  8 14:54 main.html
+drwxr-xr-x  2 root root    4096 Nov 14  2022 mbti/
+-rw-r--r--  1 root root    5479 Feb  8 15:30 privacy.html
+-rw-r--r--  1 root root    9440 Mar  6  2023 sideLeft.html
+-rw-r--r--  1 root root    3095 Mar  6  2023 sso.html
+-rw-r--r--  1 root root   68908 Nov 14  2022 style.css
+-rw-r--r--  1 root root     628 Nov 14  2022 timeline.html
+-rw-r--r--  1 root root    9264 Nov 14  2022 uk_colege.json
+drwxr-xr-x 41 root root    4096 Nov 14  2022 waseda_2023/
+drwxr-xr-x  2 root root    4096 Nov 14  2022 webfonts/
+drwxr-xr-x  6 root root    4096 Nov 14  2022 wine/
+-rw-r--r--  1 root root    2272 Mar  6  2023 youtube.html
+ubuntu@ip-172-31-34-197:/var/www/okpy$ exit
+logout
+Connection to 35.74.164.183 closed.
+starful@Mac ~ % ssh starful
+Welcome to Ubuntu 18.04.6 LTS (GNU/Linux 5.4.0-1097-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Feb  8 15:31:39 JST 2025
+
+  System load:  0.0                Processes:           106
+  Usage of /:   50.5% of 19.31GB   Users logged in:     0
+  Memory usage: 42%                IP address for eth0: 172.31.34.186
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+30 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+*** System restart required ***
+Last login: Mon Feb  3 15:49:23 2025 from 121.109.190.33
+ubuntu@ip-172-31-34-186:~$ cd /var/www/
+ubuntu@ip-172-31-34-186:/var/www$ cd starful/
+ubuntu@ip-172-31-34-186:/var/www/starful$ ll
+total 96
+drwxr-xr-x 14 root root  4096 Feb  3 15:51 ./
+drwxr-xr-x  5 root root  4096 Jan  7  2024 ../
+-rw-r--r--  1 root root    89 Aug  2  2022 appspec.yml
+-rw-r--r--  1 root root 13307 Aug  2  2022 blog.html
+-rw-r--r--  1 root root   446 Aug 15  2022 chat.html
+drwxr-xr-x  2 root root  4096 Aug  2  2022 css/
+drwxr-xr-x  2 root root  4096 Aug  2  2022 fonts/
+drwxr-xr-x  6 root root  4096 Mar  6  2023 img/
+-rw-r--r--  1 root root 13815 Feb  3 15:51 index.html
+drwxr-xr-x  3 root root  4096 Aug  2  2022 js/
+drwxr-xr-x  3 root root  4096 Mar  6  2023 mapbox/
+drwxr-xr-x  2 root root  4096 Aug  2  2022 mbti/
+drwxr-xr-x  2 root root  4096 Aug  2  2022 privacy/
+drwxr-xr-x  6 root root  4096 Dec 19  2023 shrine/
+drwxr-xr-x  2 root root  4096 Aug  2  2022 sso/
+drwxr-xr-x 12 root root  4096 Aug  2  2022 timeline/
+drwxr-xr-x  2 root root  4096 Oct 19  2022 upload/
+drwxr-xr-x  6 root root  4096 Aug  2  2022 wine/
+ubuntu@ip-172-31-34-186:/var/www/starful$ cd privacy/
+ubuntu@ip-172-31-34-186:/var/www/starful/privacy$ ll
+total 36
+drwxr-xr-x  2 root root  4096 Aug  2  2022 ./
+drwxr-xr-x 14 root root  4096 Feb  3 15:51 ../
+-rw-r--r--  1 root root 27020 Aug  2  2022 privacy.html
+ubuntu@ip-172-31-34-186:/var/www/starful/privacy$ vi privacy.html 
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta content="個人情報保護方針" name="description">
+  <title>個人情報保護方針</title>
+</head>
+<body>
+<div class="container box_us privacy_w">
+  <div class="container_in">
+    <h1>個人情報保護方針</h1>
+    <p>
+      snkrskin（以下「弊社」といいます）では、下記の「プライバシーポリシー」に基づき、お客様の個人情報を取り扱います。 弊社は、「プライバシーポリシー」の他に、個別のサービスカテゴリ（例えば、「広告サービス」）について特別なプライバシーポリシー（以下「サー
+ビスプライバシーポリシー」といいます）を定めることがあります。その場合、「プライバシーポリシー」とサービスプライバシーポリシーは併せて適用されるものとし、両者に矛盾がある場合は、サービスプライバシーポリシーが優先するものとします。
+    </p>
+    <p>
+      お客様におかれましては、弊社が運営する各種サービス（以下あわせて「本サービス」といいます）のご利用のため、下記の「プライバシーポリシー」をご熟読ください。
+    </p>
+
+    <h2>プライバシーポリシー</h2>
+    <h3>1. 取得する情報</h3>
+    <p>
+      弊社が「4.取得情報の利用目的」に定める目的を達成するために取得する情報には、次のものが含まれます（以下(1)および(2)をあわせて「取得情報」とします）。
+    </p>
+    <ol>
+      <li>弊社がお客様から取得する情報<br>
+        個人情報とは、個人情報の保護に関する法律（平成15年法律第57号、以下「個人情報保護法」といいます）2条1項に定める個人情報をいいますが、特に弊社において下記は個人情報として扱います。
+        <ol type="a">
+          <li>氏名、生年月日、性別、ご職業、その他の特定の個人を識別することができる情報</li>
+          <li>特定の個人情報に結びついて使用されるご住所、電話番号、アカウント情報（メールアドレスおよびパスワード等をいいます）、店舗名、ニックネーム等の情報</li>
+          <li>クレジットカード情報</li>
+          <li>個人情報と一体となった趣味、家族構成、年齢その他の個人に関する属性情報</li>
+          <li>お客様の本人確認に関する情報</li>
+          <li>お客様がFacebook Connectを使用することを許諾し、FacebookのIDおよびパスワードを入力した場合に取得できる名前、ニックネーム、電子メールアドレス、Facebook ID、誕生日、性別、プロフィール画像、Facebook上の友達情報、その他のお客様のFacebook上で登録
+されている情報</li>
+        </ol>
+      </li>
+      <li>弊社が本サービスの利用に関連して取得する情報<br>
+        個人情報に該当するか否かにかかわらず、本サービスの利用に関する以下の情報を取得します。
+        <ol type="a">
+          <li>お客様がご利用になった本サービスの内容、ご利用日時および回数、本サービス利用時のお客様のオンライン行動等、お客様による本サービスの利用・閲覧に関連する情報（これには、Cookie情報、アクセスログ等の利用状況に関する情報、ご利用の端末情報、位置情>報、そしてIPアドレス、ブラウザ情報、ブラウザ言語等を含むお客様の通信に関する情報を含みます）</li>
+          <li>お客様が本サービスに掲載・発信した投稿、写真、動画、コメント、取引メッセージ、評価その他の情報</li>
+          <li>お客様の本サービスでの決済状況に関する情報</li>
+        </ol>
+      </li>
+    </ol>
+    <h3>2. 取得情報の収集方法</h3>
+    <p>弊社は、本サービスをご利用になるお客様の取得情報を、以下の方法等により収集します。</p>
+    <ol>
+      <li>本サービス上でお客様自身に直接ご入力いただく方法</li>
+      <li>お客様から弊社に対し、電子メール、郵便、書面、電話等でご提供いただく方法（弊社は、お客様との電話応対時、応対品質向上等のため通話を録音します）</li>
+      <li>お客様による本サービスの利用・閲覧の際に収集する方法</li>
+      <li>業務提携先および第三者から間接的に収集する方法（これには、お客様がFacebook Connectを使用することを許諾しFacebookのIDおよびパスワードを入力した場合に、Facebookからお客様の登録情報を収集する方法を含みます）</li>
+    </ol>
+
+    <h3>3. 取得情報の管理</h3>
+    <p>弊社にて取得情報を管理・利用する業務に従事する者は、お客様の取得情報について厳重に管理を行い、個人情報への不当なアクセス、紛失、漏洩、改ざん等が起きないよう、取得情報の取扱に十分な注意を払い、その業務に努めます。
+    </p>
+
+    <h3>4. 取得情報の利用目的</h3>
+    <p>弊社は、取得情報を取得・収集する際にお客様にお知らせした利用目的、利用規約に定める利用目的または以下の目的のために、取得情報を利用します。</p>
+    <ol>
+      <li>本サービスに関する各種事項の連絡や情報提供を行うため</li>
+      <li>本サービスを提供するため</li>
+      <li>本サービスにユーザー登録する際に必要な情報入力を簡略化するため</li>
+      <li>お客様のお申込みにかかる本サービス間の情報連携のため</li>
+      <li>電子メール配信サービスのお申し込みの確認やメールを配信するため</li>
+      <li>本サービスに関するご購入の確認やお届けをするため</li>
+      <li>本サービスに関するご請求、お支払いとその確認をするため</li>
+      <li>ご協力いただいた調査等に対する謝礼等をお送りするため</li>
+      <li>ご応募いただいた懸賞等に対する景品等をお送りするため</li>
+      <li>本サービスの利用状況等を調査・分析するため</li>
+      <li>本サービスの内容をよりご満足いただけるよう改良・改善し、または新サービスの開発のため</li>
+      <li>本サービスの内容をお客様にあわせてカスタマイズするため</li>
+      <li>本サービスに関する満足度を調査するため</li>
+      <li>取得情報を統計的に処理した情報を、集約し調査結果として公表するため</li>
+      <li>本サービス、新サービスその他の各種サービスのご案内やお知らせをお届けするため</li>
+"privacy.html" [readonly][noeol] 273L, 27020C                                                                                                                                                                                                1,1           Top
