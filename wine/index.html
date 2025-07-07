@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>wine search(wine, search, winesearch, community, winecommunity)</title>
+	<meta name="description" content="winegoo, wine, community, winecommunity">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<META name="robots" CONTENT="all">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/et-line-font.css">
+	<link rel="stylesheet" href="css/nivo-lightbox.css">
+	<link rel="stylesheet" href="css/nivo_themes/default/default.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/custom.css">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/smoothscroll.js"></script>
+	<script src="js/isotope.js"></script>
+	<script src="js/imagesloaded.min.js"></script>
+	<script src="js/nivo-lightbox.min.js"></script>
+	<script src="js/jquery.backstretch.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+
+        	var keyword = location.search.substring(1);
+        	
+        	function test(){
+            	return $.ajax({
+          			type: 'GET',
+                	//url: 'https://starful.appspot.com/searchId',
+			url: 'https://www.starful.net/api/bbs/searchId',
+                	data: {
+		        		keyword: keyword
+		    		},
+                })
+            }
+            test().done(function(data1,textStatus,jqXHR) {
+     
+
+            }).fail(function(error) {
+                return error;
+            });
+
+			// 色の設定
+			var colorSet = {
+				red: 'rgb(255, 99, 132)',
+				orange: 'rgb(255, 159, 64)',
+				yellow: 'rgb(255, 205, 86)',
+				green: 'rgb(75, 192, 192)',
+				blue: 'rgb(54, 162, 235)',
+				purple: 'rgb(153, 102, 255)',
+				grey: 'rgb(201, 203, 207)',
+				black: 'rgb(0,0,0)'
+			};
+
+			// 色のRGB変換
+			var color = Chart.helpers.color;
+
+			/*
+			 * チャートの初期設定
+			 */
+			var config = {
+				type: 'radar',
+				data: {
+					labels: ["協調性", "企画力", "実行力", "責任性", "積極性"],
+					datasets: [{
+						// label: "評価",
+						backgroundColor: color(colorSet.blue).alpha(0.5).rgbString(),
+						borderColor: colorSet.blue,
+						pointBackgroundColor: colorSet.red,
+						data: [1, 2, 2, 3, 3]
+					}]
+				},
+				options: {
+					animation:false,
+					showTooltips: false,
+					legend: { position: 'bottom',
+							  display: false
+							 },
+					title: {
+						display: false,
+						fontSize:20,
+						fontColor:'#666',
+						text: '一週間チャート'
+					},
+					scale: {
+						display: true,
+						pointLabels: {
+							fontSize: 15,
+							fontColor: colorSet.black
+						},
+						ticks: {
+							display: true,
+							fontSize: 12,
+							fontColor: colorSet.green,
+							// min: 0,
+							max: 3,
+							// stepSize: 20,
+							beginAtZero: true
+						},
+						gridLines: {
+							display: true,
+							color: colorSet.grey
+						}
+					}
+				}
+			};
+
+            $('#search').click(function() {
+            	$("ul").empty();
+           		var target = '#result';
+        		var insert = '';
+
+	        	function test(){
+	        		var keyword = $("#input_search").val();
+	            	return $.ajax({
+	          			type: 'GET',
+	                	//url: 'https://starful.appspot.com/search',
+						url : 'https://www.starful.net/api/bbs/search',
+	                	data: {
+			        		keyword: keyword
+			    		},
+	                })
+	            }
+	            test().done(function(data1,textStatus,jqXHR) {
+
+	            	new Chart($("#myChart"), config);
+
+	                // 挿入するHTMLを作成
+	                count = 0.9
+	                alert(data1)
+
+	                for (var i = 0; i < data1["datas"].length; i++) {
+	                	// insert += '<div class="click_btn">'
+						insert += '<div class="col-md-3 col-sm-6 wow fadeIn" data-wow-delay="'+ count + 's" >'
+						insert += '	<div class="team-wrapper" style="height: 250px">'
+						insert += '		<img src="images/team'+ (i+1) + '.jpg" class="img-responsive" alt="team img" >'
+						insert += '			<div class="team-des">'
+						insert += '				<li class="item">'
+						insert += '				<h4 class="item-h4">'+ data1["datas"][i]["name"] +'</h4>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["part"] +'</h3>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["position"] +'</h3>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["mail"] +'</h3>'
+						insert += '				<h3 class="item-h3">'+ data1["datas"][i]["etc"] +'</h3>'
+						insert += '				<text type="text" id="profile_id">'+ data1["datas"][i]["id"] +'</text>'
+						// insert += '<div class="click_btn"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="comment">modal</button></div>'
+						insert += '				</li>'
+						insert += '			</div>'
+						insert += '	</div>'
+						insert += '</div>'
+						// insert += '</div>'
+						
+						count = count + 0.3;
+	                };
+
+	                $("#team").css({ 'display': "block" });
+	                $("#home_1").css({ 'display': "none" });
+
+	                $(target).append(insert);
+	                $("#result").show(); 
+
+			        var targetTop = $('#team').offset().top;
+			        $('html,body').animate({
+			            scrollTop: targetTop
+			        }, 500);
+
+	            }).fail(function(error) {
+	                return error;
+	            });
+	        });
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+			$('.click_btn').on('click', function(){
+
+           		var target = '#comment_result';
+        		var insert = '';
+
+	        	function test2(){
+	        		var keyword = $("#profile_id").text();
+	            	return $.ajax({
+	          			type: 'GET',
+	                	url: 'https://www.starful.net/api/bbs/comment',
+	                	data: {
+			        		keyword: keyword
+			    		},
+	                })
+	            }
+
+	            test2().done(function(data2,textStatus,jqXHR) {
+	                // 挿入するHTMLを作成
+	                // count = 0.9
+	                for (var i = 0; i < data2["datas"].length; i++) {
+						insert += '	<div class="col-md-12">'
+						insert += '		<div class="title">'
+						insert += '			<h3>'+ data2["datas"][i]["text"] +'</h3>'
+						// insert += '			<h3>'+ data2["datas"][i]["text"] + : +data2["datas"][i]["reg_time"] +'</h3>'
+						// insert += '			<h3>'+ data2["datas"][i]["text"] + '</h3>'
+						insert += '		</div>'
+						insert += '	</div>'
+	                };
+
+	                for (var i = 0; i < data2["datas_avg"].length; i++) {
+						insert += '	<div class="col-md-12">'
+						insert += '		<div class="title">'
+						insert += '			<h3>'+ data2["datas_avg"][i]["eva_a"] +'</h3>'
+						insert += '			<h3>'+ data2["datas_avg"][i]["eva_b"] +'</h3>'
+						insert += '			<h3>'+ data2["datas_avg"][i]["eva_c"] +'</h3>'
+						insert += '			<h3>'+ data2["datas_avg"][i]["eva_d"] +'</h3>'
+						insert += '			<h3>'+ data2["datas_avg"][i]["eva_e"] +'</h3>'
+						insert += '		</div>'
+						insert += '	</div>'
+	                };
+
+	               	$(target).append(insert);
+	                $("#comment_result").show(); 
+			  		$('#exampleModal').modal('show');
+
+	            }).fail(function(error) {
+	                return error;
+	            });
+        	});
+        });
+    </script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50" width=device-width >
+
+<!-- home section -->
+<section id="home" style="height: 400px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<form class="form-inline md-form mr-auto mb-4">
+				    <input class="form-control mr-sm-2 input-lg" type="text" placeholder="Please enter the name" aria-label="Search" id="input_search" style="width: 300px">
+				    <button type="button" class="btn btn-primary" id="search" style="height: 45px; margin-top: 1px; font-size: 14px ">Search</button>
+				</form>
+			</div>
+		</div>
+	</div>		
+</section>
+
+<!-- home_1 section -->
+<!-- <section id="home_1" style="height: 400px; display:block;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<form class="form-inline md-form mr-auto mb-4">
+				</form>
+			</div>
+		</div>
+	</div>		
+</section>
+ -->
+<!-- team section -->
+ <section id="team" style="display: none;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="section-title">
+					<div class="click_btn">
+						<ul id="result" hidden="true"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+		<form id='myform' method='POST' action='#'>
+		    <input type='button' value='-' class='qtyminus1' field='quantity' />
+		    <input type='text' name='quantity' value='0' class='qty' />
+		    <input type='button' value='+' class='qtyplus1' field='quantity' />
+		</form>
+
+		<form id='myform2' method='POST' action='#'>
+		    <input type='button' value='-' class='qtyminus2' field='quantity' />
+		    <input type='text' name='quantity' value='0' class='qty' />
+		    <input type='button' value='+' class='qtyplus2' field='quantity' />
+		</form>
+
+		<form id='myform3' method='POST' action='#'>
+		    <input type='button' value='-' class='qtyminus3' field='quantity' />
+		    <input type='text' name='quantity' value='0' class='qty' />
+		    <input type='button' value='+' class='qtyplus3' field='quantity' />
+		</form>
+
+		<form id='myform4' method='POST' action='#'>
+		    <input type='button' value='-' class='qtyminus4' field='quantity' />
+		    <input type='text' name='quantity' value='0' class='qty' />
+		    <input type='button' value='+' class='qtyplus4' field='quantity' />
+		</form>
+
+		<form id='myform5' method='POST' action='#'>
+		    <input type='button' value='-' class='qtyminus5' field='quantity' />
+		    <input type='text' name='quantity' value='0' class='qty' />
+		    <input type='button' value='+' class='qtyplus5' field='quantity' />
+		</form>
+
+      	<canvas id="myChart"></canvas>
+      </div>
+
+      <div class="modal-footer">
+      	<div id="comment_result"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

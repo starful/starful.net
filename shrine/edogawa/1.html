@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            var slick = $('.single-item').slick({
+                appendArrows: $('#arrows')
+            });
+
+            //動作しない時のために、クリックイベントにリスナーを追加しておく。
+            $('.slick-next').on('click', function () {
+                slick.slickNext();
+            });
+            $('.slick-prev').on('click', function () {
+                slick.slickPrev();
+            });
+        });
+        </script>
+        <style>
+        .slick_container {
+            border: 1px solid #aaa;
+            position: relative;
+            width: 90%;    
+            width: 90%; 
+        }
+        .single-item {
+            border: 1px solid #aaa;
+            width: 100%;    
+            width: 100%; 
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            margin: auto;
+        }
+        .slick-prev, .slick-next {
+            width:60px; /* 画像幅 */
+            height:34px /* 画像高さ */
+        }
+        .slick-prev:before, .slick-next:before {
+            content:"";
+        }
+        button.slick-prev, button.slick-next {
+            z-index:2;
+        }
+        .slick-prev{left:0px; /* 任意の値 */}
+        .slick-next{right:0px; /* 任意の値 */}
+        .slick-arrow{z-index:10;/* 値は適当に */}
+        </style>
+    </head>
+    <body>
+        <div id="slick_container">
+            <div class="single-item">
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_1.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_2.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_3.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_4.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_5.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_6.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_7.jpg" alt="">
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551591/starful.net/edogawa/1_8.jpg" alt="">
+                </div>                
+            </div>
+            <!--prev,nextを追加-->
+            <div id="arrows">
+                <div class="slick-next">
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551305/starful.net/RightArrow.png" alt="">
+                </div>
+                <div class="slick-prev">
+                    <img src="https://res.cloudinary.com/dbwazrzbc/image/upload/v1541551305/starful.net/LeftArrow.png" alt="">
+                </div>
+            </div>
+        </div>
+    <body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS" />
+
+<script>
+	function popup(value){
+		window.open(value,'popup','width=900,height=620');
+	}
+</script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuXVPx8glg6BVdWvdxNoyRSsErkFR_pDk&callback=initMap"
+  type="text/javascript"></script>
+
+
+<script type="text/javascript">
+	var map;
+      
+	function initialize(){
+
+		//marker 設定
+		var icon = new google.maps.MarkerImage(
+		'http://maps.google.co.jp/mapfiles/ms/icons/red-pushpin.png',
+		new google.maps.Size(34,34),
+		new google.maps.Point(0,0),
+		new google.maps.Point(37,34)
+		);
+			
+		//map 設定
+		geo = new google.maps.Geocoder();
+		var myOptions = {
+			zoom: 13,
+			center: new google.maps.LatLng(35.6941309, 139.62642000000005),
+			borderPadding: 50,
+			trackMarkers: true,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		
+		}
+
+		//mapを表示
+		map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
+		//------------1-------------------- 稲荷神社（永福稲荷神社) ------------------------------------
+		//-------------------------- 杉並区永福1-24-6 --------------------------------		
+		var myLatlng_1 = new google.maps.LatLng(35.6724693, 139.64320580000003);
+		var marker_1 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "稲荷神社（永福稲荷神社)",
+			position: myLatlng_1
+		});
+		google.maps.event.addListener(marker_1,'click',function(){
+			window.open('./1.html','popup','width=900,height=620');
+		});
+
+		marker_1.setMap(map);
+
+
+		//--------------2------------------ 熊野神社（和泉熊野神社） ------------------------------------
+		//-------------------------- 杉並区和泉3-21-29 --------------------------------		
+		var myLatlng_2 = new google.maps.LatLng(35.6766477, 139.64811540000005);
+		var marker_2 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "熊野神社",
+			position: myLatlng_2
+		});
+		google.maps.event.addListener(marker_2,'click',function(){
+			window.open('./2.html','popup','width=900,height=620');
+		});
+
+		marker_2.setMap(map);
+
+
+		//-------------------------------- 大宮八幡宮--------------------------------
+		//-------------------------- 杉並区大宮2-3-1 -------------------------------		
+		var myLatlng_3 = new google.maps.LatLng(35.6820574, 139.64014050000003);
+		var marker_3 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社(板橋宿の鎮守様)",
+			position: myLatlng_3
+		});
+		google.maps.event.addListener(marker_3,'click',function(){
+			window.open('./3.html','popup','width=900,height=620');
+		});
+
+		marker_3.setMap(map);
+
+	
+		//-------------------------------- 八幡神社（高井戸八幡神社） --------------------------------
+		//-------------------------- 杉並区下高井戸4-39-3 -------------------------------		
+		var myLatlng_4 = new google.maps.LatLng(35.6751223, 139.63016670000002);
+		var marker_4 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社(板橋宿の鎮守様)",
+			position: myLatlng_4
+		});
+		google.maps.event.addListener(marker_4,'click',function(){
+			window.open('./4.html','popup','width=900,height=620');
+		});
+
+		marker_4.setMap(map);	
+
+
+
+		//-------------------------------- 八幡神社（天沼八幡神社） -------------------
+		//-------------------------- 杉並区天沼2-18-5 -------------------------------		
+		var myLatlng_5 = new google.maps.LatLng(35.7079588, 139.62294309999993);
+		var marker_5 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "稲荷神社（清水稲荷神社）",
+			position: myLatlng_5
+		});
+		google.maps.event.addListener(marker_5,'click',function(){
+			window.open('./5.html','popup','width=900,height=620');
+		});
+
+		marker_5.setMap(map);		
+
+
+		//-------------------------------- 熊野神社（天沼熊野神社） -------------------
+		//-------------------------- 杉並区天沼2-40-2 -------------------------------		
+		var myLatlng_6 = new google.maps.LatLng(35.7086118, 139.62678019999998);
+		var marker_6 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "稲荷神社",
+			position: myLatlng_6
+		});
+		google.maps.event.addListener(marker_6,'click',function(){
+			window.open('./6.html','popup','width=900,height=620');
+		});
+
+		marker_6.setMap(map);	
+
+		//-------------------------------- 白山神社（荻窪白山神社） -------------------
+		//-------------------------- 杉並区上荻1-21-7 -------------------------------		
+		var myLatlng_7 = new google.maps.LatLng(35.7052169, 139.61605610000004);
+		var marker_7 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "熊野神社（城山熊野神社）",
+			position: myLatlng_7
+		});
+		google.maps.event.addListener(marker_7,'click',function(){
+			window.open('./7.html','popup','width=900,height=620');
+		});
+
+		marker_7.setMap(map);	
+
+		//-------------------------------- 八幡神社（荻窪八幡神社） -------------------
+		//-------------------------- 杉並区上荻4-19-2 -------------------------------		
+		var myLatlng_8 = new google.maps.LatLng(35.7105522, 139.60631450000005);
+		var marker_8 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "天祖神社",
+			position: myLatlng_8
+		});
+		google.maps.event.addListener(marker_8,'click',function(){
+			window.open('./8.html','popup','width=900,height=620');
+		});
+
+		marker_8.setMap(map);
+			
+
+		//-------------------------------- 井草八幡宮 -------------------
+		//-------------------------- 〒167-0041　杉並区善福寺1-33-1 -------------------------------		
+		var myLatlng_9 = new google.maps.LatLng(35.7160061, 139.59512599999994);
+		var marker_9 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "北野神社",
+			position: myLatlng_9
+		});
+		google.maps.event.addListener(marker_9,'click',function(){
+			window.open('./9.html','popup','width=900,height=620');
+		});
+
+		marker_9.setMap(map);	
+
+
+		//--------------------------------⑩住所取得--------------------------------
+		//-------------------------------- 田端神社 -------------------
+		//-------------------------- 〒167-0051　杉並区荻窪1-56-10 -------------------------------		
+		var myLatlng_10 = new google.maps.LatLng(35.6941309, 139.62642000000005);
+		var marker_10 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社（赤塚氷川神社）",
+			position: myLatlng_10
+		});
+		google.maps.event.addListener(marker_10,'click',function(){
+			window.open('./10.html','popup','width=900,height=620');
+		});
+
+		marker_10.setMap(map);	
+
+
+		//-------------------------------- 神明宮 -------------------
+		//-------------------------- 〒166-0001　杉並区阿佐谷北1-25-5 -------------------------------		
+		var myLatlng_11 = new google.maps.LatLng(35.7069159, 139.63686170000005);
+		var marker_11 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "轡神社（轡権現）",
+			position: myLatlng_11
+		});
+		google.maps.event.addListener(marker_11,'click',function(){
+			window.open('./11.html','popup','width=900,height=620');
+		});
+
+		marker_11.setMap(map);
+
+
+		//-------------------------------- 馬橋稲荷神社 -------------------
+		//-------------------------- 〒166-0004　杉並区阿佐谷南2-4-4 -------------------------------		
+		var myLatlng_12 = new google.maps.LatLng(35.7033314, 139.64275050000003);
+		var marker_12 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "天祖神社",
+			position: myLatlng_12
+		});
+		google.maps.event.addListener(marker_12,'click',function(){
+			window.open('./12.html','popup','width=900,height=620');
+		});
+
+		marker_12.setMap(map);
+
+		//-------------------------------- 氷川神社（高円寺氷川神社） -------------------
+		//-------------------------- 〒166-0003　杉並区高円寺南4-44-19 -------------------------------		
+		var myLatlng_13 = new google.maps.LatLng(35.7045933, 139.6514002);
+		var marker_13 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社",
+			position: myLatlng_13
+		});
+		google.maps.event.addListener(marker_13,'click',function(){
+			window.open('./13.html','popup','width=900,height=620');
+		});
+
+		marker_13.setMap(map);
+
+
+		//-------------------------------- 天祖神社（高円寺天祖神社） -------------------
+		//-------------------------- 杉並区高円寺南1-16-19 -------------------------------		
+		var myLatlng_14 = new google.maps.LatLng(35.6999947, 139.65779069999996);
+		var marker_14 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "氷川神社",
+			position: myLatlng_14
+		});
+		google.maps.event.addListener(marker_14,'click',function(){
+			window.open('./13.html','popup','width=900,height=620');
+		});
+
+		marker_14.setMap(map);
+
+
+	}
+   </script>
+</head>
+<body onload="initialize()">
+
+<div align="center">
+<div id="map_canvas" style="width: 600px; height: 500px;"></div>
+
+</div>
+
+</body>
+</html>

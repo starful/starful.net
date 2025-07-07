@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    form {
+        margin: 5% 15% 5% 15%;
+        width: 70%;
+    }
+    .insertButton {
+        width: 15%;
+        height: 60px;
+        border-radius: 6px 6px 6px 6px;
+        background-color: #4b9dea;
+        color: #fff;
+        box-shadow: 0 0 10px rgb(102 179 251 / 50%);
+        border-color: #4b9dea;
+        font-size: x-large;
+        margin: 0% 0% 0% 85%;
+    }
+    </style>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        $("#kind").val(sessionStorage.getItem('kind'))
+
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+
+                    if (form.checkValidity() === true) {
+                        title = $("#title").val();
+                        contents = $("#contents").val();
+                        kind = $("#kind").val();
+                        user = 'user';
+                        data = { "title": title, "kind": kind, "contents": contents, "user": user };
+                        json = JSON.stringify(data);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "https://starful.net/api/mbti/insert",
+                            data: json,
+                            contentType: "application/json",
+                            success: function(msg) {
+                                console.log(msg);
+                                window.location.href = 'https://starful.net/mbti/mbtiBBS.html';
+                            },
+                            error: function(msg) {
+                                alert("hhh")
+                                console.log("error");
+                            }
+                        });
+
+                    } else {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    });
+    </script>
+</head>
+<body>
+    <form class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Target</label>
+            <input type="text" readonly class="form-control-plaintext" id="kind">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Title</label>
+            <input type="text" class="form-control form-control-lg" id="title" placeholder="Title" required>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Contents</label>
+            <textarea class="form-control" id="contents" rows="10" required></textarea>
+        </div>
+        <button class="insertButton" type="submit">insert</button>
+    </form>
+</body>
+</html>

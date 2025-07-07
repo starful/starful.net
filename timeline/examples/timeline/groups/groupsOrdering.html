@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline | groups | Groups ordering</title>
+
+  <style>
+    body, html {
+      font-family: arial, sans-serif;
+      font-size: 11pt;
+    }
+
+    #visualization {
+      box-sizing: border-box;
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  
+</head>
+<body>
+<p>
+  This example demonstrates custom ordering of groups.
+</p>
+<div id="visualization"></div>
+
+<script>
+
+
+
+
+  $.ajax({
+    url: '../resources/data/basic.json',
+    success: function (data) {
+
+      var container = document.getElementById('visualization');
+      var groups = new vis.DataSet([
+        {id: 0, content: 'First', value: 1},
+        {id: 1, content: 'Third', value: 3},
+        {id: 2, content: 'Second', value: 2}
+      ]);
+
+      var items = new vis.DataSet(data);
+      var options = {
+        // editable: true
+          zoomMin: 1000 * 60 * 60 * 24 * 31 * 12,     // about three months in milliseconds
+          format: {
+            minorLabels: {
+                month:      'MM',
+                year:       'YYYY'
+              },
+              majorLabels: {
+                month:      'YYYY',
+                year:       ''
+              }
+          }
+      };
+
+      var timeline = new vis.Timeline(container);
+      timeline.setOptions(options);
+      timeline.setGroups(groups);
+      timeline.setItems(items);
+
+      
+
+      document.getElementById('visualization').onclick = function (event) {
+
+        $("#result").empty();
+
+        var target = '#result';
+        var insert = '';
+
+        var props = timeline.getEventProperties(event)
+        console.log(props);
+
+        insert += ' <label>' + props.item + '</label>'
+
+        $(target).append(insert);
+        $("#result").show();
+
+      }
+
+
+    },
+    error: function (err) {
+      console.log('Error', err);
+      if (err.status === 0) {
+        alert('Failed to load data/basic.json.\nPlease run this example on a server.');
+      }
+      else {
+        alert('Failed to load data/basic.json.');
+      }
+    }
+  });
+
+
+
+
+</script>
+  <div id="result"></div>
+</body>
+</html>

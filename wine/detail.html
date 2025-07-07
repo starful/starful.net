@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Team</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	
+    <script>
+        $(document).ready(function () {
+
+        	var keyword = location.search.substring(1);
+        	
+        	function test(){
+            	return $.ajax({
+          			type: 'GET',
+                	url: 'https://www.starful.net/api/bbs/searchId',
+                	data: {
+		        		keyword: keyword
+		    		},
+                })
+            }
+            test().done(function(data1,textStatus,jqXHR) {
+     
+
+            }).fail(function(error) {
+                return error;
+            });
+
+			// 色の設定
+			var colorSet = {
+				red: 'rgb(255, 99, 132)',
+				orange: 'rgb(255, 159, 64)',
+				yellow: 'rgb(255, 205, 86)',
+				green: 'rgb(75, 192, 192)',
+				blue: 'rgb(54, 162, 235)',
+				purple: 'rgb(153, 102, 255)',
+				grey: 'rgb(201, 203, 207)',
+				black: 'rgb(0,0,0)'
+			};
+
+			// 色のRGB変換
+			var color = Chart.helpers.color;
+
+			/*
+			 * チャートの初期設定
+			 */
+			var config = {
+				type: 'radar',
+				data: {
+					labels: ["協調性", "企画力", "実行力", "責任性", "積極性"],
+					datasets: [{
+						// label: "評価",
+						backgroundColor: color(colorSet.blue).alpha(0.5).rgbString(),
+						borderColor: colorSet.blue,
+						pointBackgroundColor: colorSet.red,
+						data: [1, 2, 2, 3, 3]
+					}]
+				},
+				options: {
+					animation:false,
+					showTooltips: false,
+					legend: { position: 'bottom',
+							  display: false
+							 },
+					title: {
+						display: false,
+						fontSize:20,
+						fontColor:'#666',
+						text: '一週間チャート'
+					},
+					scale: {
+						display: true,
+						pointLabels: {
+							fontSize: 15,
+							fontColor: colorSet.black
+						},
+						ticks: {
+							display: true,
+							fontSize: 12,
+							fontColor: colorSet.green,
+							// min: 0,
+							max: 3,
+							// stepSize: 20,
+							beginAtZero: true
+						},
+						gridLines: {
+							display: true,
+							color: colorSet.grey
+						}
+					}
+				}
+			};
+
+			new Chart($("#myChart"), config);
+
+
+
+
+
+
+
+
+        });
+    </script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+
+		<section id="blog-left">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-0 col-sm-10 col-sm-offset-1">
+						<div class="blog-img row">
+							<div class="col-md-12">
+								<!-- <img class="img-responsive" src="images/team2.jpg" alt=""> -->
+								<img class="img-responsive" src="images/blog-details-img2.jpg" alt="">
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<!-- <img class="img-responsive" src="img/blog-details-img3.jpg" alt=""> -->
+								<canvas id="myChart" style="margin-top: 20px;"></canvas>
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<img class="img-responsive" src="images/blog-details-img4.jpg" alt="">
+							</div>
+						</div>
+
+
+						<div class="blog-comment">
+							<a class="comment-img" href="#"><img class="img-responsive" src="images/avtar6.jpg" alt=""></a>
+							<div class="comment-text">
+								<h5><a href="#">About The Author</a></h5>
+								<span>Paul Scrivens - Creative Head</span>
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+							</div>
+						</div>
+
+
+						<div class="block">
+							<span class="first-child-span">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+							<p class="first-child">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.</p>
+							<blockquote>
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text. Lorem Ipsum is simply dummy text.</p>
+								<div class="footer">
+									Jason Santa Maria
+								</div>
+							</blockquote>
+							<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</span>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p><br>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <style type="text/css">
+    @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600");
+
+    body,
+    html {
+        margin: 0;
+        padding: 1rem;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        font-family: "Open Sans", "Helvetica", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-color: #eee;
+    }
+
+    fieldset {
+        /*margin: 300 500 100 500;*/
+        margin: 5% 15% 5% 15%;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: block;
+        border: none;
+        border: solid 1px #ccc;
+        width: 5% min-width: 0;
+        background-color: #fff;
+    }
+
+    fieldset legend {
+        margin: 3% 10% 3% 10%;
+        padding: 0;
+        width: 100%;
+        float: left;
+        display: table;
+        font-size: 1.5rem;
+        line-height: 140%;
+        font-weight: 600;
+        color: #333;
+    }
+
+    fieldset legend+* {
+        clear: both;
+    }
+
+    body:not(:-moz-handler-blocked) fieldset {
+        display: table-cell;
+    }
+
+    /* TOGGLE STYLING */
+    .toggle {
+        margin: 0 15rem 1.5rem 15rem;
+        box-sizing: border-box;
+        font-size: 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+    .toggle input {
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: -9999px;
+    }
+
+    .toggle input+label {
+        margin: 0;
+        padding: 0.75rem 2rem;
+        box-sizing: border-box;
+        position: relative;
+        display: inline-block;
+        border: solid 1px #ddd;
+        background-color: #fff;
+        font-size: 1rem;
+        line-height: 140%;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+        transition: border-color 0.15s ease-out, color 0.25s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+        width: 400px;
+        background: #e8f1fa;
+    }
+
+    .toggle input+label:first-of-type {
+        border-radius: 6px 0 0 6px;
+        border-right: none;
+    }
+
+    .toggle input+label:last-of-type {
+        border-radius: 0 6px 6px 0;
+        border-left: none;
+    }
+
+    .toggle input:hover+label {
+        border-color: #213140;
+    }
+
+    .toggle input:checked+label {
+        background-color: #4b9dea;
+        color: #fff;
+        box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+        border-color: #4b9dea;
+        z-index: 1;
+    }
+
+    .toggle input:focus+label {
+        outline: dotted 1px #ccc;
+        outline-offset: 0.45rem;
+    }
+
+    @media (max-width: 800px) {
+        .toggle input+label {
+            padding: 0.75rem 0.25rem;
+            flex: 0 0 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .status {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .status span {
+        font-weight: 600;
+        color: #b6985a;
+    }
+
+    .status span:first-of-type {
+        display: inline;
+    }
+
+    .status span:last-of-type {
+        display: none;
+    }
+
+    @media (max-width: 800px) {
+        .status span:first-of-type {
+            display: none;
+        }
+
+        .status span:last-of-type {
+            display: inline;
+        }
+    }
+
+    .send {
+        width: 400px;
+        height: 70px;
+        border-radius: 6px 6px 6px 6px;
+        background-color: #4b9dea;
+        color: #fff;
+        box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+        border-color: #4b9dea;
+        font-size: x-large;
+        margin: -3% 15% 3% 70%;
+    }
+
+    .button_div {
+        margin-bottom: 5%;
+        font-size: 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+    .username {
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 1em;
+        margin-bottom: 2em;
+        border: 4px double #4b9dea;
+        border-radius: 15px;
+        text-align: center;
+        color: #62a061;
+        margin: 0% 0% 0% 20%;
+        width: 57%;
+    }
+    </style>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        function send() {
+            var result = '';
+            var check = true;
+            var msg = '';
+
+            for (var i = 1; i <= 20; i++) {
+                if ($('input[name=Q' + i + ']:checked').val()) {
+                    result = result + $('input[name=Q' + i + ']:checked').val()
+                    console.log(result)
+                } else {
+                    msg = msg + 'Please answer the question ' + i + '\n'
+                    check = false
+                }
+            }
+            console.log('result : ' + result)
+
+            data = { "result": result };
+            json = JSON.stringify(data);
+
+            if (check) {
+                $.ajax({
+                    type: "POST",
+                    url: "https://starful.net/api/mbti/mbti",
+                    data: json,
+                    contentType: "application/json",
+                    success: function(msg) {
+                        console.log(msg);
+                        window.location.href = 'https://starful.net/mbti/explanation.html#' + msg['data'];
+                    },
+                    error: function(msg) {
+                        console.log("error");
+                    }
+                });
+            } else {
+                alert(msg)
+            }
+        }
+
+        var target = '#username';
+        var insert = '';
+        insert += ' <p class="username"> Welcome ' + sessionStorage.getItem('username') + '</p>'
+        $(target).append(insert);
+        $(target).show();
+    });
+    </script>
+</head>
+
+<body>
+    <!------------------------------------- Q1 ---------------------------------->
+    <div id="username"></div>
+    <fieldset>
+        <legend>
+            Question 01:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.expend energy, enjoy groups or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.conserve energy, enjoy one-on-one <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q1" value="A" id="QA01" />
+            <label for="QA01">A</label>
+            <input type="radio" name="Q1" value="B" id="QB01" />
+            <label for="QB01">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q2 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 02:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.more outgoing, think out loud or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.more reserved, think to yourself <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q2" value="A" id="QA02" />
+            <label for="QA02">A</label>
+            <input type="radio" name="Q2" value="B" id="QB02" />
+            <label for="QB02">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q3 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 03:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.seek many tasks, public activities, interaction with others <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.seek private, solitary activities with quiet to concentrate <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q3" value="A" id="QA03" />
+            <label for="QA03">A</label>
+            <input type="radio" name="Q3" value="B" id="QB03" />
+            <label for="QB03">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q4 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 04:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.external, communicative, express yourself or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.internal, reticent, keep to yourself <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q4" value="A" id="QA04" />
+            <label for="QA04">A</label>
+            <input type="radio" name="Q4" value="B" id="QB04" />
+            <label for="QB04">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q5 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 05:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.active, initiate or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.reflective, deliberate <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q5" value="A" id="QA05" />
+            <label for="QA05">A</label>
+            <input type="radio" name="Q5" value="B" id="QB05" />
+            <label for="QB05">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q6 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 06:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.interpret literally or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.look for meaning and possibilities <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q6" value="A" id="QA06" />
+            <label for="QA06">A</label>
+            <input type="radio" name="Q6" value="B" id="QB06" />
+            <label for="QB06">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q7 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 07:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.practical, realistic, experiential or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.imaginative, innovative, theoretical <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q7" value="A" id="QA07" />
+            <label for="QA07">A</label>
+            <input type="radio" name="Q7" value="B" id="QB07" />
+            <label for="QB07">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q8 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 08:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.standard, usual, conventional or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.different, novel, unique <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q8" value="A" id="QA08" />
+            <label for="QA08">A</label>
+            <input type="radio" name="Q8" value="B" id="QB08" />
+            <label for="QB08">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q9 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 09:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.focus on here-and-now or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.look to the future, global perspective, “big picture” <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q9" value="A" id="QA09" />
+            <label for="QA09">A</label>
+            <input type="radio" name="Q9" value="B" id="QB09" />
+            <label for="QB09">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q10 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 10:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.facts, things, “what is” or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.ideas, dreams, “what could be,” philosophical <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q10" value="A" id="QA10" />
+            <label for="QA10">A</label>
+            <input type="radio" name="Q10" value="B" id="QB10" />
+            <label for="QB10">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q11 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 11:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.logical, thinking, questioning or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.empathetic, feeling, accommodating <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q11" value="A" id="QA11" />
+            <label for="QA11">A</label>
+            <input type="radio" name="Q11" value="B" id="QB11" />
+            <label for="QB11">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q12 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 12:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.candid, straight forward, frank or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.tactful, kind, encouraging <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q12" value="A" id="QA12" />
+            <label for="QA12">A</label>
+            <input type="radio" name="Q12" value="B" id="QB12" />
+            <label for="QB12">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q13 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 13:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.firm, tend to criticize, hold the line or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.gentle, tend to appreciate, conciliate <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q13" value="A" id="QA13" />
+            <label for="QA13">A</label>
+            <input type="radio" name="Q13" value="B" id="QB13" />
+            <label for="QB13">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q14 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 14:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.tough-minded, just or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.tender-hearted, merciful <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q14" value="A" id="QA14" />
+            <label for="QA14">A</label>
+            <input type="radio" name="Q14" value="B" id="QB14" />
+            <label for="QB14">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q15 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 15:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.matter of fact, issue-oriented or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.sensitive, people-oriented, compassionate <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q15" value="A" id="QA15" />
+            <label for="QA15">A</label>
+            <input type="radio" name="Q15" value="B" id="QB15" />
+            <label for="QB15">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q16 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 16:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.organized, orderly or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.flexible, adaptable <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q16" value="A" id="QA16" />
+            <label for="QA16">A</label>
+            <input type="radio" name="Q16" value="B" id="QB16" />
+            <label for="QB16">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q17 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 17:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.plan, schedule or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.unplanned, spontaneous <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q17" value="A" id="QA17" />
+            <label for="QA17">A</label>
+            <input type="radio" name="Q17" value="B" id="QB17" />
+            <label for="QB17">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q18 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 18:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.regulated, structured or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.easygoing, “live” and “let live” <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q18" value="A" id="QA18" />
+            <label for="QA18">A</label>
+            <input type="radio" name="Q18" value="B" id="QB18" />
+            <label for="QB18">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q19 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 19:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.preparation, plan ahead or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.go with the flow, adapt as you go <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q19" value="A" id="QA19" />
+            <label for="QA19">A</label>
+            <input type="radio" name="Q19" value="B" id="QB19" />
+            <label for="QB19">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------- Q20 ---------------------------------->
+    <fieldset>
+        <legend>
+            Question 20:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.control, govern or <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b.latitude, freedom <br>
+        </legend>
+        <div class="toggle">
+            <input type="radio" name="Q20" value="A" id="QA20" />
+            <label for="QA20">A</label>
+            <input type="radio" name="Q20" value="B" id="QB20" />
+            <label for="QB20">B</label>
+        </div>
+    </fieldset>
+    <!------------------------------------ BUTTON ------------------------------->
+    <div class="button_div" align="center">
+        <button class="send" onclick="send()">送信</button>
+    </div>
+</body>
+
+</html>

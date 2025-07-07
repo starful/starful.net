@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>
+    <style>
+    /*======== tab ================*/
+      @charset "UTF-8";
+
+      /*tabの形状*/
+      .tab{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .tab li a{
+        display: block;
+        background:#ddd;
+        margin:0 2px;
+        padding:10px 20px;
+      }
+      /*liにactiveクラスがついた時の形状*/
+      .tab li.active a{
+        background:#fff;
+      }
+
+
+      /*エリアの表示非表示と形状*/
+      .area {
+        display: none;/*はじめは非表示*/
+        opacity: 0;/*透過0*/
+        background: #fff;
+        padding:50px 20px;
+      }
+
+      /*areaにis-activeというクラスがついた時の形状*/
+      .area.is-active {
+          display: block;/*表示*/
+          animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+          animation-duration: 2s;
+          animation-fill-mode: forwards;
+      }
+
+      @keyframes displayAnime{
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      body{
+        background:#eee;
+      }
+
+      ul{
+        list-style:none;
+      }
+
+      a{
+        color:#333;
+        text-decoration: none;
+      }
+
+      .wrapper{
+        width:100%;
+        /*max-width: 960px;*/
+        margin:30px auto;
+        background:#fefefe;
+      }
+
+      .area h2{
+        font-size:1.3rem;
+        margin:0 0 20px 10px;
+      }
+
+      .area li{
+        padding: 10px; 
+        border-bottom: 1px solid #ddd;
+      }
+
+      /*======== excel ================*/
+      .upload-container {
+        position: relative;
+      }
+      .upload-container input {
+        border: 1px solid #92b0b3;
+        background: #f1f1f1;
+        outline: 2px dashed #92b0b3;
+        outline-offset: -10px;
+        padding: 200px 0px 100px 320px;
+        text-align: center !important;
+        width: 500px;
+        /*margin-top: 100px;*/
+      }
+      .upload-container input:hover {
+        background: #ddd;
+      }
+      .upload-container:before {
+        position: absolute;
+        margin-top: 140px;
+        margin-left: -200px;
+        content: " Drag and Drop files here. ";
+        color: #3f8188;
+        font-weight: 900;
+        font-size: xx-large;
+      }
+      .upload-btn {
+        padding: 7px 20px;
+        appearance: none;
+        border: 0;
+        border-radius: 5px;
+        background: #3f8188;
+        color: #fff;
+        padding: 8px 16px;
+        font-size: 16px;
+      }
+
+      /*======== spread ================*/
+      .cp_iptxt {
+        position: relative;
+        width: 80%;
+        margin: 40px 3%;
+      }
+      .cp_iptxt input[type='text'] {
+        font: 12px/24px sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+        letter-spacing: 1px;
+        padding-left: 7em;
+      }
+      .cp_iptxt input[type='text']:focus {
+        outline: none;
+      }
+      .ef {
+        padding: 4px 0;
+        border: 0;
+        border-bottom: 1px solid #1b2538;
+        background-color: transparent;
+      }
+      .ef ~ .focus_line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        transition: 0.4s;
+        background-color: #da3c41;
+      }
+      .ef:focus ~ .focus_line,
+      .cp_iptxt.ef ~ .focus_line {
+        width: 100%;
+        transition: 0.4s;
+      }
+      .ef ~ label {
+        position: absolute;
+        z-index: -1;
+        top: 4px;
+        left: -47%;
+        width: 100%;
+        transition: 0.3s;
+        letter-spacing: 0.5px;
+        color: #aaaaaa;
+      }
+      .ef:focus ~ label, .cp_iptxt.ef ~ label {
+        font-size: 12px;
+        top: -16px;
+        transition: 0.3s;
+        color: #da3c41;
+      }
+
+    </style>
+    <script>
+        $(function() {
+
+        //################# TAB 関連  #################
+        //任意のタブにURLからリンクするための設定
+          function GethashID (hashIDName){
+            if(hashIDName){
+              //タブ設定
+              $('.tab li').find('a').each(function() { //タブ内のaタグ全てを取得
+                var idName = $(this).attr('href'); //タブ内のaタグのリンク名（例）#lunchの値を取得 
+                if(idName == hashIDName){ //リンク元の指定されたURLのハッシュタグ（例）http://example.com/#lunch←この#の値とタブ内のリンク名（例）#lunchが同じかをチェック
+                  var parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
+                  $('.tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
+                  $(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
+                  //表示させるエリア設定
+                  $(".area").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
+                  $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
+                }
+              });
+            }
+          }
+
+          //タブをクリックしたら
+          $('.tab a').on('click', function() {
+            var idName = $(this).attr('href'); //タブ内のリンク名を取得  
+            GethashID (idName);//設定したタブの読み込みと
+            return false;//aタグを無効にする
+          });
+
+
+          // 上記の動きをページが読み込まれたらすぐに動かす
+          $(window).on('load', function () {
+              $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+              $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
+            var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
+            GethashID (hashName);//設定したタブの読み込み
+          });
+
+          //################# Excel  #################
+          $('#excelUpload').on('click', function () {
+            var file_data = $('#data').prop('files')[0];
+            var form_data = new FormData();
+            form_data.append('data', file_data);
+            form_data.append('name', $('input[name="name"]').val());
+
+            var insert = '';
+
+            $.ajax({
+                url: 'https://www.starful.net/api/upload/soukan', // point to server-side controller method
+                dataType: 'binary',             // what to expect back from the server
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function (response) {
+
+                },
+                error: function (response) {
+                  console.log(response)
+                  // insert += '<img src="'+ response.responseText + '" >'
+                  $('#excelUploadResult').html(response.responseText);        // display error response from the server
+                }
+            });
+        });
+
+          //################# spreed  #################
+          $('#spreed').on('click', function () {
+            var url = $("#spreed_url").val();
+            var sheet = $("#sheet_name").val(); 
+            function test(){
+                return $.ajax({
+                  type: 'GET',
+                    url: 'https://www.starful.net/api/upload/spreed',
+                    data: {
+                        keyword: url,
+                        sheetName: sheet
+                      },
+                  })
+              }
+              test().done(function(response) {
+                  console.log(response)
+                  $('#spreedResult').html(response);
+
+              }).fail(function(error) {
+                  return error;
+              });
+          });
+
+      });
+    </script>
+  </head>
+
+<body>
+  <div class="wrapper">
+  <ul class="tab">
+    <li><a href="#excel">excel</a></li>
+    <li><a href="#spreed">spreed</a></li>
+    <li><a href="#db">db</a></li>
+  </ul>
+
+    <div align="center" id="excel" class="area">
+      <div class="upload-container">
+        <form method="POST">
+          <input type="file" id="data" name="data" multiple />
+        </form>
+      </div>
+      <br>
+      <div class="excelUpload">
+        <button class="upload-btn" id="excelUpload">相関分析開始</button>
+      </div>
+      <div style="max-width: 200vh;" id="excelUploadResult"></div>
+    </div>
+  
+    <div align="center" id="spreed" class="area">
+      <div class="cp_iptxt">
+        <input class="ef" type="text" id="spreed_url" value="https://docs.google.com/spreadsheets/d/1v0J21Ztnt1pkVrcKz3GmDh4sMIbgsV2s9xiCDaFgivA/edit#gid=0">
+        <label>URL</label>
+        <span class="focus_line"></span>
+      </div>
+
+      <div class="cp_iptxt">
+        <input class="ef" type="text" id="sheet_name" value="soukan">
+        <label>sheet名</label>
+        <span class="focus_line"></span>
+      </div>      
+      <button class="upload-btn" id="excelUpload">相関分析開始</button>      
+      <div style="max-width: 200vh;" id="spreedResult"></div>
+    </div>
+
+
+    <div align="center" id="db" class="area">
+      <div class="cp_iptxt">
+        <input class="ef" type="text" id="db_url" value="">
+        <label>DB URL</label>
+        <span class="focus_line"></span>
+      </div>
+
+      <div class="cp_iptxt">
+        <input class="ef" type="text" id="id" value="">
+        <label>DB ID</label>
+        <span class="focus_line"></span>
+      </div>      
+
+      <div class="cp_iptxt">
+        <input class="ef" type="text" id="pwd" value="">
+        <label>DB PW</label>
+        <span class="focus_line"></span>
+      </div> 
+
+      <button class="upload-btn" id="excelUpload">相関分析開始</button>      
+      <div style="max-width: 200vh;" id="spreedResult"></div>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>
+
+
+

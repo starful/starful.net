@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS" />
+
+<script>
+	function popup(value){
+		window.open(value,'popup','width=1152,height=768');
+	}
+</script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuXVPx8glg6BVdWvdxNoyRSsErkFR_pDk&callback=initMap"
+  type="text/javascript"></script>
+
+<script type="text/javascript">
+	//マップ宣言
+	var map;
+      
+	//google map設定
+	function initialize(){
+	
+		//marker 設定
+		var icon = new google.maps.MarkerImage(
+		'http://maps.google.co.jp/mapfiles/ms/icons/red-pushpin.png',
+		new google.maps.Size(34,34),
+		new google.maps.Point(0,0),
+		new google.maps.Point(37,34)
+		);
+			
+		//map 設定
+		geo = new google.maps.Geocoder();
+		var myOptions = {
+			zoom: 12,
+			center: new google.maps.LatLng(35.706657, 139.868427),
+			borderPadding: 50,
+			trackMarkers: true,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		
+		}
+		
+		//mapを表示
+		map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+		//--------------------------------小岩神社------------------------------------
+		//--------------------------江戸川区平井6-17-36--------------------------------
+		var myLatlng_1 = new google.maps.LatLng(35.708086,139.839135);
+		var marker_1 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "小岩神社",
+			position: myLatlng_1
+		});
+		google.maps.event.addListener(marker_1,'click',function(){
+			window.open('./1.html','popup','width=1152,height=768');
+		});
+
+		marker_1.setMap(map);
+
+		//--------------------------------香取神社--------------------------------
+		//--------------------------------江戸川区東葛西2-34-20--------------------------------
+		var myLatlng_2 = new google.maps.LatLng(35.668368,139.880894);
+		var marker_2 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "香取神社",
+			position: myLatlng_2
+		});
+		google.maps.event.addListener(marker_2,'click',function(){
+			window.open('./2.html','popup','width=1152,height=768');
+		});
+
+		marker_2.setMap(map);
+		//--------------------------------大宮八幡宮--------------------------------
+		//--------------------------------江戸川区東小岩6-15-15--------------------------------
+		var myLatlng_3 = new google.maps.LatLng(35.73527, 139.888612);
+		var marker_3 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "大宮八幡宮",
+			position: myLatlng_3
+		});
+		google.maps.event.addListener(marker_3,'click',function(){
+			window.open('./3.html','popup','width=1152,height=768');
+		});
+
+		marker_3.setMap(map);
+		//--------------------------------浅間神社--------------------------------
+		//--------------------------------江戸川区上篠崎1-22-31--------------------------------
+		var myLatlng_4 = new google.maps.LatLng(35.714776, 139.902001);
+		var marker_4 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "浅間神社",
+			position: myLatlng_4
+		});
+		google.maps.event.addListener(marker_4,'click',function(){
+			window.open('./4.html','popup','width=1152,height=768');
+		});
+
+		marker_4.setMap(map);
+		//--------------------------------天祖神社--------------------------------
+		//--------------------------------江戸川区東葛西9-5-1--------------------------------
+		var myLatlng_5 = new google.maps.LatLng(35.656552, 139.883002);
+		var marker_5 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "天祖神社",
+			position: myLatlng_5
+		});
+		google.maps.event.addListener(marker_5,'click',function(){
+			window.open('./5.html','popup','width=1152,height=768');
+		});
+
+		marker_5.setMap(map);			
+		//--------------------------------稲荷神社--------------------------------
+		//--------------------------------江戸川区北葛西4-24-16--------------------------------
+		var myLatlng_6 = new google.maps.LatLng(35.670311, 139.865508);
+		var marker_6 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "稲荷神社",
+			position: myLatlng_6
+		});
+		google.maps.event.addListener(marker_6,'click',function(){
+			window.open('./6.html','popup','width=1152,height=768');
+		});
+
+		marker_6.setMap(map);			
+		//--------------------------------香取神社--------------------------------
+		//--------------------------------江戸川区中央4-5-23--------------------------------
+		var myLatlng_7 = new google.maps.LatLng(35.670311, 139.865508);
+		var marker_7 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "香取神社",
+			position: myLatlng_7
+		});
+		google.maps.event.addListener(marker_7,'click',function(){
+			window.open('./7.html','popup','width=1152,height=768');
+		});
+
+		marker_7.setMap(map);			
+		//--------------------------------天祖神社--------------------------------
+		//--------------------------------江戸川区西小松川町1-3--------------------------------
+		var myLatlng_8 = new google.maps.LatLng(35.69558, 139.862069);
+		var marker_8 = new google.maps.Marker({
+			map: map,
+			icon: icon,
+			title: "天祖神社",
+			position: myLatlng_8
+		});
+		google.maps.event.addListener(marker_8,'click',function(){
+			window.open('./8.html','popup','width=1152,height=768');
+		});
+
+		marker_8.setMap(map);		
+	}
+   </script>
+</head>
+
+<body onload="initialize()">
+
+
+<div id="map_canvas" style="width: 99%; height: 600px;" align="center"></div>
+
+</body>
+</html>

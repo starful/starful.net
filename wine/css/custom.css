@@ -1,0 +1,87 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  position: absolute;  
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#myform {
+    text-align: center;
+    padding: 5px;
+    margin: 2%;
+}
+
+#myform2 {
+    position: absolute;
+    margin: 15% 0 0 9%;
+}
+
+#myform3 {
+    /*text-align: right;*/
+    position: absolute;
+    margin: 15% 0 0 77%;
+}
+
+#myform4 {
+    /*text-align: right;*/
+    position: absolute;
+    margin: 42% 0 0 17%;
+}
+
+#myform5 {
+    /*text-align: right;*/
+    position: absolute;
+    margin: 42% 0 0 68%;
+}
+
+
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+input.qtyplus { width:25px; height:25px;}
+input.qtyminus { width:25px; height:25px;}
