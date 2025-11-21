@@ -1,0 +1,15 @@
+cat <<EOF > .gcloudignore
+.git
+.gitignore
+.DS_Store
+node_modules/
+target/
+#!include:.gitignore
+
+# 필수 파일 포함 설정
+!Dockerfile
+!cloudbuild.yaml
+!index.html
+!privacy.html
+!img/
+EOF

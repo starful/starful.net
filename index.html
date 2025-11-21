@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <title>starful Hub</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- SEO Meta Tags -->
+  <meta content="기업 분석, 클라우드, Python, AWS, GCP, 데이터 엔지니어링, DevOps, NBA 선수 분석, 농구화, 역사, 브랜드 전략, 마케팅 트렌드, 기술 블로그, 소프트웨어 엔지니어링, 스타트업, 투자 리서치" name="keywords"/>
+  <meta content="companyDB, okpy, starful 등 다양한 블로그를 운영하며 기업 분석, 클라우드 기술, NBA 선수 정보, 브랜드 전략, 역사 인물 분석 등 깊이 있는 인사이트를 제공합니다." name="description"/>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QG4EL24EKR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QG4EL24EKR');
+  </script>
+  
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon"/>
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  
+  <!-- CSS Libraries -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet"/>
+
+  <!-- Template Stylesheet -->
+  <style>
+    /*******************************/
+    /********* General CSS *********/
+    /*******************************/
+    body {
+      color: #797979;
+      background: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #414141;
+    }
+
+    a {
+      color: #313131;
+      transition: .3s;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+      color: #81C9F4;
+      outline: none;
+      text-decoration: none;
+    }
+
+    .btn:focus,
+    .form-control:focus {
+      box-shadow: none;
+    }
+
+    .container-fluid {
+      max-width: 1366px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #ffffff;
+      background: #81C9F4;
+      border: 2px solid transparent;
+      border-radius: 0;
+      box-shadow: inset 0 0 0 50px #81C9F4;
+      transition: ease-out 0.3s;
+    }
+
+    .btn:hover {
+      color: #81C9F4;
+      background: transparent;
+      box-shadow: inset 0 0 0 0 #81C9F4;
+      border-color: #81C9F4;
+    }
+
+    #loader {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease-out, visibility 0s linear .3s;
+      z-index: 999;
+    }
+
+    #loader.show {
+      transition: opacity .6s ease-out, visibility 0s linear 0s;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #loader .loader {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      border: 5px solid #dddddd;
+      border-top: 5px solid #81C9F4;
+      border-radius: 50%;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .back-to-top {
+      position: fixed;
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 8px 0;
+      text-align: center;
+      line-height: 1;
+      font-size: 22px;
+      right: 15px;
+      bottom: 15px;
+      z-index: 9;
+    }
+
+    .back-to-top i {
+      color: #ffffff;
+    }
+
+    .back-to-top:hover i {
+      color: #414141;
+    }
+
+    /**********************************/
+    /*********** Nav Bar CSS **********/
+    /**********************************/
+    .navbar {
+      position: relative;
+      transition: .5s;
+      z-index: 999;
+    }
+
+    .navbar.nav-sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    }
+
+    .navbar .navbar-brand {
+      margin: 0;
+      font-size: 45px;
+      line-height: 0px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      transition: .5s;
+    }
+
+    .navbar .navbar-brand img {
+      max-width: 100%;
+      max-height: 40px;
+    }
+
+    .navbar .dropdown-menu {
+      margin-top: 0;
+      border: 0;
+      border-radius: 0;
+      background: #f8f9fa;
+    }
+
+    @media (min-width: 992px) {
+      .navbar {
+        position: absolute;
+        width: 100%;
+        padding: 30px 60px;
+        background: transparent !important;
+        border-bottom: 1px dashed rgba(255, 255, 255, .2);
+        z-index: 9;
+      }
+      
+      .navbar.nav-sticky {
+        padding: 10px 60px;
+        background: #ffffff !important;
+      }
+      
+      .navbar .navbar-brand {
+        color: #ffffff;
+      }
+      
+      .navbar.nav-sticky .navbar-brand {
+        color: #81C9F4;
+      }
+
+      .navbar-light .navbar-nav .nav-link,
+      .navbar-light .navbar-nav .nav-link:focus {
+        padding: 10px 10px 8px 10px;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      
+      .navbar-light.nav-sticky .navbar-nav .nav-link,
+      .navbar-light.nav-sticky .navbar-nav .nav-link:focus {
+        color: #414141;
+      }
+
+      .navbar-light .navbar-nav .nav-link:hover,
+      .navbar-light .navbar-nav .nav-link.active {
+        color: #111111;
+      }
+      
+      .navbar-light.nav-sticky .navbar-nav .nav-link:hover,
+      .navbar-light.nav-sticky .navbar-nav .nav-link.active {
+        color: #81C9F4;
+      }
+    }
+
+    @media (max-width: 991.98px) {   
+      .navbar {
+        padding: 15px;
+        background: #ffffff !important;
+      }
+      
+      .navbar .navbar-brand {
+        color: #81C9F4;
+      }
+      
+      .navbar .navbar-nav {
+        margin-top: 15px;
+      }
+      
+      .navbar a.nav-link {
+        padding: 5px;
+      }
+      
+      .navbar .dropdown-menu {
+        box-shadow: none;
+      }
+    }
+
+    /*******************************/
+    /********** Hero CSS ***********/
+    /*******************************/
+    .hero {
+      position: relative;
+      width: 100%;
+      margin-bottom: 45px;
+      padding: 20px 0;
+      overflow: hidden;
+      background: linear-gradient(rgba(129, 201, 244, .95), rgba(129, 201, 244, .95)), url(../img/hero-bg.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .hero .container-fluid {
+      padding: 0;
+    }
+
+    .hero .hero-image {
+      position: relative;
+      text-align: right;
+      padding-right: 75px;
+    }
+
+    .hero .hero-image img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .hero .hero-content {
+      position: relative;
+      padding-left: 75px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .hero .hero-text p {
+      color: #ffffff;
+      font-size: 25px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .hero .hero-text h1 {
+      color: #ffffff;
+      font-size: 60px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .hero .hero-text h2 {
+      display: inline-block;
+      margin: 0;
+      height: 35px;
+      color: #ffffff;
+      font-size: 35px;
+      font-weight: 600;
+    }
+
+    .hero .hero-text .typed-text {
+      display: none;
+    }
+
+    .hero .hero-text .typed-cursor {
+      font-size: 35px;
+      font-weight: 300;
+      color: #ffffff;
+    }
+
+    .hero .hero-btn .btn {
+      margin-top: 35px;
+      color: #81C9F4;
+      background: #ffffff;
+      box-shadow: inset 0 0 0 50px #ffffff;
+    }
+
+    .hero .hero-btn .btn:hover {
+      color: #ffffff;
+      background: transparent;
+      box-shadow: inset 0 0 0 0 #ffffff;
+      border-color: #ffffff;
+    }
+
+    .hero .hero-btn .btn:first-child {
+      margin-right: 10px;
+    }
+
+    @media (max-width: 991.98px) {
+      .hero {
+        padding-top: 60px;
+      }
+      
+      .hero .hero-content {
+        padding: 0 15px;
+      }
+      
+      .hero .hero-text p {
+        font-size: 20px;
+      }
+      
+      .hero .hero-text h1 {
+        font-size: 45px;
+      }
+      
+      .hero .hero-text h2 {
+        font-size: 25px;
+        height: 25px;
+      }
+      
+      .hero .hero-btn .btn {
+        padding: 12px 30px;
+        letter-spacing: 1px;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .hero {
+        padding: 60px 0;
+      }
+      
+      .hero,
+      .hero .hero-text,
+      .hero .hero-btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .hero .hero-text p {
+        font-size: 18px;
+      }
+      
+      .hero .hero-text h1 {
+        font-size: 35px;
+      }
+      
+      .hero .hero-text h2 {
+        font-size: 22px;
+        height: 22px;
+      }
+      
+      .hero .hero-btn .btn {
+        padding: 10px 15px;
+        letter-spacing: 1px;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .hero .hero-text p {
+        font-size: 16px;
+      }
+      
+      .hero .hero-text h1 {
+        font-size: 30px;
+      }
+      
+      .hero .hero-text h2 {
+        font-size: 18px;
+        height: 18px;
+      }
+      
+      .hero .hero-btn .btn {
+        padding: 8px 10px;
+        letter-spacing: 0;
+      }
+    }
+
+    /*******************************/
+    /******* Section Header ********/
+    /*******************************/
+    .section-header {
+      position: relative;
+      margin-bottom: 45px;
+    }
+
+    .section-header p {
+      display: inline-block;
+      margin: 30px;
+      margin-bottom: 10px;
+      padding-left: 15px;
+      position: relative;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #ffffff;
+    }
+
+    .section-header p::before {
+      position: absolute;
+      content: "";
+      height: 3px;
+      top: 11px;
+      right: 0;
+      left: -30px;
+      background: #81C9F4;
+      z-index: -1;
+    }
+
+    .section-header p::after {
+      position: absolute;
+      content: "";
+      width: 3px;
+      height: 3px;
+      top: 11px;
+      left: 3px;
+      background: #81C9F4;
+      z-index: 1;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      position: relative;
+      font-size: 45px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 767.98px) {
+      .section-header h2 {
+        font-size: 30px;
+      }
+    }
+
+    /*******************************/
+    /******* Experience CSS ********/
+    /*******************************/
+    .experience {
+      position: relative;
+      padding: 45px 0 15px 0;
+    }
+
+    .experience .timeline {
+      position: relative;
+      width: 100%;
+    }
+
+    .experience .timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background: #81C9F4;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
+    }
+
+    .experience .timeline .timeline-item {
+      position: relative;
+      background: inherit;
+      width: 50%;
+      margin-bottom: 30px;
+    }
+
+    .experience .timeline .timeline-item.left {
+      left: 0;
+      padding-right: 30px;
+    }
+
+    .experience .timeline .timeline-item.right {
+      left: 50%;
+      padding-left: 30px;
+    }
+
+    .experience .timeline .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 48px;
+      right: -8px;
+      background: #ffffff;
+      border: 2px solid #81C9F4;
+      border-radius: 16px;
+      z-index: 1;
+    }
+
+    .experience .timeline .timeline-item.right::after {
+      left: -8px;
+    }
+
+    .experience .timeline .timeline-item::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 46px;
+      right: 10px;
+      z-index: 1;
+      border: 10px solid;
+      border-color: transparent transparent transparent #dddddd;
+    }
+
+    .experience .timeline .timeline-item.right::before {
+      left: 10px;
+      border-color: transparent #dddddd transparent transparent;
+    }
+
+    .experience .timeline .timeline-date {
+      position: absolute;
+      width: 100%;
+      top: 44px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #81C9F4;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      z-index: 1;
+    }
+
+    .experience .timeline .timeline-item.left .timeline-date {
+      text-align: left;
+      left: calc(100% + 55px);
+    }
+
+    .experience .timeline .timeline-item.right .timeline-date {
+      text-align: right;
+      right: calc(100% + 55px);
+    }
+
+    .experience .timeline .timeline-text {
+      padding: 30px;
+      background: #ffffff;
+      position: relative;
+      border-right: 5px solid #dddddd;
+      box-shadow: 0 0 60px rgba(0, 0, 0, .08);
+    }
+
+    .experience .timeline .timeline-item.right .timeline-text {
+      border-right: none;
+      border-left: 5px solid #dddddd;
+    }
+
+    .experience .timeline .timeline-text h2 {
+      margin: 0 0 5px 0;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .experience .timeline .timeline-text h4 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .experience .timeline .timeline-text p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    @media (max-width: 767.98px) {
+      .experience .timeline::after {
+        left: 8px;
+      }
+
+      .experience .timeline .timeline-item {
+        width: 100%;
+        padding-left: 38px;
+      }
+      
+      .experience .timeline .timeline-item.left {
+        padding-right: 0;
+      }
+      
+      .experience .timeline .timeline-item.right {
+        left: 0%;
+        padding-left: 38px;
+      }
+
+      .experience .timeline .timeline-item.left::after, 
+      .experience .timeline .timeline-item.right::after {
+        left: 0;
+      }
+      
+      .experience .timeline .timeline-item.left::before,
+      .experience .timeline .timeline-item.right::before {
+        left: 18px;
+        border-color: transparent #dddddd transparent transparent;
+      }
+      
+      .experience .timeline .timeline-item.left .timeline-date,
+      .experience .timeline .timeline-item.right .timeline-date {
+        position: relative;
+        top: 0;
+        right: auto;
+        left: 0;
+        text-align: left;
+        margin-bottom: 10px;
+      }
+      
+      .experience .timeline .timeline-item.left .timeline-text,
+      .experience .timeline .timeline-item.right .timeline-text {
+        border-right: none;
+        border-left: 5px solid #dddddd;
+      }
+    }
+
+    /*******************************/
+    /********* Service CSS *********/
+    /*******************************/
+    .service {
+      position: relative;
+      width: 100%;
+      padding: 45px 0 15px 0;
+    }
+
+    .service .service-item {
+      position: relative;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      box-shadow: inset 0 0 0 0 transparent;
+      transition: ease-out 0.5s;
+    }
+
+    .service .service-item:hover {
+      box-shadow: inset 800px 0 0 0 #81C9F4;
+    }
+
+    .service .service-icon {
+      position: relative;
+      width: 150px;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #81C9F4;
+      background: #ffffff;
+    }
+
+    .service .service-icon i {
+      position: relative;
+      font-size: 60px;
+      color: #81C9F4;
+      transition: .3s;
+    }
+
+    .service .service-item:hover i {
+      font-size: 75px;
+    }
+
+    .service .service-text {
+      position: relative;
+      width: calc(100% - 120px);
+      padding: 0 30px;
+    }
+
+    .service .service-text h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      transition: 1s;
+    }
+
+    .service .service-text p {
+      margin: 0;
+      font-size: 16px;
+      transition: 1s;
+    }
+
+    .service .service-item:hover .service-text h3,
+    .service .service-item:hover .service-text p {
+      color: #ffffff;
+    }
+
+    @media (max-width: 575.98px) {
+      .service .service-text h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      
+      .service .service-text p {
+        font-size: 14px;
+      }
+    }
+
+    /*******************************/
+    /******** Portfolio CSS ********/
+    /*******************************/
+    .portfolio {
+      position: relative;
+      padding: 45px 0 15px 0;
+    }
+
+    .portfolio #portfolio-filter {
+      padding: 0;
+      margin: -15px 0 25px 0;
+      list-style: none;
+      font-size: 0;
+      text-align: center;
+    }
+
+    .portfolio #portfolio-filter li {
+      cursor: pointer;
+      display: inline-block;
+      margin: 5px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      background: #81C9F4;
+      border: 2px solid transparent;
+      border-radius: 0;
+      box-shadow: inset 0 0 0 50px #81C9F4;
+      transition: ease-out 0.3s;
+    }
+
+    .portfolio #portfolio-filter li:hover,
+    .portfolio #portfolio-filter li.filter-active {
+      color: #81C9F4;
+      background: transparent;
+      box-shadow: inset 0 0 0 0 #81C9F4;
+      border-color: #81C9F4;
+    }
+
+    .portfolio .portfolio-item {
+      position: relative;
+    }
+
+    .portfolio .portfolio-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .portfolio .portfolio-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio .portfolio-img img {
+      position: relative;
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover;
+      transform: scale(1.1);
+      transition: .5s;
+    }
+
+    .portfolio .portfolio-item:hover img {
+      margin-left: 15px;
+    }
+
+    .portfolio .portfolio-text {
+      position: relative;
+      height: 60px;
+      width: calc(100% - 30px);
+      margin: -30px 15px 30px 15px;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, .12);
+    }
+
+    .portfolio .portfolio-text h3 {
+      width: calc(100% - 70px);
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 0 15px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .portfolio .portfolio-text a.btn {
+      width: 50px;
+      height: 50px;
+      padding: 0 0 2px 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+      font-weight: 100;
+    }
+
+    .portfolio .portfolio-item:hover a.btn {
+      color: #81C9F4;
+      background: transparent;
+      box-shadow: inset 0 0 0 0 #81C9F4;
+      border-color: #81C9F4;
+    }
+
+    /*******************************/
+    /*********** Blog CSS **********/
+    /*******************************/
+    .blog {
+      position: relative;
+      width: 100%;
+      padding: 45px 0 15px 0;
+    }
+
+    .blog .blog-item {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .blog .blog-img {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .blog .blog-img img {
+      width: 100%;
+      transition: .5s;
+    }
+
+    .blog .blog-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .blog .blog-text {
+      position: relative;
+      padding: 30px;
+      border-right: 1px solid rgba(0, 0, 0, .07);
+      border-bottom: 1px solid rgba(0, 0, 0, .07);
+      border-left: 1px solid rgba(0, 0, 0, .07);
+    }
+
+    .blog .blog-text h2 {
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    .blog .blog-text p {
+      margin-bottom: 10px;
+    }
+
+    .blog .blog-item a.btn {
+      margin-top: 10px;
+      padding: 8px 15px;
+    }
+
+    .blog .blog-item a.btn i {
+      margin-left: 5px;
+    }
+
+    .blog .blog-meta {
+      position: relative;
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .blog .blog-meta p {
+      margin: 0 10px 0 0;
+      font-size: 13px;
+    }
+
+    .blog .blog-meta i {
+      color: #414141;
+      margin-right: 5px;
+    }
+
+    .blog .blog-meta p:last-child {
+      margin: 0;
+    }
+
+    /*******************************/
+    /********* Footer CSS **********/
+    /*******************************/
+    .footer {
+      position: relative;
+      margin-top: 45px;
+      background: #81C9F4;
+    }
+
+    .footer .container-fluid {
+      padding: 60px 0 0 0;
+    }
+
+    .footer .footer-info {
+      position: relative;
+      width: 100%;
+      text-align: center;
+    }
+
+    .footer .footer-info h2 {
+      margin-bottom: 20px;
+      font-size: 30px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .footer .footer-info h3 {
+      margin-bottom: 25px;
+      font-size: 22px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .footer .footer-menu {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer .footer-menu p {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 20px;
+      padding: 0 15px;
+      border-right: 1px solid #ffffff;
+    }
+
+    .footer .footer-menu p:last-child {
+      border: none;
+    }
+
+    .footer .footer-social {
+      position: relative;
+      margin-top: 15px;
+    }
+
+    .footer .footer-social a {
+      display: inline-block;
+    }
+
+    .footer .footer-social a i {
+      margin-right: 15px;
+      font-size: 20px;
+      color: #ffffff;
+      transition: .3s;
+    }
+
+    .footer .footer-social a:last-child i {
+      margin: 0;
+    }
+
+    .footer .footer-social a:hover i {
+      color: #414141;
+    }
+
+    .footer .copyright {
+      position: relative;
+      text-align: center;
+      margin-top: 30px;
+      padding: 25px 0;
+    }
+
+    .footer .copyright::before {
+      position: absolute;
+      content: "";
+      width: 50%;
+      height: 1px;
+      top: 0;
+      left: 25%;
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .footer .copyright p {
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .footer .copyright p a {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .footer .copyright p a:hover {
+      color: #414141;
+    }
+
+    @media (max-width: 575.98px) {
+      .footer .footer-info h2 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .footer .footer-info h3 {
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      .footer .footer-menu p {
+        font-size: 16px;
+        line-height: 16px;
+        padding: 0 5px;
+      }
+    }
+
+    /*******************************/
+    /********* Hashtag CSS *********/
+    /*******************************/
+    .hashtag-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 0;
+    }
+
+    .hashtag {
+      background-color: #f0f8ff;
+      color: #337ab7;
+      border: 1px solid #bce8f1;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .hashtag:hover {
+      background-color: #81C9F4;
+      color: #ffffff;
+      border-color: #81C9F4;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+
+  <!-- Loader Start -->
+  <div id="loader" class="show">
+    <div class="loader"></div>
+  </div>
+  <!-- Loader End -->
+  
+  <!-- Hero Start -->
+  <div class="hero" id="home">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-sm-12 col-md-6">
+          <div class="hero-content">
+            <div class="hero-text">
+              <p>I'm</p>
+              <h1>Starful</h1>
+              <h2></h2>
+              <div class="typed-text">Product Manager, Project Manager, Database Engineer, Back End Engineer, Data Engineer, Cloud Engineer</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 d-none d-md-block">
+          <div class="hero-image">
+            <img src="img/hero.png" alt="Hero Image"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero End -->
+
+  <!-- Service Start -->
+  <div class="service" id="service">
+    <div class="container">
+      <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+        <p>What I do</p>
+        <h2>Awesome Quality Services</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.0s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fas fa-money-check-alt"></i></div>
+            <div class="service-text">
+              <h3>Product Manager</h3>
+              <p>I drive product vision, strategy, and execution to deliver user-centric and business-driven solutions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fa fa-tasks"></i></div>
+            <div class="service-text">
+              <h3>Project Manager</h3>
+              <p>I plan, execute, and oversee projects to ensure timely delivery, budget adherence, and stakeholder satisfaction.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fas fa-sitemap"></i></div>
+            <div class="service-text">
+              <h3>Web Engineer</h3>
+              <p>I develop, optimize, and maintain web applications to ensure seamless user experiences and high performance.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="service-text">
+              <h3>App Engineer</h3>
+              <p>I design, develop, and optimize mobile and desktop applications for smooth performance and user engagement.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fas fa-database"></i></div>
+            <div class="service-text">
+              <h3>Database Engineer</h3>
+              <p>I design, optimize, and manage databases to ensure efficient data storage, retrieval, and security.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fab fa-wpbeginner"></i></div>
+            <div class="service-text">
+              <h3>BackEnd Engineer</h3>
+              <p>I build and maintain server-side logic, APIs, and databases to ensure seamless application functionality and performance.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fas fa-table"></i></div>
+            <div class="service-text">
+              <h3>Data Engineer</h3>
+              <p>I design, build, and optimize data pipelines and architectures to enable efficient data processing and analytics.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
+          <div class="service-item">
+            <div class="service-icon"><i class="fas fa-cloud"></i></div>
+            <div class="service-text">
+              <h3>Cloud Engineer</h3>
+              <p>I design, implement, and manage cloud infrastructure to ensure scalability, security, and reliability of applications.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Service End -->
+
+  <!-- Skill Summary Section Start -->
+  <section class="container py-5" id="role-skill-summary">
+    <div class="position-relative d-flex align-items-center justify-content-center mb-4">
+      <header class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+        <p>職種概要</p>
+        <h2>スキルサマリー</h2>
+      </header>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-11">
+        <div class="hashtag-container">
+          <span class="hashtag">#PdM</span>
+          <span class="hashtag">#プロダクト戦略</span>
+          <span class="hashtag">#KPI設計</span>
+          <span class="hashtag">#チームマネジメント</span>
+          <span class="hashtag">#アジャイル</span>
+          <span class="hashtag">#スクラム</span>
+          <span class="hashtag">#DevOps</span>
+          <span class="hashtag">#GCP</span>
+          <span class="hashtag">#AWS</span>
+          <span class="hashtag">#DWH</span>
+          <span class="hashtag">#フルスタック</span>
+          <span class="hashtag">#NLP</span>
+          <span class="hashtag">#OCR</span>
+          <span class="hashtag">#課題解決力</span>
+          <span class="hashtag">#ステークホルダー管理</span>
+          <span class="hashtag">#プロセス改善</span>
+          <span class="hashtag">#グロースハック</span>
+          <span class="hashtag">#大規模ユーザー対応</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Skill Summary Section End -->
+
+  <!-- Experience Start -->
+  <div class="experience" id="experience">
+    <div class="container">
+      <header class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+        <p>My Resume</p>
+        <h2>Working Experience</h2>
+      </header>
+      <div class="timeline">
+        <div class="timeline-item right wow slideInRight" data-toggle="modal" data-target="#modalMiraiz" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2023.06〜現在</div>
+            <h2>開発PM・PdM代行</h2>
+            <h4>Miraiz – リスキリングプラットフォーム開発</h4>
+            <p><span lang="ja">dodaと連携するB2Cリスキリングサービス（登録ユーザー数：4万人以上）。</span></p>
+          </div>
+        </div>
+        <div class="timeline-item left wow slideInLeft" data-toggle="modal" data-target="#modalART" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2019.10〜2021.03</div>
+            <h2>設計リード・バックエンド開発</h2>
+            <h4>ART – 相続税自動計算システム</h4>
+            <p><span lang="ja">税理士向け相続税SaaS（年間利用者数：約12,000名）。</span></p>
+          </div>
+        </div>
+        <div class="timeline-item right wow slideInRight" data-toggle="modal" data-target="#modalOSCAR" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2021.04〜2022.01</div>
+            <h2>バックエンド・インフラ設計</h2>
+            <h4>OSCAR – 財務帳票OCR & NLP分析</h4>
+            <p><span lang="ja">OCR/NLPを用いた帳票構造化システム（年間処理件数：30万ファイル）。</span></p>
+          </div>
+        </div>
+        <div class="timeline-item left wow slideInLeft" data-toggle="modal" data-target="#modalEP" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2022.02〜2022.09</div>
+            <h2>PdM・バックエンド開発</h2>
+            <h4>EP – 遺産分割支援Webアプリ</h4>
+            <p><span lang="ja">法定相続人のための分配可視化ツール（利用団体数：40超）。</span></p>
+          </div>
+        </div>
+        <div class="timeline-item left wow slideInLeft" data-toggle="modal" data-target="#modalFPS" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2020.06〜2021.03</div>
+            <h2>保守開発 / Storeリリース対応</h2>
+            <h4>FPS – iOS財務シミュレーター保守</h4>
+            <p><span lang="ja">iPad用の金融相談アプリ（取引先銀行：3行、年間利用回数：約5,000件）</span></p>
+          </div>
+        </div>
+        <div class="timeline-item right wow slideInRight" data-toggle="modal" data-target="#modalDWH" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2022.10〜2023.05</div>
+            <h2>DWHアーキテクト</h2>
+            <h4>社内DWH統合 – データ統合プロジェクト</h4>
+            <p><span lang="ja">各部署のDB統合・分析基盤構築（対象DB数：7システム）</span></p>
+          </div>
+        </div>
+        <div class="timeline-item left wow slideInLeft" data-toggle="modal" data-target="#modalFreelance" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2011.03〜2019.09</div>
+            <h2>フリーランス</h2>
+            <h4>保証システム / ERP連携など</h4>
+            <p><span lang="ja">中小企業向け業務系システム開発（取引先数：10社以上）</span></p>
+          </div>
+        </div>
+        <div class="timeline-item right wow slideInRight" data-toggle="modal" data-target="#modalHealth" data-wow-delay="0.1s" style="cursor:pointer">
+          <div class="timeline-text">
+            <div class="timeline-date">2008.06〜2011.02</div>
+            <h2>SE・PL</h2>
+            <h4>健康診断システム開発</h4>
+            <p><span lang="ja">自治体向け健康管理システム（導入自治体数：6）</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Experience End -->
+
+  <!-- Portfolio Start -->
+  <div class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+        <p>My Portfolio</p>
+        <h2>My Excellent Portfolio</h2>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ul id="portfolio-filter">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-1">Manager</li>
+            <li data-filter=".filter-2">Web</li>
+            <li data-filter=".filter-3">Apps&amp;Data</li>
+            <li data-filter=".filter-4">private</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row portfolio-container">
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.0s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-1.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>MONEY LOOK</h3>
+              <a class="btn" href="https://www.moneylook.jp/" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-2.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>DENSO</h3>
+              <a class="btn" href="https://www.denso.com/jp/ja/products-and-services/information-and-safety/" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-3.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>fujitsu</h3>
+              <a class="btn" href="https://www.fujitsu.com/jp/products/computing/servers/unix/sparc/case-studies/docomo/" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.8s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-4.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>UFJå¤–ç‚º</h3>
+              <a class="btn" href="https://www.bk.mufg.jp/ippan/gaitame/index.html" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.8s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-5.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>Resona</h3>
+              <a class="btn" href="https://www.resonabank.co.jp/kojin/jutaku/simulation/shinki/?bank=rb_unite" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.8s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-6.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>SMBC Life</h3>
+              <a class="btn" href="https://www.smbc.co.jp/kojin/seiho/" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-3 wow fadeInUp" data-wow-delay="1s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-7.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>sokunai</h3>
+              <a class="btn" href="https://www.thinktwice.co.jp/services/sokunai/" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="1s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-8.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>wmw</h3>
+              <a class="btn" href="https://new.wealthmanager.jp/system-wmw" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="1s">
+          <div class="portfolio-wrap">
+            <div class="portfolio-img"><img src="img/portfolio-9.jpg" alt="Portfolio Image"/></div>
+            <div class="portfolio-text">
+              <h3>Miraiz</h3>
+              <a class="btn" href="https://miraiz-persol.jp/" target="_blank">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-4 wow fadeInUp" data-wow-delay="1s">
+          <div class="portfolio-wrap">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/5ZfmwsE27Vw" title="Make me (with.AI)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Portfolio End -->
+
+  <!-- Blog Start -->
+  <div class="blog" id="blog">
+    <div class="container">
+      <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+        <p>From Blog</p>
+        <h2>Articles</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="blog-img"><img src="img/blog-1.png" alt="Blog Image"/></div>
+            <div class="blog-text">
+              <h2>okpy</h2>
+              <div class="blog-meta">
+                <p><i class="far fa-user"></i>Admin</p>
+                <p><i class="far fa-list-alt"></i>Owner</p>
+                <p><i class="far fa-calendar-alt"></i>01-Jan-2025</p>
+              </div>
+              <p>okpy is a blog that provides in-depth insights into Python, AWS, and GCP, covering cloud-native development, DevOps automation, and infrastructure optimization. It shares real-world project experiences and strategies for team leadership, cloud adoption, and the latest tech trends. Whether you’re an engineer, tech leader, or cloud enthusiast, okpy offers practical knowledge to help you grow and succeed in the evolving tech landscape. 🚀</p>
+              <a class="btn" href="https://okpy.net/" target="_blank">Read More <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="blog-item wow fadeInUp" data-wow-delay="0.3s">
+            <div class="blog-img"><img src="img/blog-2.png" alt="Blog Image"/></div>
+            <div class="blog-text">
+              <h2>companyDB</h2>
+              <div class="blog-meta">
+                <p><i class="far fa-user"></i>Admin</p>
+                <p><i class="far fa-list-alt"></i>Owner</p>
+                <p><i class="far fa-calendar-alt"></i>01-Jan-2025</p>
+              </div>
+              <p>companyDB is a blog dedicated to analyzing companies by exploring their history, business models, market trends, and key success factors. It provides data-driven insights and strategic storytelling to help readers understand corporate growth, competition, and industry shifts. Whether you’re a business professional, investor, student, or entrepreneur, companyDB delivers valuable analysis to support informed decision-making. 🚀</p>
+              <a class="btn" href="https://companydb.net/" target="_blank">Read More <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="blog-img"><img src="img/portfolio-wait.jpg" alt="Blog Image"/></div>
+            <div class="blog-text">
+              <h2>shrine</h2>
+              <div class="blog-meta">
+                <p><i class="far fa-user"></i>Admin</p>
+                <p><i class="far fa-list-alt"></i>Owner</p>
+                <p><i class="far fa-calendar-alt"></i>01-Jan-2018</p>
+              </div>
+              <p>starful is a blog that explores the careers, achievements, and leadership of NBA players, along with the sneakers they wore on the court. It covers player profiles, career highlights, records, and the impact of iconic basketball shoes. Whether you’re an NBA fan, sneaker enthusiast, or basketball player, starful offers deep analysis, engaging stories, and a visual experience of the game and its culture.</p>
+              <a class="btn" href="shrine/index.html" target="_blank">Read More <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Blog End -->
+  
+  <!-- Footer Start -->
+  <div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="footer-info">
+          <h2>starful</h2>
+          <h3>Tokyo, JAPAN</h3>
+          <div class="footer-menu">
+            <p>starful@starful.net</p>
+          </div>
+        </div>
+      </div>
+      <div class="container copyright">
+        <p>© <a href="#">starful</a>, All Right Reserved | Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+  
+  <!-- Back to top button -->
+  <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- ################# MODALS ################# -->
+
+  <!-- Miraiz Modal -->
+  <div class="modal fade" id="modalMiraiz" tabindex="-1" role="dialog" aria-labelledby="modalMiraizLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalMiraizLabel">Miraiz – リスキリングプラットフォーム開発</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2023.06〜現在 | パーソルキャリア</p>
+          <p><strong>概要:</strong> dodaと連携するB2Cリスキリングサービス（登録ユーザー数：4万人以上）</p>
+          <p><strong>役割:</strong> 開発PM・PdM代行</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>MAU/完了率を軸としたKPI体系を新規定義（完了率：10%→32%に向上）</li>
+            <li>ユーザージャーニー起点のロードマップ再構成（月次NPS+5.2ポイント向上）</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>スクラム体制構築と開発/デザイン/QA含む8名チームを再編</li>
+            <li>会員数4,000→41,934人（10.5倍）増加を牽引</li>
+          </ul>
+          <p><strong>技術スタック:</strong> Vue.js / GCP / Firebase / BigQuery / GitHub Actions</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>オンライン講座の視聴完了率改善に向けて「習慣化ナッジ」通知導入</li>
+            <li>フリーミアムモデルから有料コースへの移行率を2.3%→7.1%に改善</li>
+            <li>UI改善後のCVRが8.2%→12.9%へ向上し、主要導線の離脱率25%削減</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ART Modal -->
+  <div class="modal fade" id="modalART" tabindex="-1" role="dialog" aria-labelledby="modalARTLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalARTLabel">ART – 相続税自動計算システム</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2019.10〜2021.03 | キャピタル・アセット・プランニング</p>
+          <p><strong>概要:</strong> 税理士向け相続税SaaS（年間利用者数：約12,000名）</p>
+          <p><strong>役割:</strong> バックエンド開発、設計リード</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>ドメイン駆動設計による法務ロジックの構造化（保守工数20%削減）</li>
+            <li>画面中心開発からAPI中心へ移行し拡張性を確保</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>税理士7名との要件定義・ヒアリングを主導</li>
+            <li>JUnit導入により不具合報告を月平均6件→2件に低減</li>
+          </ul>
+          <p><strong>技術スタック:</strong> Java / Spring / OracleDB / MyBatis</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>複雑な財産分類と法定控除の条件分岐を共通化し、税率計算の誤差をゼロに近づける精度に向上</li>
+            <li>既存Excelワークフローからの移行率70%を達成し、紙ベースからの脱却を加速</li>
+            <li>テスト自動化導入により月間リリース頻度を1回→3回に増加</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OSCAR Modal -->
+  <div class="modal fade" id="modalOSCAR" tabindex="-1" role="dialog" aria-labelledby="modalOSCARLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalOSCARLabel">OSCAR – 財務帳票OCR & NLP分析</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2021.04〜2022.01</p>
+          <p><strong>概要:</strong> OCR/NLPを用いた帳票構造化システム（年間処理件数：30万ファイル）</p>
+          <p><strong>役割:</strong> バックエンド・インフラ設計</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>OCRopusベースのMVPで市場検証を3ヶ月で完了</li>
+            <li>JSON形式での柔軟なデータ格納戦略により分析時間を40%短縮</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>パイプライン最適化で処理速度を平均10.2秒→6.8秒に改善</li>
+            <li>GCP障害対応自動化によりインフラトラブル対応時間を50%以上削減</li>
+          </ul>
+          <p><strong>技術スタック:</strong> Python / OCRopus / GCP / PostgreSQL</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>OCR後の誤字修正精度を85%→94%まで改善（独自NLP辞書ロジック）</li>
+            <li>ユーザー別カスタムタグ機能を追加し、検索性を強化（検索時間平均28秒→9秒）</li>
+            <li>GCP上でのステージング→本番自動切替パイプラインを設計し、運用負荷を40%削減</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EP Modal -->
+  <div class="modal fade" id="modalEP" tabindex="-1" role="dialog" aria-labelledby="modalEPLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEPLabel">EP – 遺産分割支援Webアプリ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2022.02〜2022.09</p>
+          <p><strong>概要:</strong> 法定相続人のための分配可視化ツール（利用団体数：40超）</p>
+          <p><strong>役割:</strong> PdM・バックエンド開発</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>ユーザー属性別（一般・税理士）分岐設計</li>
+            <li>分配エラー検出ロジック追加で誤入力によるトラブルを70%低減</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>ワイヤーフレームを活用した共通仕様書策定</li>
+            <li>リリース後、3ヶ月間でユーザー満足度アンケート平均4.1/5.0を維持</li>
+          </ul>
+          <p><strong>技術スタック:</strong> Angular / Java / Spring Boot / MySQL</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>ユーザー属性別ログ機能を実装し、分析結果をもとにUI導線をABテストで最適化</li>
+            <li>税理士側の相談記録入力を簡略化するためテンプレート化し、入力時間を平均5分短縮</li>
+            <li>リリース後2ヶ月で総セッション数が3,200→7,400に倍増</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FPS Modal -->
+  <div class="modal fade" id="modalFPS" tabindex="-1" role="dialog" aria-labelledby="modalFPSLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalFPSLabel">FPS – iOS財務シミュレーター保守</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2020.06〜2021.03</p>
+          <p><strong>概要:</strong> iPad用の金融相談アプリ（取引先銀行：3行、年間利用回数：約5,000件）</p>
+          <p><strong>役割:</strong> 保守開発 / Storeリリース対応</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>テンプレート化による更新プロセス短縮（1週間→2日）</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>QAチェックリストを標準化しApple審査通過率100%を達成</li>
+          </ul>
+          <p><strong>技術スタック:</strong> ActionScript / AIR SDK / Xcode</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>複数パラメーター設定によるカスタムシミュレーション機能を導入し、FPからの満足度評価4.8/5.0を獲得</li>
+            <li>Apple Store更新申請業務を自動化スクリプト化し、年5回の更新対応をチームで分担可能に</li>
+            <li>社内研修資料テンプレートを整備し、新規メンバーの引継ぎ時間を約40%削減</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DWH Modal -->
+  <div class="modal fade" id="modalDWH" tabindex="-1" role="dialog" aria-labelledby="modalDWHLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalDWHLabel">社内DWH統合 – データ統合プロジェクト</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2019.10〜2020.05</p>
+          <p><strong>概要:</strong> 各部署のDB統合・分析基盤構築（対象DB数：7システム）</p>
+          <p><strong>役割:</strong> DWHアーキテクト</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>ELT方式採用によりデータ更新時間を60%短縮</li>
+            <li>ステージング層設計でデータ整合性問題を95%解消</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>部署横断の要件調整とLookerレポート設計を主導（約25レポート作成）</li>
+          </ul>
+          <p><strong>技術スタック:</strong> BigQuery / dbt / Looker / Cloud Composer</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>GCP IAM設計によりアクセス制御を厳格化、監査指摘ゼロを維持</li>
+            <li>ETL→ELT移行後、集計レポート処理時間が平均42分→14分に短縮</li>
+            <li>各部門別トレーニングを3回開催し、分析ツール利用率が30%→65%に上昇</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Freelance Modal -->
+  <div class="modal fade" id="modalFreelance" tabindex="-1" role="dialog" aria-labelledby="modalFreelanceLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalFreelanceLabel">保証システム / ERP連携など</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2011.03〜2019.09</p>
+          <p><strong>所属:</strong> フリーランス</p>
+          <p><strong>概要:</strong> 中小企業向け業務系システム開発（取引先数：10社以上）</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>汎用コンポーネント化により開発コスト約35%削減</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>要件定義〜実装〜保守を一貫対応し顧客満足度95%以上を記録</li>
+          </ul>
+          <p><strong>技術スタック:</strong> Java / Android / iOS / PHP / MySQL</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>Android/iOS向けアプリを6本以上保守運用し、うち3件は5年以上継続契約</li>
+            <li>ERP連携モジュールを標準化し、新規導入までの平均所要日数を45日→25日に短縮</li>
+            <li>顧客別ヒアリングから独自ワークフロー対応ロジックを導入し、手動業務月20時間分を自動化</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health System Modal -->
+  <div class="modal fade" id="modalHealth" tabindex="-1" role="dialog" aria-labelledby="modalHealthLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalHealthLabel">健康診断システム開発</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>期間:</strong> 2008.06〜2011.02</p>
+          <p><strong>所属:</strong> LAS21</p>
+          <p><strong>概要:</strong> 自治体向け健康管理システム（導入自治体数：6）</p>
+          <p><strong>役割:</strong> SE・PL</p>
+          <p><strong>戦略的判断:</strong></p>
+          <ul>
+            <li>テンプレート構造導入で導入期間を2ヶ月短縮</li>
+          </ul>
+          <p><strong>リーダーシップ:</strong></p>
+          <ul>
+            <li>新人2名の教育と導入研修対応を実施、現場満足度100%</li>
+          </ul>
+          <p><strong>技術スタック:</strong> Java / JSP / OracleDB</p>
+          <p><strong>その他:</strong></p>
+          <ul>
+            <li>健康診断アルゴリズムをロジック化し、設計変更なく5年継続利用</li>
+            <li>他市区町村向け導入時に派生機能をモジュール化し、カスタマイズ作業を40%削減</li>
+            <li>操作マニュアル・教育資料を標準化し、利用者研修工数を50%短縮</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ################# JAVASCRIPT LIBRARIES ################# -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqBootstrapValidation/1.3.7/jqBootstrapValidation.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script>
+    (function ($) {
+      "use strict";
+
+      // Preloader
+      $(window).on('load', function () {
+        if ($('#loader').length) {
+          $('#loader').delay(100).fadeOut('slow', function () {
+            $(this).remove();
+          });
+        }
+      });
+
+      // Back to top button
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 200) {
+          $('.back-to-top').fadeIn('slow');
+        } else {
+          $('.back-to-top').fadeOut('slow');
+        }
+      });
+      $('.back-to-top').click(function () {
+        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        return false;
+      });
+
+      // Sticky Navbar
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 0) {
+          $('.navbar').addClass('nav-sticky');
+        } else {
+          $('.navbar').removeClass('nav-sticky');
+        }
+      });
+
+      // Typed.js Initiation
+      if ($('.typed-text').length > 0) {
+        var typed_strings = $(".typed-text").text();
+        var typed = new Typed('.typed-text', {
+          strings: typed_strings.split(', '),
+          typeSpeed: 100,
+          backSpeed: 20,
+          smartBackspace: false,
+          loop: true
+        });
+      }
+
+      // Portfolio filter
+      var portfolioIsotope = $('.portfolio-container').isotope({
+        itemSelector: '.portfolio-item',
+        layoutMode: 'fitRows'
+      });
+      $('#portfolio-filter li').on('click', function () {
+        $("#portfolio-filter li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+        portfolioIsotope.isotope({filter: $(this).data('filter')});
+      });
+      
+      // Wow.js Initialization
+      new WOW().init();
+
+    })(jQuery);
+  </script>
+
+</body>
+</html>
