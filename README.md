@@ -1,4 +1,3 @@
-```markdown
 # Starful's Portfolio Website
 
 This repository contains the source code for the personal portfolio website of Starful. It's a fully responsive, single-page-focused website designed to showcase skills, professional experience, and personal projects, enhanced with smooth animations and interactive elements.
@@ -23,6 +22,7 @@ This repository contains the source code for the personal portfolio website of S
 ├── README.md           # This file
 └── img/                # All images for the site
 ```
+````
 
 ## 🚀 Deployment to Google Cloud Run
 
@@ -30,37 +30,39 @@ This project is configured for easy deployment to Google Cloud Run using Cloud B
 
 ### Step 1: Set Up Your Environment
 
-1.  **Configure gcloud CLI**
+1. **Configure gcloud CLI**
     Ensure you have the gcloud CLI installed and authenticated. Set your project ID to `starful-258005`.
+
     ```sh
     # Set the active project ID
     gcloud config set project starful-258005
     ```
 
-2.  **Enable Necessary APIs**
+2. **Enable Necessary APIs**
     Enable the APIs for Cloud Build and Cloud Run if you haven't already.
+
     ```sh
     gcloud services enable cloudbuild.googleapis.com
     gcloud services enable run.googleapis.com
     ```
 
-3.  **Create `cloudbuild.yaml`**
+3. **Create `cloudbuild.yaml`**
     Make sure the following `cloudbuild.yaml` file exists in your project's root directory. It instructs Cloud Build how to build and push your Docker image.
 
     ```yaml
     steps:
       # Step 1: Build the Docker image
       # The $PROJECT_ID variable will be automatically replaced by your project ID ('starful-258005').
-      - name: 'gcr.io/cloud-builders/docker'
-        args: ['build', '-t', 'gcr.io/$PROJECT_ID/starful-site:latest', '.']
+      - name: "gcr.io/cloud-builders/docker"
+        args: ["build", "-t", "gcr.io/$PROJECT_ID/starful-site:latest", "."]
 
       # Step 2: Push the image to Google Container Registry (gcr.io)
-      - name: 'gcr.io/cloud-builders/docker'
-        args: ['push', 'gcr.io/$PROJECT_ID/starful-site:latest']
+      - name: "gcr.io/cloud-builders/docker"
+        args: ["push", "gcr.io/$PROJECT_ID/starful-site:latest"]
 
     # Specify the final image created by the build.
     images:
-      - 'gcr.io/$PROJECT_ID/starful-site:latest'
+      - "gcr.io/$PROJECT_ID/starful-site:latest"
     ```
 
 ### Step 2: Build the Website Image
@@ -85,6 +87,7 @@ gcloud run deploy starful-site \
   --port 8080 \
   --allow-unauthenticated
 ```
+
 Your website will now be live at the URL provided by Cloud Run.
 
 ---
@@ -92,4 +95,3 @@ Your website will now be live at the URL provided by Cloud Run.
 ## 🙌 Author
 
 Maintained by [**starful**](https://github.com/starful)
-```
