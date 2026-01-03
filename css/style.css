@@ -1,0 +1,79 @@
+/* css/style.css */
+
+/* 1. 폰트 추가 (Inter: 영문용, Noto Sans JP: 일문용) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F5F5F7;
+    color: #1D1D1F;
+    /* 기본 폰트 설정: 영문 우선, 없으면 일문 */
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+/* 언어 전환 버튼 스타일 */
+.lang-btn {
+    font-size: 13px;
+    font-weight: 600;
+    color: #86868b;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.lang-btn:hover {
+    color: #1D1D1F;
+}
+
+.lang-btn.active {
+    color: #0071E3; /* Apple Blue */
+}
+
+/* --- 기존 스타일 유지 --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bento-card {
+    background: white;
+    border-radius: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.exp-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.exp-card.open .exp-details {
+    max-height: 1200px; /* 내용이 많아져서 높이 증가 */
+    transition: max-height 0.5s ease-in;
+}
+
+.exp-card.open .chevron {
+    transform: rotate(180deg);
+}
+
+.hover-zoom {
+    transition: transform 0.3s ease;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.05);
+}

@@ -1,97 +1,95 @@
-# Starful's Portfolio Website
+# Starful Hub - Personal Portfolio Website
 
-This repository contains the source code for the personal portfolio website of Starful. It's a fully responsive, single-page-focused website designed to showcase skills, professional experience, and personal projects, enhanced with smooth animations and interactive elements.
+This repository contains the source code for **Starful Hub**, the personal branding and portfolio website of Starful.
+It has been completely renewed with an **Apple-inspired minimalist design**, utilizing **Tailwind CSS** for styling and **Vanilla JavaScript** for logic. The site focuses on professional experience (PM, Engineering), technical skills, and personal projects.
 
 ## ✨ Features
 
-- **Responsive Design**: Optimized for a seamless experience on desktops, tablets, and mobile devices.
-- **Dynamic Hero Section**: Features a "typed text" effect to introduce different roles and skills.
-- **Interactive Animations**: Utilizes WOW.js to trigger CSS animations as the user scrolls.
-- **Filterable Portfolio**: An interactive gallery that allows visitors to filter projects by category (Manager, Web, Apps & Data, etc.).
-- **Detailed Experience Timeline**: A visually engaging timeline to present work history.
-- **Dedicated Pages**: Includes a separate, consistently styled page for the Privacy Policy.
+- **Apple-Like Design**: A clean, premium aesthetic with frost-glass effects, smooth scrolling, and bento-grid layouts.
+- **Multi-Language Support (i18n)**: Real-time toggling between **English** and **Japanese** without page reloads.
+- **Responsive & Adaptive**: Fully optimized for desktops, tablets, and mobile devices using Tailwind CSS.
+- **Interactive Experience Timeline**: An accordion-style career history section that expands to show detailed achievements.
+- **Bento Grid Layout**: Visually engaging presentation of skills, roles, and blog categories.
+- **Lightweight & Fast**: Built with pure HTML/JS/CSS (no heavy frontend frameworks), ensuring high performance.
 
 ## 📁 Project Structure
 
 ```text
 .
-├── cloudbuild.yaml     # Configuration for Google Cloud Build
-├── Dockerfile          # Docker configuration for Nginx server
-├── index.html          # Main portfolio landing page
-├── privacy.html        # Privacy Policy page
-├── README.md           # This file
-└── img/                # All images for the site
+├── Dockerfile          # Configuration for Nginx server image
+├── .gcloudignore       # Files to ignore during Cloud Build
+├── index.html          # Main landing page
+├── css/
+│   └── style.css       # Custom animations and fonts
+├── js/
+│   └── main.js         # i18n logic and interaction scripts
+└── img/                # Profile, logos, and asset images
 ```
-````
 
 ## 🚀 Deployment to Google Cloud Run
 
-This project is configured for easy deployment to Google Cloud Run using Cloud Build.
+This project is deployed using **Google Cloud Build** and **Cloud Run**, utilizing **Artifact Registry** for image storage.
 
-### Step 1: Set Up Your Environment
+### Prerequisites
 
-1. **Configure gcloud CLI**
-    Ensure you have the gcloud CLI installed and authenticated. Set your project ID to `starful-258005`.
+- Google Cloud SDK (`gcloud`) installed and authenticated.
+- Project ID: `starful-258005`
+- Artifact Registry Repository created: `starful-repo` (Location: `us-central1`)
 
-    ```sh
-    # Set the active project ID
-    gcloud config set project starful-258005
-    ```
+### Step 1: Create Configuration Files
 
-2. **Enable Necessary APIs**
-    Enable the APIs for Cloud Build and Cloud Run if you haven't already.
+Ensure you have a `Dockerfile` and `.gcloudignore` in your root directory.
 
-    ```sh
-    gcloud services enable cloudbuild.googleapis.com
-    gcloud services enable run.googleapis.com
-    ```
+**Dockerfile:**
+```dockerfile
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+RUN sed -i 's/listen       80;/listen       8080;/g' /etc/nginx/conf.d/default.conf
+EXPOSE 8080
+```
 
-3. **Create `cloudbuild.yaml`**
-    Make sure the following `cloudbuild.yaml` file exists in your project's root directory. It instructs Cloud Build how to build and push your Docker image.
+**.gcloudignore:**
+```text
+.git
+.DS_Store
+```
 
-    ```yaml
-    steps:
-      # Step 1: Build the Docker image
-      # The $PROJECT_ID variable will be automatically replaced by your project ID ('starful-258005').
-      - name: "gcr.io/cloud-builders/docker"
-        args: ["build", "-t", "gcr.io/$PROJECT_ID/starful-site:latest", "."]
+### Step 2: Build & Push Image to Artifact Registry
 
-      # Step 2: Push the image to Google Container Registry (gcr.io)
-      - name: "gcr.io/cloud-builders/docker"
-        args: ["push", "gcr.io/$PROJECT_ID/starful-site:latest"]
-
-    # Specify the final image created by the build.
-    images:
-      - "gcr.io/$PROJECT_ID/starful-site:latest"
-    ```
-
-### Step 2: Build the Website Image
-
-This command sends your code to Cloud Build, which builds the Docker image and pushes it to `gcr.io/starful-258005/starful-site`.
+Use Cloud Build to build the Docker image and push it directly to your Artifact Registry repository (`starful-repo`).
 
 ```sh
-# Submit the build job from your project's root directory
-gcloud builds submit --config cloudbuild.yaml .
+# Build and Push
+gcloud builds submit --tag us-central1-docker.pkg.dev/starful-258005/starful-repo/starful-site:latest .
 ```
 
 ### Step 3: Deploy to Cloud Run
 
-After the image is successfully built, deploy it to Cloud Run in the US region.
+Deploy the container image to Google Cloud Run.
 
 ```sh
-# Deploy the service using the newly built image
+# Deploy Service
 gcloud run deploy starful-site \
-  --image gcr.io/starful-258005/starful-site:latest \
+  --image us-central1-docker.pkg.dev/starful-258005/starful-repo/starful-site:latest \
   --platform managed \
   --region us-central1 \
   --port 8080 \
   --allow-unauthenticated
 ```
 
-Your website will now be live at the URL provided by Cloud Run.
+### (Optional) One-Command Deployment
+
+If you want to build and deploy from source in a single step (requires API enablement):
+
+```sh
+gcloud run deploy starful-site --source .
+```
 
 ---
 
 ## 🙌 Author
 
-Maintained by [**starful**](https://github.com/starful)
+**Starful**
+- **Roles:** Co-founder, Dev Manager, PM, Data Engineer
+- **Contact:** starful@starful.net
+- **Blogs:** [okpy.net](https://okpy.net) | [companyDB](https://companydb.net)
