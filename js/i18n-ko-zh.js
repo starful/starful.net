@@ -240,6 +240,8 @@ Object.assign(translations, {
         "blog.title": "인사이트 & 관심사",
         "blog.subtitle": "기술·매니지먼트·비즈니스 로그 — <a href='https://okpy.net' target='_blank' rel='noopener noreferrer' class='text-apple-blue hover:underline'>okpy.net</a>",
         "blog.cta": "okpy.net 방문 →",
+        "blog.card.biz.title": "IT 커리어",
+        "blog.card.biz.desc": "starful.biz · 직종·면접",
         "footer.title": "Let's build something starful."
     },
 
@@ -483,6 +485,8 @@ Object.assign(translations, {
         "blog.title": "洞察与兴趣",
         "blog.subtitle": "技术、管理与商业日志 — <a href='https://okpy.net' target='_blank' rel='noopener noreferrer' class='text-apple-blue hover:underline'>okpy.net</a>",
         "blog.cta": "访问 okpy.net →",
+        "blog.card.biz.title": "IT 职业",
+        "blog.card.biz.desc": "starful.biz · 岗位与面试",
         "footer.title": "Let's build something starful."
     }
 });

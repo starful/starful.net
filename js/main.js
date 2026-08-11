@@ -412,6 +412,8 @@ const translations = {
         "blog.title": "Insights & Interests.",
         "blog.subtitle": "Tech, Management, and Business logs from <a href='https://okpy.net' target='_blank' rel='noopener noreferrer' class='text-apple-blue hover:underline'>okpy.net</a>",
         "blog.cta": "Visit okpy.net →",
+        "blog.card.biz.title": "IT Career",
+        "blog.card.biz.desc": "starful.biz · roles & prep",
         "footer.title": "Let's build something starful."
     },
     "jp": {
@@ -773,6 +775,8 @@ const translations = {
         "blog.title": "インサイト & 興味",
         "blog.subtitle": "技術、マネジメント、ビジネスログ <a href='https://okpy.net' target='_blank' rel='noopener noreferrer' class='text-apple-blue hover:underline'>okpy.net</a>",
         "blog.cta": "okpy.net を見る →",
+        "blog.card.biz.title": "ITキャリア",
+        "blog.card.biz.desc": "starful.biz · 職種・面接対策",
         "footer.title": "Let's build something starful."
     }
 };
