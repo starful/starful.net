@@ -4,7 +4,7 @@
 tailwind.config = {
     theme: {
         extend: {
-            fontFamily: { sans: ['Inter', 'Noto Sans JP', 'sans-serif'] },
+            fontFamily: { sans: ['Inter', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'sans-serif'] },
             colors: {
                 'apple-gray': '#F5F5F7',
                 'apple-text': '#1D1D1F',
@@ -26,9 +26,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    
-    // 초기 언어 설정 (기본값: 영어)
-    setLanguage('en');
+
+    const saved = localStorage.getItem('starful_lang');
+    const browser = (navigator.language || 'en').toLowerCase();
+    let initial = 'en';
+    if (saved && ['en', 'jp', 'ko', 'zh'].includes(saved)) {
+        initial = saved;
+    } else if (browser.startsWith('ja')) {
+        initial = 'jp';
+    } else if (browser.startsWith('ko')) {
+        initial = 'ko';
+    } else if (browser.startsWith('zh')) {
+        initial = 'zh';
+    }
+    setLanguage(initial);
 });
 
 function toggleExp(element) {
@@ -40,6 +51,7 @@ const translations = {
     "en": {
         "nav.about": "About",
         "nav.exp": "Experience",
+        "nav.projects": "Projects",
         "nav.blog": "Blog",
         "hero.role": "Product Manager & Engineer",
         "hero.title": "Hi, I'm Starful.",
@@ -321,6 +333,26 @@ const translations = {
         `,
         // [NEW] Side Projects Title
         "side.title": "Side Projects & Others",
+        "side.biz.badge": "Product",
+        "side.biz.role": "IT career guides & interview prep",
+        "side.biz.body": `
+            <div class="space-y-4 text-sm leading-relaxed text-gray-600">
+                <p>
+                    <strong>Starful.biz:</strong><br>
+                    A FastAPI career platform for IT roles, interview prep, and MBTI-based career hubs — built and operated end-to-end.
+                </p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Markdown-driven career guides with SEO-focused routes and bilingual content.</li>
+                    <li>MBTI type hubs mapped to recommended career paths.</li>
+                    <li><strong>Tech:</strong> Python, FastAPI, Cloud Run, GCS</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="https://starful.biz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-apple-blue font-semibold hover:underline">
+                        Visit starful.biz <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        `,
         // Side Project 1: MoneyLook
         "side.moneylook.role": "Operation & Maintenance",
         "side.moneylook.body": `
@@ -378,12 +410,14 @@ const translations = {
         `,
         // Blog
         "blog.title": "Insights & Interests.",
-        "blog.subtitle": "Tech, Management, and Business logs from <a href='https://okpy.net' target='_blank' class='text-apple-blue hover:underline'>okpy.net</a>",
+        "blog.subtitle": "Tech, Management, and Business logs from <a href='https://okpy.net' target='_blank' rel='noopener noreferrer' class='text-apple-blue hover:underline'>okpy.net</a>",
+        "blog.cta": "Visit okpy.net →",
         "footer.title": "Let's build something starful."
     },
     "jp": {
         "nav.about": "About",
         "nav.exp": "Experience",
+        "nav.projects": "Projects",
         "nav.blog": "Blog",
         "hero.role": "プロダクトマネージャー & エンジニア",
         "hero.title": "こんにちは、Starfulです。",
@@ -658,6 +692,26 @@ const translations = {
         `,
         // [NEW] Side Projects Title
         "side.title": "サイドプロジェクト & その他",
+        "side.biz.badge": "プロダクト",
+        "side.biz.role": "ITキャリアガイド・面接対策",
+        "side.biz.body": `
+            <div class="space-y-4 text-sm leading-relaxed text-gray-600">
+                <p>
+                    <strong>Starful.biz:</strong><br>
+                    IT職種ガイド、面接対策、MBTI連動キャリアハブを提供するFastAPI製プラットフォーム。企画から運用まで一貫して担当。
+                </p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Markdownベースの職種ガイドとSEO対応ルーティング。</li>
+                    <li>MBTIタイプ別のキャリア導線。</li>
+                    <li><strong>技術:</strong> Python, FastAPI, Cloud Run, GCS</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="https://starful.biz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-apple-blue font-semibold hover:underline">
+                        starful.biz を見る <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        `,
 
         // Side Project 1: MoneyLook
         "side.moneylook.role": "運用保守",
@@ -717,23 +771,29 @@ const translations = {
         `,
         // Blog
         "blog.title": "インサイト & 興味",
-        "blog.subtitle": "技術、マネジメント、ビジネスログ <a href='https://okpy.net' target='_blank' class='text-apple-blue hover:underline'>okpy.net</a>",
+        "blog.subtitle": "技術、マネジメント、ビジネスログ <a href='https://okpy.net' target='_blank' rel='noopener noreferrer' class='text-apple-blue hover:underline'>okpy.net</a>",
+        "blog.cta": "okpy.net を見る →",
         "footer.title": "Let's build something starful."
     }
 };
 
+const LANG_HTML = { en: 'en', jp: 'ja', ko: 'ko', zh: 'zh-CN' };
+
 function setLanguage(lang) {
-    // 1. 버튼 상태 업데이트
+    if (!translations[lang]) lang = 'en';
+    const dict = translations[lang];
+    const fallback = translations.en;
+
+    document.documentElement.lang = LANG_HTML[lang] || 'en';
+    localStorage.setItem('starful_lang', lang);
+
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if(btn.dataset.lang === lang) btn.classList.add('active');
+        btn.classList.toggle('active', btn.dataset.lang === lang);
     });
 
-    // 2. 텍스트 교체
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            el.innerHTML = translations[lang][key];
-        }
+        const value = (dict && dict[key]) || fallback[key];
+        if (value != null) el.innerHTML = value;
     });
 }

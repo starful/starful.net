@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starful Hub | PM & Engineering</title>
-    
-    <!-- Meta Tags, Google Analytics, Favicon 등 기존 코드 유지 -->
-    <meta content="企業分析, Cloud, Python, AWS, GCP, Data Engineering, DevOps, NBA Player Analysis, Basketball Shoes, History, Brand Strategy, Marketing Trends, Tech Blog, Software Engineering, Startup, Investment Research" name="keywords">
-    <meta content="companyDB, okpy, starful 등 다양한 블로그를 운영하며 기업 분석, 클라우드 기술, NBA 선수 정보, 브랜드 전략, 역사 인물 분석 등 깊이 있는 인사이트를 제공합니다." name="description">
+    <meta content="Starful, Product Manager, Engineering, PM, Data, Cloud, AWS, GCP, Agile, starful.biz, okpy" name="keywords">
+    <meta content="Starful — Product Manager & Engineer based in Tokyo. Portfolio, career product starful.biz, and tech blog okpy.net." name="description">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6WM10SMGTW"></script>
@@ -34,17 +32,22 @@
             </a>
             
             <div class="flex items-center gap-6">
-                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
+                <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-500">
                     <a href="#about" class="hover:text-apple-dark transition-colors" data-i18n="nav.about">About</a>
                     <a href="#experience" class="hover:text-apple-dark transition-colors" data-i18n="nav.exp">Experience</a>
+                    <a href="#projects" class="hover:text-apple-dark transition-colors" data-i18n="nav.projects">Projects</a>
                     <a href="#blog" class="hover:text-apple-dark transition-colors" data-i18n="nav.blog">Blog</a>
                 </div>
                 
                 <!-- 언어 스위처 -->
-                <div class="flex items-center gap-2 border-l border-gray-300 pl-4 ml-2">
+                <div class="flex items-center gap-1.5 sm:gap-2 border-l border-gray-300 pl-3 ml-1 flex-wrap">
                     <span class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</span>
                     <span class="text-gray-300 text-xs">/</span>
                     <span class="lang-btn" data-lang="jp" onclick="setLanguage('jp')">JP</span>
+                    <span class="text-gray-300 text-xs">/</span>
+                    <span class="lang-btn" data-lang="ko" onclick="setLanguage('ko')">KO</span>
+                    <span class="text-gray-300 text-xs">/</span>
+                    <span class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</span>
                 </div>
 
                 <a href="mailto:starful@starful.net" class="hidden md:inline-block bg-apple-dark text-white text-xs px-4 py-2 rounded-full hover:bg-black transition-colors">
@@ -222,14 +225,29 @@
                 </div>
             </div>
 
-            <!-- Side Projects Section (New Divider) -->
-            <div class="mt-16 mb-8 reveal">
+            <!-- Side Projects Section -->
+            <div id="projects" class="mt-16 mb-8 reveal scroll-mt-24">
                 <h3 class="text-2xl font-bold text-apple-dark" data-i18n="side.title">Side Projects & Others</h3>
             </div>
 
             <div class="space-y-4">
 
-                <!-- [NEW] Side 1: Fast Offer -->
+                <!-- Starful.biz (primary product) -->
+                <div class="exp-card border border-gray-200 rounded-2xl overflow-hidden reveal cursor-pointer hover:bg-gray-50 transition-colors" onclick="toggleExp(this)">
+                    <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-apple-blue uppercase tracking-wide" data-i18n="side.biz.badge">Product</span>
+                            <h3 class="text-xl font-bold mt-1">Starful.biz</h3>
+                            <p class="text-gray-500 text-sm" data-i18n="side.biz.role">IT career guides & interview prep</p>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-300"></i>
+                    </div>
+                    <div class="exp-details bg-gray-50 px-6">
+                        <div class="pb-8 pt-4 border-t border-gray-200" data-i18n="side.biz.body"></div>
+                    </div>
+                </div>
+
+                <!-- Fast Offer -->
                 <div class="exp-card border border-gray-200 rounded-2xl overflow-hidden reveal cursor-pointer hover:bg-gray-50 transition-colors" onclick="toggleExp(this)">
                     <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
@@ -290,7 +308,12 @@
         <div class="max-w-6xl mx-auto">
             <div class="reveal mb-12 text-center">
                 <h2 class="text-3xl font-bold mb-4 text-apple-dark" data-i18n="blog.title">Insights & Interests.</h2>
-                <p class="text-gray-500" data-i18n="blog.subtitle">Tech, Management, and Business logs from okpy.net</p>
+                <p class="text-gray-500 mb-4" data-i18n="blog.subtitle">Tech, Management, and Business logs from okpy.net</p>
+                <a href="https://okpy.net" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 text-sm font-semibold text-apple-blue hover:underline"
+                   data-i18n="blog.cta">
+                    Visit okpy.net →
+                </a>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -423,5 +446,6 @@
 
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    <script src="js/i18n-ko-zh.js"></script>
 </body>
 </html>
